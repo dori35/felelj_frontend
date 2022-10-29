@@ -1,4 +1,5 @@
-import { createdTestsApi } from "../../api/rest";
+import { createdTestsApi } from "../../api/restApi";
+import { addToken, addUserId } from "../auth/actions";
 
 export const SET_CREATEDTESTS = "SET_CREATEDTESTS";
 export const ADD_TEST = "ADD_TEST";
@@ -11,7 +12,10 @@ export const setCreatedTests = (tests) => ({
 });
 
 // Async
-export const fetchCreatedTests = () => async (dispatch) => {
-  const tests = await createdTestsApi.getAll();
-  dispatch(setCreatedTests(tests));
-};
+export const fetchCreatedTests = () =>
+  addToken(
+    addUserId(async (dispatch, getState, _, token, userId) => {
+      const tests = await createdTestsApi.getAll(token, userId);
+      dispatch(setCreatedTests(tests));
+    })
+  );

@@ -9,7 +9,6 @@ export function Layout({ children }) {
       <div className="bg bg3"></div>
       <Menu />
       {children}
-      <Footer />
     </>
   );
 }
