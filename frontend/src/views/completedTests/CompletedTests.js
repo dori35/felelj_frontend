@@ -1,9 +1,10 @@
+import { Container } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 export function CompletedTests() {
   return (
     <>
       <br />
-      <div className="container my-5">
+      <Container className="my-5">
         <Table>
           <thead className="bg-dark text-white">
             <tr>
@@ -16,7 +17,7 @@ export function CompletedTests() {
           </thead>
           <tbody className="bg-light"></tbody>
         </Table>
-      </div>
+      </Container>
     </>
   );
 }

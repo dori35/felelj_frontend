@@ -1,15 +1,20 @@
-import { ADD_USER, STORE_USER } from "./actions";
+import { ADD_USER, STORE_USER, REMOVE_USER } from "./actions";
 
 const initialState = {};
 
 export const authReducer = (state = initialState, action) => {
   const { type, payload } = action;
   if (type === STORE_USER) {
+    console.log(payload);
     return payload;
   }
 
   if (type === ADD_USER) {
     return payload;
+  }
+
+  if (type === REMOVE_USER) {
+    return {};
   }
 
   return state;

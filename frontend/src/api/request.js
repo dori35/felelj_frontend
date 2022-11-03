@@ -2,8 +2,9 @@ const BASE_URL = "http://localhost:8080";
 
 export const request = async (path = "", options = {}, token, userId) => {
   let url = `${BASE_URL}${path}`;
+
   const headers = {
-    Authorization: `Bearer ${token}`,
+    // Authorization: `Bearer ${token}`,
     "Content-Type": "application/json",
     Accept: "application/json",
     ...options.headers,

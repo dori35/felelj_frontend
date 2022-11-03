@@ -1,7 +1,6 @@
 export function Footer() {
   return (
     <footer
-      className="bg-transpaent text-centery"
       style={{
         position: "absolute",
         left: "0",
@@ -9,7 +8,7 @@ export function Footer() {
         right: "0",
       }}
     >
-      <div className="text-left p-3">© 2022</div>
+      <div className="p-3">© 2022</div>
     </footer>
   );
 }

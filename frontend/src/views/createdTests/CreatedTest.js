@@ -1,3 +1,4 @@
+import { Button } from "react-bootstrap";
 import { BsFillTrashFill, BsPencilFill, BsTrophy } from "react-icons/bs";
 export function CreatedTest({ createdTest }) {
   return (
@@ -11,15 +12,15 @@ export function CreatedTest({ createdTest }) {
       <td>{createdTest.random ? "igen" : "nem"}</td>
       <td>
         {" "}
-        <button type="button" className="btn btn-danger btn-sm">
+        <Button className="btn-danger btn-sm">
           <BsFillTrashFill />
-        </button>
-        <button type="button" className="btn btn-primary btn-sm">
+        </Button>
+        <Button className="btn-primary btn-sm">
           <BsPencilFill />
-        </button>
-        <button type="button" className="btn btn-warning btn-sm">
+        </Button>
+        <Button className=" btn-warning btn-sm">
           <BsTrophy />
-        </button>
+        </Button>
       </td>
     </tr>
   );

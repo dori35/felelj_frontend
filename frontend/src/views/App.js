@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCreatedTests } from "../state/createdTests/actions";
 import { useEffect } from "react";
 import { Layout } from "./layout/Layout";
-import { LandingPage } from "./landingPage/LandingPage";
 import { Registration } from "./auth/Registration ";
 import { getIsLoggedIn } from "../state/auth/selectors";
 import { Login } from "./auth/Login";
 import { CompletedTests } from "./completedTests/CompletedTests";
+import { restoreUser } from "../state/auth/actions";
+import { LandingPage } from "./landingPage/LandingPage";
 
 export function App() {
   const dispatch = useDispatch();
@@ -20,17 +21,24 @@ export function App() {
     }
   }, [dispatch, isLoggedIn]);
 
+  useEffect(() => {
+    dispatch(restoreUser());
+  }, [dispatch]);
+
   return (
-    <Layout>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Layout>
         <Routes>
-          <Route exact path="/" element={<Login />} />
+          <Route exact path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
+          {isLoggedIn && (
+            <Route path="/completedtests" element={<CompletedTests />} />
+          )}
           {isLoggedIn && <Route path="/mytests" element={<CreatedTests />} />}
-          {<Route path="/completedtests" element={<CompletedTests />} />}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-      </BrowserRouter>
-    </Layout>
+      </Layout>
+    </BrowserRouter>
   );
 }

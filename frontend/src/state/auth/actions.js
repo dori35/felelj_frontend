@@ -3,6 +3,7 @@ import { getToken, getUserId } from "./selectors";
 
 export const STORE_USER = "STORE_USER";
 export const ADD_USER = "ADD_USER";
+export const REMOVE_USER = "REMOVE_USER";
 
 // Sync
 export const storeUser = (authData) => ({
@@ -13,6 +14,10 @@ export const storeUser = (authData) => ({
 export const addNewUser = (user) => ({
   type: ADD_USER,
   payload: user,
+});
+
+export const removeUser = () => ({
+  type: REMOVE_USER,
 });
 
 // Async
@@ -30,6 +35,26 @@ export const signup =
     dispatch(addNewUser(user));
   };
 
+export const logout = () => (dispatch) => {
+  authApi.logout();
+  dispatch(removeUser());
+};
+
+export const restoreUser = () => async (dispatch) => {
+  const token = authApi.getToken();
+  if (token) {
+    const data = JSON.parse(atob(token.split(".")[1]));
+    const userIdentifier = data.sub;
+    const user = await authApi.getUserByIdentifier(userIdentifier, token);
+    dispatch(
+      storeUser({
+        ...user,
+        token,
+        type: "Bearer",
+      })
+    );
+  }
+};
 // Util
 export const addToken =
   (fn) =>

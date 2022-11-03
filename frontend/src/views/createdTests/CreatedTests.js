@@ -1,3 +1,4 @@
+import { Container } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { useSelector } from "react-redux";
 import { getCreatedTests } from "../../state/createdTests/selectors";
@@ -8,7 +9,7 @@ export function CreatedTests() {
   return (
     <>
       <br />
-      <div className="container my-5">
+      <Container className="my-5">
         <Table>
           <thead className="bg-dark text-white">
             <tr>
@@ -28,7 +29,7 @@ export function CreatedTests() {
             ))}
           </tbody>
         </Table>
-      </div>
+      </Container>
     </>
   );
 }

@@ -26,12 +26,20 @@ class AuthApi {
       method: "POST",
       body: JSON.stringify(newUserData),
     });
-    console.log(newUser);
     return newUser;
+  }
+
+  logout() {
+    window.sessionStorage.removeItem("token");
   }
 
   getToken() {
     return window.sessionStorage.getItem("token");
+  }
+
+  async getUserByIdentifier(userIdentifier, token) {
+    const user = await request(`/userdtos/${userIdentifier}`, {}, token);
+    return user;
   }
 }
 
