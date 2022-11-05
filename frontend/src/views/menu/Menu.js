@@ -8,7 +8,7 @@ import { Button, Modal, NavDropdown } from "react-bootstrap";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import { logout } from "../../state/auth/actions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function Menu() {
   const isLoggedIn = useSelector(getIsLoggedIn);
@@ -18,6 +18,13 @@ export function Menu() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const activeKeyFunc = () => {
+    if (roles) {
+      return roles.includes("TEACHER") ? "myTests" : "completedTests";
+    }
+    return "/";
+  };
 
   const handleClick = (e) => {
     try {
@@ -36,12 +43,13 @@ export function Menu() {
         </Container>
         <Navbar.Collapse className="mw-100 ">
           {isLoggedIn && (
-            <Nav>
+            <Nav defaultActiveKey={activeKeyFunc()}>
               {roles && roles.includes("TEACHER") && (
                 <Nav.Link
                   as={Link}
                   to="/newtest"
                   style={{ textAlign: "center", padding: "0px 30px" }}
+                  eventKey="newTest"
                 >
                   Új teszt
                 </Nav.Link>
@@ -51,6 +59,7 @@ export function Menu() {
                   as={Link}
                   to="/mytests"
                   style={{ textAlign: "center", padding: "0px 30px" }}
+                  eventKey="myTests"
                 >
                   Létrehozott tesztek
                 </Nav.Link>
@@ -60,6 +69,7 @@ export function Menu() {
                   as={Link}
                   to="/completedtests"
                   style={{ textAlign: "center", padding: "0px 30px" }}
+                  eventKey="completedTests"
                 >
                   Kitöltött tesztek
                 </Nav.Link>
