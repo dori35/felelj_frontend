@@ -4,10 +4,12 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { createdTestsReducer } from "./createdTests/reducer";
 import { authReducer } from "./auth/reducer";
+import { profileReducer } from "./profile/reducer";
 
 const rootReducer = combineReducers({
   tests: createdTestsReducer,
   auth: authReducer,
+  profile: profileReducer,
 });
 
 const logger = createLogger({

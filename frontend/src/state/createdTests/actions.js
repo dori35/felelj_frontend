@@ -1,5 +1,5 @@
 import { createdTestsApi } from "../../api/restApi";
-import { addToken, addUserId } from "../auth/actions";
+import { addToken, addUserId } from "../utils/utils";
 
 export const SET_CREATEDTESTS = "SET_CREATEDTESTS";
 export const ADD_TEST = "ADD_TEST";

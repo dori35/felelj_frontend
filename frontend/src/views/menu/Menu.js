@@ -4,21 +4,23 @@ import Nav from "react-bootstrap/Nav";
 import logo from "../../assets/logo_transparent.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getIsLoggedIn, getRoles } from "../../state/auth/selectors";
-import { Button, Modal, NavDropdown } from "react-bootstrap";
+import { NavDropdown } from "react-bootstrap";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import { logout } from "../../state/auth/actions";
-import { useEffect, useState } from "react";
+import { Profile } from "./Profile";
+import { useState } from "react";
+import { getProfile } from "../../state/profile/selectors";
 
 export function Menu() {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const roles = useSelector(getRoles);
 
-  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const dispatch = useDispatch();
   const activeKeyFunc = () => {
     if (roles) {
       return roles.includes("TEACHER") ? "myTests" : "completedTests";
@@ -30,6 +32,13 @@ export function Menu() {
     try {
       e.preventDefault();
       dispatch(logout());
+    } catch (error) {}
+  };
+
+  const handleClickProfile = (e) => {
+    try {
+      e.preventDefault();
+      handleShow();
     } catch (error) {}
   };
 
@@ -81,11 +90,9 @@ export function Menu() {
                 align="end"
                 style={{ textAlign: "center", padding: "0px 30px" }}
               >
-                <NavDropdown.Item>
-                  {" "}
-                  <CgProfile /> Felhasználónév
+                <NavDropdown.Item onClick={handleClickProfile}>
+                  <CgProfile /> Adatok
                 </NavDropdown.Item>
-                <NavDropdown.Item onClick={handleShow}>Adatok</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={handleClick}>
                   Kijelentkezés
@@ -113,17 +120,7 @@ export function Menu() {
           )}
         </Navbar.Collapse>
       </Navbar>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header>
-          <Modal.Title>Felhasználónév</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            ok
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <Profile show={show} onHide={handleClose} onShow={handleShow} />
     </>
   );
 }

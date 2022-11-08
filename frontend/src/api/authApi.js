@@ -38,7 +38,7 @@ class AuthApi {
   }
 
   async getUserByIdentifier(userIdentifier, token) {
-    const user = await request(`/userdtos/${userIdentifier}`, {}, token);
+    const user = await request(`/login/users/${userIdentifier}`, {}, token);
     return user;
   }
 }
