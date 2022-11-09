@@ -29,6 +29,7 @@ class AuthApi {
     return newUser;
   }
 
+  //state.auth.profile legyen!
   logout() {
     window.sessionStorage.removeItem("token");
   }
@@ -40,6 +41,11 @@ class AuthApi {
   async getUserByIdentifier(userIdentifier, token) {
     const user = await request(`/login/users/${userIdentifier}`, {}, token);
     return user;
+  }
+
+  async getUserById(userId, token) {
+    const profile = await request(`/userdtos/${userId}`, {}, token);
+    return profile;
   }
 }
 

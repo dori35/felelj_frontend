@@ -1,46 +1,54 @@
-import { Button, Col, Container, Modal, Row } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import { getProfile } from "../../state/profile/selectors";
-export function Profile({ onHide, onShow, show }) {
+import { useState } from "react";
+import { NavDropdown } from "react-bootstrap";
+import { CgProfile } from "react-icons/cg";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProfile, logout } from "../../state/auth/actions";
+import { getProfile } from "../../state/auth/selectors";
+import { ProfileModal } from "./ProfileModal";
+
+export function Profile() {
   const profile = useSelector(getProfile);
+  const [show, setShow] = useState(false);
+  const handleHide = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const dispatch = useDispatch();
+
+  const handleClickLogOut = (e) => {
+    try {
+      e.preventDefault();
+      dispatch(logout());
+    } catch (error) {}
+  };
+
+  const handleClickProfileModal = (e) => {
+    try {
+      e.preventDefault();
+      dispatch(fetchProfile());
+      handleShow();
+    } catch (error) {}
+  };
   return (
-    <Modal show={show} onShow={onShow} onHide={onHide}>
-      <Modal.Header>
-        <Modal.Title>Profil adatai</Modal.Title>
-      </Modal.Header>
-      <Modal.Body className="show-grid">
-        <Container>
-          <Row>
-            <Col xs={6} md={4}>
-              Név:
-            </Col>
-            <Col xs={6} md={4}>
-              {profile.name}
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={6} md={4}>
-              Neptun-kód:
-            </Col>
-            <Col xs={6} md={4}>
-              {profile.identifier}
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={6} md={4}>
-              E-mail:
-            </Col>
-            <Col xs={6} md={4}>
-              {profile.email}
-            </Col>
-          </Row>
-        </Container>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={onHide}>
-          ok
-        </Button>
-      </Modal.Footer>
-    </Modal>
+    <>
+      <NavDropdown
+        id="navProfile"
+        title="Profil"
+        align="end"
+        style={{ textAlign: "center", padding: "0px 30px" }}
+      >
+        <NavDropdown.Item onClick={handleClickProfileModal}>
+          <CgProfile /> Adatok
+        </NavDropdown.Item>
+        <NavDropdown.Divider />
+        <NavDropdown.Item onClick={handleClickLogOut}>
+          Kijelentkezés
+        </NavDropdown.Item>
+      </NavDropdown>
+      <ProfileModal
+        show={show}
+        onShow={handleShow}
+        onHide={handleHide}
+        profile={profile}
+      />
+    </>
   );
 }

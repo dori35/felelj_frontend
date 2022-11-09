@@ -10,7 +10,6 @@ import { Login } from "./auth/Login";
 import { CompletedTests } from "./completedTests/CompletedTests";
 import { restoreUser } from "../state/auth/actions";
 import { LandingPage } from "./landingPage/LandingPage";
-import { fetchProfile } from "../state/profile/actions";
 
 export function App() {
   const dispatch = useDispatch();
@@ -19,7 +18,6 @@ export function App() {
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(fetchCreatedTests());
-      dispatch(fetchProfile());
     }
   }, [dispatch, isLoggedIn]);
 

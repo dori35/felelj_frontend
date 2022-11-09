@@ -1,8 +1,10 @@
 import { authApi } from "../../api/authApi";
+import { addToken, addUserId } from "../utils/utils";
 
 export const STORE_USER = "STORE_USER";
 export const ADD_USER = "ADD_USER";
 export const REMOVE_USER = "REMOVE_USER";
+export const SET_PROFILE = "SET_PROFILE";
 
 // Sync
 export const storeUser = (authData) => ({
@@ -17,6 +19,11 @@ export const addNewUser = (user) => ({
 
 export const removeUser = () => ({
   type: REMOVE_USER,
+});
+
+export const setProfile = (profile) => ({
+  type: SET_PROFILE,
+  payload: profile,
 });
 
 // Async
@@ -54,3 +61,11 @@ export const restoreUser = () => async (dispatch) => {
     );
   }
 };
+
+export const fetchProfile = () =>
+  addToken(
+    addUserId(async (dispatch, getState, _, token, userId) => {
+      const profile = await authApi.getUserById(userId, token);
+      dispatch(setProfile({ profile: profile }));
+    })
+  );
