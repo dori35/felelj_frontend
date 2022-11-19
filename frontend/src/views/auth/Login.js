@@ -26,7 +26,7 @@ export function Login() {
   useEffect(() => {
     if (roles) {
       if (roles.includes("TEACHER")) {
-        navigate("/mytests");
+        navigate("/createdtests");
       } else if (roles.includes("STUDENT")) {
         navigate("/completedtests");
       }
@@ -77,12 +77,6 @@ export function Login() {
                   </Button>
                 </div>
                 {error && <div>{error}</div>}
-                <div>
-                  <p>
-                    Nincs még fiókod?{" "}
-                    <Button onClick={handleClick}>Regisztrálj</Button>
-                  </p>
-                </div>
               </Form>
             </Card.Body>
           </Card>

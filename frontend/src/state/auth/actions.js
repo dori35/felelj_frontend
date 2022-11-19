@@ -12,10 +12,10 @@ export const storeUser = (authData) => ({
   payload: authData,
 });
 
-export const addNewUser = (user) => ({
+/*export const addNewUser = (user) => ({
   type: ADD_USER,
   payload: user,
-});
+});*/
 
 export const removeUser = () => ({
   type: REMOVE_USER,
@@ -37,8 +37,15 @@ export const login = (identifier, password) => async (dispatch) => {
 
 export const signup =
   (name, password, identifier, email, role) => async (dispatch) => {
-    const user = await authApi.signup(name, password, identifier, email, role);
-    dispatch(addNewUser(user));
+    const response = await authApi.signup(
+      name,
+      password,
+      identifier,
+      email,
+      role
+    );
+    return response;
+    // dispatch(addNewUser(user));
   };
 
 export const logout = () => (dispatch) => {

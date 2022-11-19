@@ -15,7 +15,7 @@ export const setCreatedTests = (tests) => ({
 export const fetchCreatedTests = () =>
   addToken(
     addUserId(async (dispatch, getState, _, token, userId) => {
-      const tests = await createdTestsApi.getAll(token, userId);
+      let tests = await createdTestsApi.getAll(token, userId);
       dispatch(setCreatedTests(tests));
     })
   );

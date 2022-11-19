@@ -12,8 +12,9 @@ export function Menu() {
   const roles = useSelector(getRoles);
   const activeKeyFunc = () => {
     if (roles) {
-      return roles.includes("TEACHER") ? "myTests" : "completedTests";
+      return roles.includes("TEACHER") ? "createdTests" : "completedTests";
     }
+
     return "/";
   };
 
@@ -41,9 +42,9 @@ export function Menu() {
               {roles && roles.includes("TEACHER") && (
                 <Nav.Link
                   as={Link}
-                  to="/mytests"
+                  to="/createdtests"
                   style={{ textAlign: "center", padding: "0px 30px" }}
-                  eventKey="myTests"
+                  eventKey="createdTests"
                 >
                   Létrehozott tesztek
                 </Nav.Link>
@@ -69,6 +70,7 @@ export function Menu() {
               to="/registration"
               as={Link}
               style={{ textAlign: "center", padding: "0px 30px" }}
+              eventKey="registration"
             >
               Regisztráció
             </Nav.Link>
@@ -76,6 +78,7 @@ export function Menu() {
               to="/login"
               as={Link}
               style={{ textAlign: "center", padding: "0px 30px" }}
+              eventKey="login"
             >
               Bejelentkezés
             </Nav.Link>

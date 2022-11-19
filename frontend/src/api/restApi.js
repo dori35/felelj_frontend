@@ -17,7 +17,7 @@ const convertTestsIds = (tests) => ({
   id: tests.id.toString(),
 });
 
-export const createdTestsApi = new RestApi("/testdtos", convertTestsIds);
+export const createdTestsApi = new RestApi("/createdtestdtos", convertTestsIds);
 
 export const completedTestsApi = new RestApi(
   "/completedtestdtos",

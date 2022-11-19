@@ -10,6 +10,9 @@ import { Login } from "./auth/Login";
 import { CompletedTests } from "./completedTests/CompletedTests";
 import { restoreUser } from "../state/auth/actions";
 import { LandingPage } from "./landingPage/LandingPage";
+import { ModifyCreatedTest } from "./modifyCreatedTest/ModifyCreatedTest";
+import Test from "./auth/test";
+import { FormikRegistration } from "./auth/FormikRegistration";
 
 export function App() {
   const dispatch = useDispatch();
@@ -35,7 +38,15 @@ export function App() {
           {isLoggedIn && (
             <Route path="/completedtests" element={<CompletedTests />} />
           )}
-          {isLoggedIn && <Route path="/mytests" element={<CreatedTests />} />}
+          {isLoggedIn && (
+            <Route path="/createdtests" element={<CreatedTests />} />
+          )}
+          {isLoggedIn && (
+            <Route
+              path="/createdtests/:createdTestId"
+              element={<ModifyCreatedTest />}
+            />
+          )}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Layout>

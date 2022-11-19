@@ -8,9 +8,10 @@ export const authReducer = (state = initialState, action) => {
     return payload;
   }
 
+  /*
   if (type === ADD_USER) {
     return payload;
-  }
+  }*/
 
   if (type === REMOVE_USER) {
     return {};

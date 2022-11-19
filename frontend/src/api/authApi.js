@@ -22,14 +22,13 @@ class AuthApi {
       email,
       role,
     };
-    const newUser = await request("/signup", {
+    const response = await request("/signup", {
       method: "POST",
       body: JSON.stringify(newUserData),
     });
-    return newUser;
+    return response;
   }
 
-  //state.auth.profile legyen!
   logout() {
     window.sessionStorage.removeItem("token");
   }
