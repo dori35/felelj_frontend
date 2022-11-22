@@ -19,7 +19,9 @@ export function ModifyCreatedTest() {
   const test = createdTests.find(
     (createdTest) => createdTest.id === createdTestId
   );
-
+  const handleNewTaskButtonClick = (e) => {
+    console.log("alma");
+  };
   return (
     <div>
       <Container className="py-5">
@@ -86,7 +88,9 @@ export function ModifyCreatedTest() {
                 {test.tasks.map((task) => (
                   <ModifyCreatedTask key={task.id} task={task} />
                 ))}
-                <Button type="button">Új Feladat</Button>
+                <Button type="button" onClick={handleNewTaskButtonClick}>
+                  Új Feladat
+                </Button>
                 <br />
                 <br />
                 <Button type="submit">Módosítás</Button>

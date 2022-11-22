@@ -58,10 +58,12 @@ export function Registration() {
       if (response.text === "success registration") {
         setShowSuccess(true);
         setShowDanger(false);
-      } else if (response.error) {
+      } else {
         setShowDanger(true);
       }
-    } catch (error) {}
+    } catch (error) {
+      setShowDanger(true);
+    }
   };
 
   return (
@@ -92,9 +94,13 @@ export function Registration() {
               >
                 <Card.Body className="p-5 text-center">
                   {" "}
-                  <Card.Title className="mb-5 fw-bold text-uppercase">
+                  <Card.Title className="fw-bold text-uppercase">
                     Regisztráció
                   </Card.Title>
+                  <p className="mb-4 text-white-50">
+                    Kérlek adj meg minden adatot a sikeres regisztráció
+                    érdekében!
+                  </p>
                   <Formik
                     validationSchema={schema}
                     initialValues={{
@@ -234,7 +240,9 @@ export function Registration() {
                           </Form.Group>
                         </Row>
 
-                        <Button type="submit">Regisztrálok</Button>
+                        <Button className="btn-lg px-5" type="submit">
+                          Regisztrálok
+                        </Button>
                       </Form>
                     )}
                   </Formik>

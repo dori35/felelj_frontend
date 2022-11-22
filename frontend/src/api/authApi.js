@@ -26,7 +26,6 @@ class AuthApi {
       method: "POST",
       body: JSON.stringify(newUserData),
     });
-    console.log(response);
     return response;
   }
 

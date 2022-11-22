@@ -33,10 +33,6 @@ export function Login() {
     }
   }, [navigate, roles]);
 
-  const handleClick = async (e) => {
-    navigate("/registration");
-  };
-
   return (
     <div className="d-flex justify-content-center align-items-center">
       <Container className="py-5">
@@ -44,11 +40,11 @@ export function Login() {
           <Card className="bg-dark text-white" style={{ borderRadius: "1rem" }}>
             <Card.Body className="text-center">
               <Form onSubmit={handleSubmit}>
-                <div className="pb-5 mb-md-5 mt-md-4">
+                <div className="mb-md-4 mt-md-4">
                   <Card.Title className="fw-bold text-uppercase">
                     Bejelentkezés
                   </Card.Title>
-                  <p className="mb-5 text-white-50">
+                  <p className="mb-4 text-white-50">
                     Kérlek add meg a neptun-kódodat és a jelszavadat!
                   </p>
 
@@ -62,7 +58,7 @@ export function Login() {
                     <Form.Label>Neptun-kód</Form.Label>
                   </Form.Group>
 
-                  <Form.Group controlId="formGroup02">
+                  <Form.Group controlId="formGroup02" className="pb-3">
                     <Form.Control
                       required
                       value={password}
@@ -71,12 +67,15 @@ export function Login() {
                     />
                     <Form.Label>Jelszó</Form.Label>
                   </Form.Group>
-
+                  {error && (
+                    <p className="text-danger">
+                      Nem megfelelő neptun-kód vagy jelszó!
+                    </p>
+                  )}
                   <Button className="btn-lg px-5" type="submit">
                     Belépés
                   </Button>
                 </div>
-                {error && <div>{error}</div>}
               </Form>
             </Card.Body>
           </Card>

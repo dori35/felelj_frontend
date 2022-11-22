@@ -92,14 +92,16 @@ export function ModifyCreatedChoices({ choices, type }) {
     <>
       {type !== "TRUE_FALSE" && (
         <div as={Col}>
-          <Row>
-            <Button variant="primary">{choices[0].text}</Button>
-            <Button variant="danger">{choices[1].text}</Button>
-          </Row>
-          <Row>
-            <Button variant="warning">{choices[2].text}</Button>
-            <Button variant="success">{choices[3].text}</Button>
-          </Row>
+          <Button variant="primary">{choices[0].text}</Button>
+          <Button variant="danger">{choices[1].text}</Button>
+          <br /> <Button variant="warning">{choices[2].text}</Button>
+          <Button variant="success">{choices[3].text}</Button>
+        </div>
+      )}
+      {type === "TRUE_FALSE" && (
+        <div>
+          <Button variant="success">Igaz</Button>
+          <Button variant="danger">Hamis</Button>
         </div>
       )}
     </>
