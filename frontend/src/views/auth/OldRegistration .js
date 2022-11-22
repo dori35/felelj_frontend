@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import { signup } from "../../state/auth/actions";
 import { Formik } from "formik";
 
-export function Registration() {
+export function OldRegistration() {
   const [validated, setValidated] = useState(false);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -25,9 +25,12 @@ export function Registration() {
 
   const handleSubmit = async (e) => {
     try {
+      console.log("kutya");
+      console.log(e);
+      console.log("macska");
       e.preventDefault();
-      const form = e.currentTarget;
-      console.log(form);
+      /*  const form = e.currentTarget;
+      console.log(form);*/
       const response = await dispatch(
         signup(name, password, identifier, email, role)
       );

@@ -11,53 +11,49 @@ import {
 import { useDispatch } from "react-redux";
 import { signup } from "../../state/auth/actions";
 import { Formik } from "formik";
-import { object, string, ref, boolean, number, date, InferType } from "yup";
+import { object, string, ref } from "yup";
 
-export function FormikRegistration() {
-  const [validated, setValidated] = useState(false);
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [identifier, setIdentifier] = useState("");
-  const [email, setEmail] = useState("");
-  const [role, setRole] = useState("TEACHER");
+export function Registration() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showDanger, setShowDanger] = useState(false);
   const dispatch = useDispatch();
 
   let schema = object({
-    name: string().required(),
+    name: string().required("Kötelező kitölteni"),
     identifier: string()
-      .required()
+      .required("Kötelező kitölteni")
       .min(6, "Pontosan 6 karakterből kell állnia")
       .max(6, "Pontosan 6 karakterből kell állnia"),
-    email: string().email(),
+    email: string().required("Kötelező kitölteni").email(),
     password: string()
-      .required()
+      .required("Kötelező kitölteni")
       .min(4, "Min. 4 karakterből kell állnia")
-      .test("Biztonságos jelszó", "Túl egyszerű jelszó", (value) => {
-        const hasUpperCase = /[A-Z]/.test(value);
-        const hasLowerCase = /[a-z]/.test(value);
-        const hasNumber = /[0-9]/.test(value);
-        let validNum = 0;
-        const conditions = [hasLowerCase, hasUpperCase, hasNumber];
-        conditions.forEach((condition) => (condition ? validNum++ : null));
-        return validNum === 3;
-      }),
+      .test(
+        "Biztonságos jelszó",
+        "A jelszó tartalmazzon kis- és nagybetűket, valamint számot",
+        (value) => {
+          const hasUpperCase = /[A-Z]/.test(value);
+          const hasLowerCase = /[a-z]/.test(value);
+          const hasNumber = /[0-9]/.test(value);
+          let validNum = 0;
+          const conditions = [hasLowerCase, hasUpperCase, hasNumber];
+          conditions.forEach((condition) => (condition ? validNum++ : null));
+          return validNum === 3;
+        }
+      ),
 
-    /*password2: string().required.oneOf(
-      [ref("password"), null],
-      "Nem egyezik a jelszó"
-    ),*/
-    /* role: string()
-      .required()
-      .oneOf(["student", "teacher"], "Kötelező szerepkört választani"),*/
+    password2: string()
+      .required("Kötelező kitölteni")
+      .oneOf([ref("password"), null], "Nem egyezik a jelszó"),
+    role: string()
+      .required("Kötelező választani")
+      .oneOf(["STUDENT", "TEACHER"], "Kötelező szerepkört választani"),
   });
 
   const handleSubmit = async (e) => {
     try {
-      e.preventDefault();
       const response = await dispatch(
-        signup(e.name, e.password, e.identifier, e.email, role)
+        signup(e.name, e.password, e.identifier, e.email, e.role)
       );
       if (response.text === "success registration") {
         setShowSuccess(true);
@@ -68,13 +64,6 @@ export function FormikRegistration() {
     } catch (error) {}
   };
 
-  const handleChangeRole = (e) => {
-    if (e.target.value === "teacher") {
-      setRole("TEACHER");
-    } else {
-      setRole("STUDENT");
-    }
-  };
   return (
     <div>
       {showSuccess && (
@@ -103,7 +92,7 @@ export function FormikRegistration() {
               >
                 <Card.Body className="p-5 text-center">
                   {" "}
-                  <Card.Title className="fw-bold text-uppercase">
+                  <Card.Title className="mb-5 fw-bold text-uppercase">
                     Regisztráció
                   </Card.Title>
                   <Formik
@@ -112,7 +101,7 @@ export function FormikRegistration() {
                       name: "",
                       identifier: "",
                       email: "",
-                      role: "",
+                      role: "TEACHER",
                       password: "",
                       password2: "",
                     }}
@@ -129,8 +118,8 @@ export function FormikRegistration() {
                       isValid,
                     }) => (
                       <Form noValidate onSubmit={handleSubmit}>
-                        <Row className="mb-3">
-                          <Form.Group as={Col} md="4" controlId="name">
+                        <Row className="mb-3 ">
+                          <Form.Group as={Col} md="8" controlId="name">
                             <Form.Label>Teljes név</Form.Label>
                             <Form.Control
                               required
@@ -139,7 +128,11 @@ export function FormikRegistration() {
                               onChange={handleChange}
                               value={values.name}
                               isValid={touched.name && !errors.name}
-                            />
+                            />{" "}
+                            <p className="text-danger">
+                              {" "}
+                              {errors.name && touched.name && errors.name}
+                            </p>
                           </Form.Group>
                           <Form.Group
                             as={Col}
@@ -154,9 +147,17 @@ export function FormikRegistration() {
                               onChange={handleChange}
                               value={values.identifier}
                               isValid={touched.identifier && !errors.identifier}
-                            />
+                            />{" "}
+                            <p className="text-danger">
+                              {" "}
+                              {errors.identifier &&
+                                touched.identifier &&
+                                errors.identifier}{" "}
+                            </p>
                           </Form.Group>
-                          <Form.Group as={Col} md="4" controlId="email">
+                        </Row>
+                        <Row className="mb-3">
+                          <Form.Group as={Col} md="12" controlId="email">
                             <Form.Label>E-mail cím</Form.Label>
                             <Form.Control
                               required
@@ -166,29 +167,36 @@ export function FormikRegistration() {
                               value={values.email}
                               isValid={touched.email && !errors.email}
                             />
+                            <p className="text-danger">
+                              {" "}
+                              {errors.email && touched.email && errors.email}
+                            </p>
                           </Form.Group>
                         </Row>
                         <Row className="mb-3">
                           <Form.Group as={Col} md="4" controlId="role">
                             <Form.Label>Ki Ön?</Form.Label>{" "}
                             <Form.Check
-                              required
                               defaultChecked
                               label="Oktató"
                               name="role"
                               type="radio"
                               id="teacher"
-                              onChange={(e) => handleChangeRole(e)}
-                              value="teacher"
+                              onChange={handleChange}
+                              value="TEACHER"
                             />
                             <Form.Check
                               label="Diák"
                               name="role"
                               type="radio"
                               id="student"
-                              onChange={(e) => handleChangeRole(e)}
-                              value="student"
-                            />
+                              onChange={handleChange}
+                              value="STUDENT"
+                            />{" "}
+                            <p className="text-danger">
+                              {" "}
+                              {errors.role && touched.role && errors.role}{" "}
+                            </p>
                           </Form.Group>
                           <Form.Group as={Col} md="4" controlId="passworld1">
                             <Form.Label>Jelszó</Form.Label>
@@ -200,6 +208,12 @@ export function FormikRegistration() {
                               value={values.password}
                               isValid={touched.password && !errors.password}
                             />
+                            <p className="text-danger">
+                              {" "}
+                              {errors.password &&
+                                touched.password &&
+                                errors.password}{" "}
+                            </p>
                           </Form.Group>
                           <Form.Group as={Col} md="4" controlId="passworld2">
                             <Form.Label>Jelszó újra</Form.Label>
@@ -208,10 +222,15 @@ export function FormikRegistration() {
                               type="password"
                               name="password2"
                               onChange={handleChange}
-                              /*
-                              value={ values.password2}
-                              isValid={touched.password2 && !errors.password2}*/
+                              value={values.password2}
+                              isValid={touched.password2 && !errors.password2}
                             />
+                            <p className="text-danger">
+                              {" "}
+                              {errors.password2 &&
+                                touched.password2 &&
+                                errors.password2}{" "}
+                            </p>
                           </Form.Group>
                         </Row>
 

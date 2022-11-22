@@ -3,7 +3,6 @@ import { Card, Col, Container, Form, FormText, Row } from "react-bootstrap";
 import { ModifyCreatedChoices } from "./ModifyCreatedChoices";
 
 export function ModifyCreatedTask({ task }) {
-  console.log(task);
   const [type, setType] = useState(task.answerType);
   const handleChange = (e) => {
     if (e.target.value === "ONE_CHOICE") {

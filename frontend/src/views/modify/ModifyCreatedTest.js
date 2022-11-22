@@ -10,7 +10,7 @@ import {
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getCreatedTests } from "../../state/createdTests/selectors";
-import { ModifyCreatedTask } from "../modifyCreatedTask/ModifyCreatedTask";
+import { ModifyCreatedTask } from "./ModifyCreatedTask";
 
 export function ModifyCreatedTest() {
   const { createdTestId } = useParams();
@@ -19,7 +19,6 @@ export function ModifyCreatedTest() {
   const test = createdTests.find(
     (createdTest) => createdTest.id === createdTestId
   );
-  console.log(test);
 
   return (
     <div>

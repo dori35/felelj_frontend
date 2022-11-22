@@ -1,18 +1,16 @@
-import { CreatedTests } from "./createdTests/CreatedTests";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCreatedTests } from "../state/createdTests/actions";
 import { useEffect } from "react";
 import { Layout } from "./layout/Layout";
-import { Registration } from "./auth/Registration ";
 import { getIsLoggedIn } from "../state/auth/selectors";
 import { Login } from "./auth/Login";
-import { CompletedTests } from "./completedTests/CompletedTests";
 import { restoreUser } from "../state/auth/actions";
 import { LandingPage } from "./landingPage/LandingPage";
-import { ModifyCreatedTest } from "./modifyCreatedTest/ModifyCreatedTest";
-import Test from "./auth/test";
-import { FormikRegistration } from "./auth/FormikRegistration";
+import { Registration } from "./auth/Registration";
+import { CompletedTests } from "./completed/CompletedTests";
+import { ModifyCreatedTest } from "./modify/ModifyCreatedTest";
+import { CreatedTests } from "./created/CreatedTests";
 
 export function App() {
   const dispatch = useDispatch();

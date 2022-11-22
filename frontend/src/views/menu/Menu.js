@@ -28,7 +28,7 @@ export function Menu() {
       <Navbar.Collapse className="mw-100 ">
         {isLoggedIn && (
           <>
-            <Nav defaultActiveKey={activeKeyFunc()}>
+            <Nav defaultActiveKey={activeKeyFunc()} className="ms-auto">
               {roles && roles.includes("TEACHER") && (
                 <Nav.Link
                   as={Link}
@@ -65,7 +65,7 @@ export function Menu() {
           </>
         )}
         {!isLoggedIn && (
-          <Nav>
+          <Nav className="ms-auto">
             <Nav.Link
               to="/registration"
               as={Link}
@@ -77,7 +77,10 @@ export function Menu() {
             <Nav.Link
               to="/login"
               as={Link}
-              style={{ textAlign: "center", padding: "0px 30px" }}
+              style={{
+                textAlign: "center",
+                padding: "0px 30px",
+              }}
               eventKey="login"
             >
               Bejelentkezés
