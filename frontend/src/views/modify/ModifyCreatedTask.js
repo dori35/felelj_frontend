@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card, Col, Container, Form, FormText, Row } from "react-bootstrap";
+import { Card, Col, Container, Form, Row } from "react-bootstrap";
 import { ModifyCreatedChoices } from "./ModifyCreatedChoices";
 
 export function ModifyCreatedTask({ task }) {

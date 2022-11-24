@@ -1,4 +1,3 @@
-import { Footer } from "../footer/Footer";
 import { Menu } from "../menu/Menu";
 
 export function Layout({ children }) {

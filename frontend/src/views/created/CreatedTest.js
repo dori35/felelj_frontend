@@ -3,7 +3,7 @@ import { BsFillTrashFill, BsPencilFill, BsTrophy } from "react-icons/bs";
 import { IoMdArrowDroprightCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
 
-export function CreatedTest({ createdTest }) {
+export function CreatedTest({ createdTest, onDeleteTestClick }) {
   return (
     <tr>
       <td>{createdTest.title}</td>
@@ -19,7 +19,7 @@ export function CreatedTest({ createdTest }) {
       <td>{createdTest.random ? "nem" : "igen"}</td>
       <td>
         {" "}
-        <Button className="btn-danger btn-sm">
+        <Button className="btn-danger btn-sm" onClick={onDeleteTestClick}>
           <BsFillTrashFill />
         </Button>
         <Link

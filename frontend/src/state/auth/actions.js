@@ -12,11 +12,6 @@ export const storeUser = (authData) => ({
   payload: authData,
 });
 
-/*export const addNewUser = (user) => ({
-  type: ADD_USER,
-  payload: user,
-});*/
-
 export const removeUser = () => ({
   type: REMOVE_USER,
 });
@@ -45,7 +40,6 @@ export const signup =
       role
     );
     return response;
-    // dispatch(addNewUser(user));
   };
 
 export const logout = () => (dispatch) => {

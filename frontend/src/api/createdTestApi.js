@@ -1,6 +1,6 @@
 import { request } from "./request";
 
-class RestApi {
+class CreatedTestsApi {
   constructor(resourcePath, convertFn) {
     this.resourcePath = resourcePath;
     this.convertFn = convertFn;
@@ -27,7 +27,7 @@ const convertTestsIds = (tests) => ({
   id: tests.id.toString(),
 });
 
-export const completedTestsApi = new RestApi(
-  "/completedtestdtos",
+export const createdTestsApi = new CreatedTestsApi(
+  "/createdtestdtos",
   convertTestsIds
 );

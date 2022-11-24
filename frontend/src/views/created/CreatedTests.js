@@ -1,11 +1,16 @@
 import { Container } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteTest } from "../../state/createdTests/actions";
 import { getCreatedTests } from "../../state/createdTests/selectors";
 import { CreatedTest } from "./CreatedTest";
 export function CreatedTests() {
   const createdTests = useSelector(getCreatedTests);
+  const dispatch = useDispatch();
 
+  const handleDeleteTestClick = (test) => {
+    dispatch(deleteTest(test));
+  };
   return (
     <>
       <br />
@@ -25,7 +30,11 @@ export function CreatedTests() {
           </thead>
           <tbody className="bg-light">
             {createdTests.map((createdTest) => (
-              <CreatedTest key={createdTest.id} createdTest={createdTest} />
+              <CreatedTest
+                key={createdTest.id}
+                createdTest={createdTest}
+                onDeleteTestClick={() => handleDeleteTestClick(createdTest)}
+              />
             ))}
           </tbody>
         </Table>

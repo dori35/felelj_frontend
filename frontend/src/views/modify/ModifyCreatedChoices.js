@@ -1,5 +1,4 @@
-import { Button, Card, CardGroup, Col, Row } from "react-bootstrap";
-import { ModifyCreatedChoice } from "./ModifyCreatedChoice";
+import { Button, Col } from "react-bootstrap";
 
 export function ModifyCreatedChoices({ choices, type }) {
   return (
