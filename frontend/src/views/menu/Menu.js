@@ -32,9 +32,9 @@ export function Menu() {
               {roles && roles.includes("TEACHER") && (
                 <Nav.Link
                   as={Link}
-                  to="/newtest"
+                  to="/createTest"
                   style={{ textAlign: "center", padding: "0px 30px" }}
-                  eventKey="newTest"
+                  eventKey="createTest"
                 >
                   Új teszt
                 </Nav.Link>

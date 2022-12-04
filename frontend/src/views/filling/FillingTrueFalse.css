@@ -1,0 +1,78 @@
+.nft-item-category-list input[type="checkbox"] + label {
+  margin: 0.2em 0;
+  cursor: pointer;
+  padding: 0.2em 0;
+  text-align: left;
+  font: normal normal normal 14px/14px Poppins;
+  color: #8e8e93;
+}
+
+.nft-item-category-list input[type="checkbox"] {
+  display: none;
+}
+
+.nft-item-category-list input[type="checkbox"] + label:before {
+  content: "✓";
+  display: none;
+  width: 1em;
+  height: 1em;
+  padding-left: 0.1em;
+  padding-bottom: 0.1em;
+  margin-right: 0.5em;
+  vertical-align: bottom;
+  color: transparent;
+  transition: 0.2s;
+  color: #000;
+  border-radius: 100%;
+  background-color: #8e8e93;
+}
+
+.nft-item-category-list input[type="checkbox"] + label:active:before {
+  transform: scale(0);
+  color: #000;
+}
+
+.nft-item-category-list input[type="checkbox"]:checked + label:before {
+  background-color: MediumSeaGreen;
+  border-color: MediumSeaGreen;
+  color: #000;
+}
+
+.nft-item-category-list input[type="checkbox"]:disabled + label:before {
+  transform: scale(1);
+  border-color: #aaa;
+}
+
+.nft-item-category-list input[type="checkbox"]:checked:disabled + label:before {
+  transform: scale(1);
+  background-color: #bfb;
+  border-color: #bfb;
+}
+
+.nft-item-category-list input[type="checkbox"]:checked + label {
+  color: #30d158;
+  transition: all 0.2s linear;
+}
+
+ul.nft-item-categories {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 15px;
+  align-items: center;
+}
+
+li.nft-item-category-list label {
+  background: #2c2c2e 0% 0% no-repeat padding-box;
+  border-radius: 5px;
+  width: 184px;
+  height: 41px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+li.nft-item-category-list {
+  list-style: none;
+}

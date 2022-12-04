@@ -11,6 +11,40 @@ class CreatedTestsApi {
     return tests.map(this.convertFn);
   }
 
+  async modifyTest(token, userId, testId, title, subject, random, tasks) {
+    const testData = {
+      title,
+      subject,
+      random,
+      tasks,
+    };
+    await request(
+      `${this.resourcePath}/${userId}/${testId}`,
+      {
+        method: "POST",
+        body: JSON.stringify(testData),
+      },
+      token
+    );
+  }
+
+  async newTest(token, userId, title, subject, random, tasks) {
+    const testData = {
+      title,
+      subject,
+      random,
+      tasks,
+    };
+    await request(
+      `${this.resourcePath}/newTest/${userId}`,
+      {
+        method: "POST",
+        body: JSON.stringify(testData),
+      },
+      token
+    );
+  }
+
   async deleteTest(token, userId, testId) {
     await request(
       `${this.resourcePath}/${userId}/${testId}`,

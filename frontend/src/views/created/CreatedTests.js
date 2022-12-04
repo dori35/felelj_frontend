@@ -11,6 +11,8 @@ export function CreatedTests() {
   const handleDeleteTestClick = (test) => {
     dispatch(deleteTest(test));
   };
+
+  const handleStartTestClick = (test) => {};
   return (
     <>
       <br />
@@ -24,7 +26,7 @@ export function CreatedTests() {
               <th>Létrehozva</th>
               <th>Pont</th>
               <th>Kérdések száma</th>
-              <th>Sorrendben</th>
+              <th>Random sorrend</th>
               <th>Művelet</th>
             </tr>
           </thead>
@@ -34,6 +36,7 @@ export function CreatedTests() {
                 key={createdTest.id}
                 createdTest={createdTest}
                 onDeleteTestClick={() => handleDeleteTestClick(createdTest)}
+                onStartTestClick={() => handleStartTestClick(createdTest)}
               />
             ))}
           </tbody>

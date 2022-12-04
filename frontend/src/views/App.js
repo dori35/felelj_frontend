@@ -11,6 +11,9 @@ import { Registration } from "./auth/Registration";
 import { CompletedTests } from "./completed/CompletedTests";
 import { ModifyCreatedTest } from "./modify/ModifyCreatedTest";
 import { CreatedTests } from "./created/CreatedTests";
+import { NewTest } from "./new/NewTest";
+import { FillingTest } from "./filling/FillingTest";
+import { TestStart } from "./TestStart";
 
 export function App() {
   const dispatch = useDispatch();
@@ -33,14 +36,19 @@ export function App() {
           <Route exact path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
+          {isLoggedIn && <Route path="/createTest" element={<NewTest />} />}
           {isLoggedIn && (
             <Route path="/completedtests" element={<CompletedTests />} />
           )}
           {isLoggedIn && (
             <Route path="/createdtests" element={<CreatedTests />} />
+          )}{" "}
+          {isLoggedIn && (
+            <Route path="/startTest/:createdTestId" element={<FillingTest />} />
           )}
           {isLoggedIn && (
             <Route
+              exact
               path="/createdtests/:createdTestId"
               element={<ModifyCreatedTest />}
             />
