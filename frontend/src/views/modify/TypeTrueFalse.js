@@ -2,18 +2,16 @@ import { useState } from "react";
 import { Button, Col, InputGroup } from "react-bootstrap";
 
 export function TypeTrueFalse({ task, index, modifyTask }) {
-  const [solution, setSolution] = useState(task.solution);
-
+  const base = () => {
+    modifyTask({ solutionTrueFalse: task.solution });
+    return task.solution;
+  };
+  const [solutionTrueFalse, setSolutionTrueFalse] = useState(
+    task.solution ? base : ""
+  );
   const handleCheckSolution = (e) => {
-    if (e.target.value === "1") {
-      setSolution("1");
-      modifyTask({ solution: "1" });
-      modifyTask({ choices: [] });
-    } else if (e.target.value === "0") {
-      setSolution("0");
-      modifyTask({ solution: "0" });
-      modifyTask({ choices: [] });
-    }
+    setSolutionTrueFalse(e.target.value);
+    modifyTask({ solutionTrueFalse: e.target.value });
   };
   return (
     <div as={Col}>
@@ -22,13 +20,13 @@ export function TypeTrueFalse({ task, index, modifyTask }) {
           Igaz
         </Button>
         <InputGroup.Checkbox
-          className="bg-success"
+          className="bg-success checkbox-group"
           aria-label="Checkbox for true solution"
           name={`solution-${index}`}
           type="radio"
           id={`solutionTrue-${index}`}
-          value="1"
-          defaultChecked={task.solution === 1 || task.solution === "1"}
+          value={1}
+          defaultChecked={task.solution === "1"}
           onChange={(e) => handleCheckSolution(e)}
         />
       </InputGroup>
@@ -37,16 +35,21 @@ export function TypeTrueFalse({ task, index, modifyTask }) {
           Hamis
         </Button>
         <InputGroup.Checkbox
-          className="bg-danger"
+          className="bg-danger checkbox-group "
           aria-label="Checkbox for false solution"
           name={`solution-${index}`}
           id={`solutionFalse-${index}`}
-          value="0"
+          value={0}
           type="radio"
-          defaultChecked={task.solution === 0 || task.solution === "0"}
+          defaultChecked={task.solution === "0"}
           onChange={(e) => handleCheckSolution(e)}
         />
       </InputGroup>
+      {!solutionTrueFalse && (
+        <span style={{ color: "red" }}>
+          Kérlek választ ki a helyes választ!
+        </span>
+      )}
     </div>
   );
 }

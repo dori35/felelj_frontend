@@ -2,6 +2,7 @@ import { useState } from "react";
 import { NavDropdown } from "react-bootstrap";
 import { CgProfile } from "react-icons/cg";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { fetchProfile, logout } from "../../state/auth/actions";
 import { getProfile } from "../../state/auth/selectors";
 import { ProfileModal } from "./ProfileModal";
@@ -9,6 +10,7 @@ import { ProfileModal } from "./ProfileModal";
 export function Profile() {
   const profile = useSelector(getProfile);
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
   const handleHide = () => setShow(false);
   const handleShow = () => setShow(true);
   const dispatch = useDispatch();
@@ -17,6 +19,7 @@ export function Profile() {
     try {
       e.preventDefault();
       dispatch(logout());
+      navigate("/");
     } catch (error) {}
   };
 

@@ -2,6 +2,8 @@ import { Button } from "react-bootstrap";
 import { BsFillTrashFill, BsPencilFill, BsTrophy } from "react-icons/bs";
 import { IoMdArrowDroprightCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
+import classnames from "classnames";
+import "./CreatedTest.css";
 
 export function CreatedTest({
   createdTest,
@@ -32,14 +34,27 @@ export function CreatedTest({
         >
           <BsPencilFill />
         </Link>
-        <Button className="btn btn-warning btn-sm">
+        <Link
+          to={`/results/${createdTest.id}`}
+          className="btn btn-warning btn-sm"
+        >
           <BsTrophy />
-        </Button>
+        </Link>
         <Link
           to={`/startTest/${createdTest.id}`}
-          className=" btn btn-success btn-sm"
+          className={classnames("btn btn-success btn-sm", {
+            disabledLink: createdTest.taskNumber <= 0,
+          })}
         >
           <IoMdArrowDroprightCircle />
+        </Link>
+        <Link
+          to={`/s/${createdTest.id}`}
+          className={classnames("btn btn-success btn-sm", {
+            disabledLink: createdTest.taskNumber <= 0,
+          })}
+        >
+          HEy
         </Link>
       </td>
     </tr>

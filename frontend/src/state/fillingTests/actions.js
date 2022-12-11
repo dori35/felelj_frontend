@@ -1,4 +1,8 @@
 import { fillingTestApi } from "../../api/fillingTestApi";
+import {
+  fetchCompletedTests,
+  setCompletedTests,
+} from "../completedTests/actions";
 import { addToken, addUserId } from "../utils/utils";
 
 export const SET_FILLINGTEST = "SET_FILLINGTEST";
@@ -26,5 +30,6 @@ export const sendFillingTest = (testId, answers) =>
     addUserId(async (dispatch, getState, _, token, userId) => {
       await fillingTestApi.send(token, testId, userId, answers);
       dispatch(sendTest());
+      dispatch(fetchCompletedTests());
     })
   );

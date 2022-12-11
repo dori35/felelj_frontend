@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, ToggleButton, ToggleButtonGroup } from "react-bootstrap";
 import "./FillingMultipleChoices.css";
 
-export function FillingMultipleChoices({ task, addAnswer }) {
-  const handleClick = () => {
-    addAnswer({ id: task.id, answer: answer });
+export function FillingMultipleChoices({ task, addAnswer, time }) {
+  const [answer, setAnswer] = useState("");
+  const handleChange = (val) => {
+    setAnswer(val.toString());
   };
 
-  const [answer, setAnswer] = useState("");
-  const handleChange = (val) => setAnswer(val.toString());
+  useEffect(() => {
+    if (time === 0) {
+      addAnswer({ id: task.id, answer: answer });
+    }
+  }, [time]);
   return (
     <>
       <ToggleButtonGroup type="checkbox" onChange={handleChange}>
@@ -41,9 +45,6 @@ export function FillingMultipleChoices({ task, addAnswer }) {
           {task.choices[3].text}
         </ToggleButton>
       </ToggleButtonGroup>
-      <Button onClick={handleClick} className="okButton btn-dark border-dark">
-        Ok
-      </Button>
     </>
   );
 }

@@ -1,14 +1,16 @@
-import { useState } from "react";
-import { Button, ToggleButton, ToggleButtonGroup } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { ToggleButton, ToggleButtonGroup } from "react-bootstrap";
 import "./FillingTrueFalse.css";
 
-export function FillingTrueFalse({ task, addAnswer }) {
-  const handleClick = () => {
-    addAnswer({ id: task.id, answer: answer });
-  };
-
+export function FillingTrueFalse({ task, addAnswer, time }) {
   const [answer, setAnswer] = useState("");
   const handleChange = (val) => setAnswer(val.toString());
+
+  useEffect(() => {
+    if (time === 0) {
+      addAnswer({ id: task.id, answer: answer });
+    }
+  }, [time]);
 
   return (
     <>
@@ -24,9 +26,6 @@ export function FillingTrueFalse({ task, addAnswer }) {
           Hamis
         </ToggleButton>
       </ToggleButtonGroup>
-      <Button onClick={handleClick} className="okButton btn-dark border-dark">
-        Ok
-      </Button>
     </>
   );
 }

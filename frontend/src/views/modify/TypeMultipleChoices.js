@@ -1,42 +1,60 @@
 import { useState } from "react";
-import { Button, Col, Form, InputGroup } from "react-bootstrap";
+import { Col, Form, InputGroup } from "react-bootstrap";
+import classnames from "classnames";
 
 export function TypeMultipleChoices({ task, index, modifyTask }) {
-  const [solution, setSolution] = useState(task.solution);
-  const [solutionArray, setSolutionArray] = useState(
-    task.solution ? task.solution.split(",") : []
-  );
+  const base = () => {
+    let array = [];
 
+    let sArray = task.solution.split(",");
+
+    if (sArray.includes(task.choices[0].id.toString())) {
+      array.push("0");
+    }
+    if (sArray.includes(task.choices[1].id.toString())) {
+      array.push("1");
+    }
+    if (sArray.includes(task.choices[2].id.toString())) {
+      array.push("2");
+    }
+    if (sArray.includes(task.choices[3].id.toString())) {
+      array.push("3");
+    }
+    modifyTask({ solutionMultipleChoices: array });
+    return array;
+  };
+
+  //csak az eredeti solution miatt
+  const [solutionArray, setSolutionArray] = useState(
+    task.solution !== "" ? task.solution.split(",") : []
+  );
+  const [solutionMultipleChoices, setSolutionMultipleChoices] = useState(
+    task.solution !== "" ? base : []
+  );
   const [choice0, setChoice0] = useState(
-    task.choices.length === 4 ? task.choices[0].text : ""
+    task.choices.length === 4 ? task.choices[0] : { text: "" }
   );
   const [choice1, setChoice1] = useState(
-    task.choices.length === 4 ? task.choices[1].text : ""
+    task.choices.length === 4 ? task.choices[1] : { text: "" }
   );
   const [choice2, setChoice2] = useState(
-    task.choices.length === 4 ? task.choices[2].text : ""
+    task.choices.length === 4 ? task.choices[2] : { text: "" }
   );
   const [choice3, setChoice3] = useState(
-    task.choices.length === 4 ? task.choices[3].text : ""
+    task.choices.length === 4 ? task.choices[3] : { text: "" }
   );
 
   const handleCheckSolution = (e) => {
-    if (e.target.value === choice0) {
-      setSolutionArray(solutionArray.push(choice0));
-    } else if (e.target.value === choice1) {
-      setSolutionArray(solutionArray.push(choice1));
-    } else if (e.target.value === choice2) {
-      setSolutionArray(solutionArray.push(choice2));
-    } else if (e.target.value === choice3) {
-      setSolutionArray(solutionArray.push(choice3));
+    let newArray;
+    if (solutionMultipleChoices.includes(e.target.value)) {
+      newArray = [].concat(solutionMultipleChoices);
+      const index = newArray.indexOf(e.target.value);
+      newArray.splice(index, 1);
+    } else {
+      newArray = [].concat(solutionMultipleChoices, e.target.value);
     }
-
-    setSolutionArray(
-      solutionArray.filter(
-        (s) => s === choice0 || s === choice1 || s === choice2 || s === choice3
-      )
-    );
-    modifyTask({ solution: solutionArray.toString() });
+    setSolutionMultipleChoices(newArray);
+    modifyTask({ solutionMultipleChoices: newArray });
   };
   return (
     <>
@@ -47,14 +65,15 @@ export function TypeMultipleChoices({ task, index, modifyTask }) {
               className="bg-primary"
               aria-label="Checkbox for following text is the solution"
               name={`solution-OneChoice-${index}`}
-              value={choice0}
-              defaultChecked={task.solution === choice0}
+              value={0}
+              defaultChecked={
+                task.solution ? solutionArray.includes(`${choice0.id}`) : false
+              }
               onChange={(e) => handleCheckSolution(e)}
             />
             <Form.Control
               aria-label="Text input with checkbox"
-              placeholder={choice0}
-              value={choice0}
+              value={choice0.text}
               onChange={(e) => {
                 setChoice0(e.target.value);
                 modifyTask({
@@ -66,21 +85,37 @@ export function TypeMultipleChoices({ task, index, modifyTask }) {
                   ],
                 });
               }}
+              required
+              isInvalid={
+                !task.choices ||
+                task.choices.length < 1 ||
+                task.choices[0].text.length <= 0
+              }
+              isValid={
+                !!task.choices &&
+                task.choices.length >= 1 &&
+                task.choices[0].text.length > 0
+              }
             />
+            <Form.Control.Feedback>Megfelelő</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              Kötelező kitölteni
+            </Form.Control.Feedback>
           </InputGroup>
           <InputGroup className="mb-3">
             <InputGroup.Checkbox
               className="bg-danger"
               aria-label="Checkbox for following text is the solution"
               name={`solution-OneChoice-${index}`}
-              value={choice1}
-              defaultChecked={task.solution === choice1}
+              value={1}
+              defaultChecked={
+                task.solution ? solutionArray.includes(`${choice1.id}`) : false
+              }
               onChange={(e) => handleCheckSolution(e)}
             />
             <Form.Control
               aria-label="Text input with checkbox"
-              placeholder={choice1}
-              value={choice1}
+              value={choice1.text}
               onChange={(e) => {
                 setChoice1(e.target.value);
                 modifyTask({
@@ -92,21 +127,37 @@ export function TypeMultipleChoices({ task, index, modifyTask }) {
                   ],
                 });
               }}
+              required
+              isInvalid={
+                !task.choices ||
+                task.choices.length < 2 ||
+                task.choices[1].text.length <= 0
+              }
+              isValid={
+                !!task.choices &&
+                task.choices.length >= 2 &&
+                task.choices[1].text.length > 0
+              }
             />
+            <Form.Control.Feedback>Megfelelő</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              Kötelező kitölteni
+            </Form.Control.Feedback>
           </InputGroup>
           <InputGroup className="mb-3">
             <InputGroup.Checkbox
               className="bg-warning"
               aria-label="Checkbox for following text is the solution"
               name={`solution-OneChoice-${index}`}
-              value={choice2}
-              defaultChecked={task.solution === choice2}
+              value={2}
+              defaultChecked={
+                task.solution ? solutionArray.includes(`${choice2.id}`) : false
+              }
               onChange={(e) => handleCheckSolution(e)}
             />
             <Form.Control
               aria-label="Text input with checkbox"
-              placeholder={choice2}
-              value={choice2}
+              value={choice2.text}
               onChange={(e) => {
                 setChoice2(e.target.value);
                 modifyTask({
@@ -118,21 +169,37 @@ export function TypeMultipleChoices({ task, index, modifyTask }) {
                   ],
                 });
               }}
+              required
+              isInvalid={
+                !task.choices ||
+                task.choices.length < 3 ||
+                task.choices[2].text.length <= 0
+              }
+              isValid={
+                !!task.choices &&
+                task.choices.length >= 3 &&
+                task.choices[2].text.length > 0
+              }
             />
+            <Form.Control.Feedback>Megfelelő</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              Kötelező kitölteni
+            </Form.Control.Feedback>
           </InputGroup>
           <InputGroup className="mb-3">
             <InputGroup.Checkbox
               className="bg-success"
               aria-label="Checkbox for following text is the solution"
               name={`solution-OneChoice-${index}`}
-              value={choice3}
-              defaultChecked={task.solution === choice3}
+              value={3}
+              defaultChecked={
+                task.solution ? solutionArray.includes(`${choice3.id}`) : false
+              }
               onChange={(e) => handleCheckSolution(e)}
             />
             <Form.Control
               aria-label="Text input with checkbox"
-              placeholder={choice3}
-              value={choice3}
+              value={choice3.text}
               onChange={(e) => {
                 setChoice3(e.target.value);
                 modifyTask({
@@ -144,10 +211,30 @@ export function TypeMultipleChoices({ task, index, modifyTask }) {
                   ],
                 });
               }}
+              required
+              isInvalid={
+                !task.choices ||
+                task.choices.length < 4 ||
+                task.choices[3].text.length <= 0
+              }
+              isValid={
+                !!task.choices &&
+                task.choices.length >= 4 &&
+                task.choices[3].text.length > 0
+              }
             />
+            <Form.Control.Feedback>Megfelelő</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              Kötelező kitölteni
+            </Form.Control.Feedback>
           </InputGroup>
         </div>
       }
+      {solutionMultipleChoices.length <= 1 && (
+        <span style={{ color: "red" }}>
+          Kérlek válassz ki több helyes választ!
+        </span>
+      )}
     </>
   );
 }

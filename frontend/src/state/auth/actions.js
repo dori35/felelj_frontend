@@ -5,6 +5,7 @@ export const STORE_USER = "STORE_USER";
 export const ADD_USER = "ADD_USER";
 export const REMOVE_USER = "REMOVE_USER";
 export const SET_PROFILE = "SET_PROFILE";
+export const ISLOADING = "ISLOADING";
 
 // Sync
 export const storeUser = (authData) => ({

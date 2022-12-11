@@ -26,6 +26,11 @@
   margin: 20px;
 }
 
+.pointSpan {
+  font-weight: bold;
+  font-size: larger;
+}
+
 .cardColor {
   background: rgb(212, 247, 229);
   width: 50%;

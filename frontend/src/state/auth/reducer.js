@@ -1,4 +1,4 @@
-import { ADD_USER, STORE_USER, REMOVE_USER, SET_PROFILE } from "./actions";
+import { STORE_USER, REMOVE_USER, SET_PROFILE, ISLOADING } from "./actions";
 
 const initialState = {};
 
@@ -15,6 +15,5 @@ export const authReducer = (state = initialState, action) => {
   if (type === SET_PROFILE) {
     return { ...state, ...payload };
   }
-
   return state;
 };

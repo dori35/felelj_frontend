@@ -14,7 +14,6 @@ export function TypeOrderList({ task, index, modifyTask }) {
   const [choice3, setChoice3] = useState(
     task.choices.length === 4 ? task.choices[3].text : ""
   );
-
   return (
     <>
       {
@@ -23,7 +22,6 @@ export function TypeOrderList({ task, index, modifyTask }) {
             <InputGroup.Text id="inputGroupPrepend">1.</InputGroup.Text>
             <Form.Control
               aria-label="Text input with checkbox"
-              placeholder={choice0}
               value={choice0}
               onChange={(e) => {
                 setChoice0(e.target.value);
@@ -35,18 +33,29 @@ export function TypeOrderList({ task, index, modifyTask }) {
                     { text: choice3 },
                   ],
                 });
-                modifyTask({
-                  solution: `${e.target.value},${choice1},${choice2},${choice3}`,
-                });
               }}
+              required
+              isInvalid={
+                !task.choices ||
+                task.choices.length < 1 ||
+                task.choices[0].text.length <= 0
+              }
+              isValid={
+                !!task.choices &&
+                task.choices.length >= 1 &&
+                task.choices[0].text.length > 0
+              }
             />
+            <Form.Control.Feedback>Megfelelő</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              Kötelező kitölteni
+            </Form.Control.Feedback>
           </InputGroup>
           <InputGroup className="mb-3">
             <InputGroup.Text id="inputGroupPrepend">2.</InputGroup.Text>
 
             <Form.Control
               aria-label="Text input with checkbox"
-              placeholder={choice1}
               value={choice1}
               onChange={(e) => {
                 setChoice1(e.target.value);
@@ -58,17 +67,28 @@ export function TypeOrderList({ task, index, modifyTask }) {
                     { text: choice3 },
                   ],
                 });
-                modifyTask({
-                  solution: `${choice0},${e.target.value},${choice2},${choice3}`,
-                });
               }}
+              required
+              isInvalid={
+                !task.choices ||
+                task.choices.length < 2 ||
+                task.choices[1].text.length <= 0
+              }
+              isValid={
+                !!task.choices &&
+                task.choices.length >= 2 &&
+                task.choices[1].text.length > 0
+              }
             />
+            <Form.Control.Feedback>Megfelelő</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              Kötelező kitölteni
+            </Form.Control.Feedback>
           </InputGroup>
           <InputGroup className="mb-3">
             <InputGroup.Text id="inputGroupPrepend">3.</InputGroup.Text>
             <Form.Control
               aria-label="Text input with checkbox"
-              placeholder={choice2}
               value={choice2}
               onChange={(e) => {
                 setChoice2(e.target.value);
@@ -80,17 +100,28 @@ export function TypeOrderList({ task, index, modifyTask }) {
                     { text: choice3 },
                   ],
                 });
-                modifyTask({
-                  solution: `${choice0},${choice1},${e.target.value},${choice3}`,
-                });
               }}
+              required
+              isInvalid={
+                !task.choices ||
+                task.choices.length < 3 ||
+                task.choices[2].text.length <= 0
+              }
+              isValid={
+                !!task.choices &&
+                task.choices.length >= 3 &&
+                task.choices[2].text.length > 0
+              }
             />
+            <Form.Control.Feedback>Megfelelő</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              Kötelező kitölteni
+            </Form.Control.Feedback>
           </InputGroup>
           <InputGroup className="mb-3">
             <InputGroup.Text id="inputGroupPrepend">4.</InputGroup.Text>
             <Form.Control
               aria-label="Text input with checkbox"
-              placeholder={choice3}
               value={choice3}
               onChange={(e) => {
                 setChoice3(e.target.value);
@@ -102,11 +133,23 @@ export function TypeOrderList({ task, index, modifyTask }) {
                     { text: e.target.value },
                   ],
                 });
-                modifyTask({
-                  solution: `${choice0},${choice1},${choice2},${e.target.value}`,
-                });
               }}
+              required
+              isInvalid={
+                !task.choices ||
+                task.choices.length < 4 ||
+                task.choices[3].text.length <= 0
+              }
+              isValid={
+                !!task.choices &&
+                task.choices.length >= 4 &&
+                task.choices[3].text.length > 0
+              }
             />
+            <Form.Control.Feedback>Megfelelő</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              Kötelező kitölteni
+            </Form.Control.Feedback>
           </InputGroup>
         </div>
       }

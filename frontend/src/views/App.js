@@ -1,7 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCreatedTests } from "../state/createdTests/actions";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Layout } from "./layout/Layout";
 import { getIsLoggedIn } from "../state/auth/selectors";
 import { Login } from "./auth/Login";
@@ -14,48 +14,88 @@ import { CreatedTests } from "./created/CreatedTests";
 import { NewTest } from "./new/NewTest";
 import { FillingTest } from "./filling/FillingTest";
 import { TestStart } from "./TestStart";
+import { fetchCompletedTests } from "../state/completedTests/actions";
 
 export function App() {
-  const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
+  const [loaded, setLoaded] = useState(false);
+  const hasToken = window.sessionStorage.getItem("token") ? true : false;
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(fetchCreatedTests());
-    }
+    const restore = async () => {
+      try {
+        if (hasToken) {
+          await dispatch(restoreUser());
+        } else {
+          setLoaded(true);
+        }
+      } catch (error) {
+        setLoaded(true);
+      }
+    };
+    restore();
+  }, [dispatch, hasToken]);
+
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        if (isLoggedIn) {
+          await dispatch(fetchCreatedTests());
+          await dispatch(fetchCompletedTests());
+          setLoaded(true);
+        }
+      } catch (error) {}
+    };
+    fetch();
   }, [dispatch, isLoggedIn]);
 
-  useEffect(() => {
-    dispatch(restoreUser());
-  }, [dispatch]);
-
   return (
-    <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route exact path="/" element={<LandingPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/registration" element={<Registration />} />
-          {isLoggedIn && <Route path="/createTest" element={<NewTest />} />}
-          {isLoggedIn && (
-            <Route path="/completedtests" element={<CompletedTests />} />
-          )}
-          {isLoggedIn && (
-            <Route path="/createdtests" element={<CreatedTests />} />
-          )}{" "}
-          {isLoggedIn && (
-            <Route path="/startTest/:createdTestId" element={<FillingTest />} />
-          )}
-          {isLoggedIn && (
-            <Route
-              exact
-              path="/createdtests/:createdTestId"
-              element={<ModifyCreatedTest />}
-            />
-          )}
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </Layout>
-    </BrowserRouter>
+    <>
+      {loaded && (
+        <BrowserRouter>
+          <Layout>
+            <Routes>
+              <Route exact path="/" element={<LandingPage />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/registration" element={<Registration />} />
+              {isLoggedIn && <Route path="/createTest" element={<NewTest />} />}
+              {isLoggedIn && (
+                <Route path="/completedtests" element={<CompletedTests />} />
+              )}
+
+              {isLoggedIn && (
+                <Route exact path="/createdtests" element={<CreatedTests />} />
+              )}
+              {isLoggedIn && (
+                <Route path="/s/:createdTestId" element={<TestStart />} />
+              )}
+
+              {isLoggedIn && (
+                <Route
+                  path="/results/:createdTestId"
+                  element={<CompletedTests />}
+                />
+              )}
+              {isLoggedIn && (
+                <Route
+                  path="/startTest/:createdTestId"
+                  element={<FillingTest />}
+                />
+              )}
+              {isLoggedIn && (
+                <Route
+                  exact
+                  path="/createdtests/:createdTestId"
+                  element={<ModifyCreatedTest />}
+                />
+              )}
+
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </Layout>
+        </BrowserRouter>
+      )}
+    </>
   );
 }

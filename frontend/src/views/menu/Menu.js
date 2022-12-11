@@ -10,13 +10,7 @@ import { Profile } from "./Profile";
 export function Menu() {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const roles = useSelector(getRoles);
-  const activeKeyFunc = () => {
-    if (roles) {
-      return roles.includes("TEACHER") ? "createdTests" : "completedTests";
-    }
-
-    return "/";
-  };
+  const activeKeyFunc = () => {};
 
   return (
     <Navbar className="text-uppercase fw-bold">

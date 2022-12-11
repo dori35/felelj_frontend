@@ -1,8 +1,8 @@
-import { Card, Container, Form } from "react-bootstrap";
-import "./FillingTask.css";
+import { Card, Container } from "react-bootstrap";
 import { FillingChoices } from "./FillingChoices";
+import "./FillingTask.css";
 
-export function FillingTask({ task, addAnswer }) {
+export function FillingTask({ task, addAnswer, time }) {
   return (
     <div className="alma d-flex justify-content-center align-items-center">
       <Container className="py-5">
@@ -13,10 +13,13 @@ export function FillingTask({ task, addAnswer }) {
                 <Card.Title className="fw-bold text-uppercase">
                   {task.text}
                 </Card.Title>
-                <div align="center" className="circle border border-success">
-                  <span className="text_circle">{task.timeFrame}</span>
+                <div>
+                  <span className="pointSpan"> {`(${task.point} pont)`}</span>
                 </div>
-                <FillingChoices task={task} addAnswer={addAnswer} />
+                <div align="center" className="circle border border-success">
+                  <span className="text_circle">{time}</span>
+                </div>
+                <FillingChoices task={task} addAnswer={addAnswer} time={time} />
               </div>
             </Card.Body>
           </Card>

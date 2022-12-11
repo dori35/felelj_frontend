@@ -1,9 +1,10 @@
-import "./FillingTask.css";
 import classnames from "classnames";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button, Col } from "react-bootstrap";
+import "./FillingTask.css";
 
-export function FillingOrderList({ task, addAnswer }) {
+export function FillingOrderList({ task, addAnswer, time }) {
+  const [added, setAdded] = useState(false);
   const handleClick = (e) => {
     addAnswer({
       id: task.id,
@@ -16,6 +17,7 @@ export function FillingOrderList({ task, addAnswer }) {
         "," +
         taskChoices[3].id.toString(),
     });
+    setAdded(true);
     e.target.setAttribute("disabled", "");
   };
   const [taskChoices, settaskChoices] = useState([
@@ -34,6 +36,14 @@ export function FillingOrderList({ task, addAnswer }) {
 
     settaskChoices(_taskChoices);
   };
+  useEffect(() => {
+    if (time === 0 && !added) {
+      addAnswer({
+        id: task.id,
+        answer: "",
+      });
+    }
+  }, [time]);
   return (
     <div className="list-container">
       {taskChoices.map((choice, index) => (
