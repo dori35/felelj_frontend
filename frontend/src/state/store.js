@@ -7,11 +7,13 @@ import { authReducer } from "./auth/reducer";
 import { FillingTestReducer } from "./fillingTests/reducer";
 import { completedTestsReducer } from "./completedTests/reducer";
 import { TestResultsReducer } from "./testResults/reducer";
+import { StartTestReducer } from "./startTest/reducer";
 
 const rootReducer = combineReducers({
   tests: createdTestsReducer,
   auth: authReducer,
   fillingTest: FillingTestReducer,
+  startTest: StartTestReducer,
   completedTests: completedTestsReducer,
   results: TestResultsReducer,
 });

@@ -21,28 +21,28 @@ export function FillingOneChoice({ task, addAnswer, time }) {
         onChange={handleChange}
       >
         <ToggleButton
-          className="oneChoiceButton"
+          className="oneChoiceButton btn-block"
           id={task.choices[0].id}
           value={task.choices[0].id}
         >
           {task.choices[0].text}
         </ToggleButton>
         <ToggleButton
-          className="oneChoiceButton"
+          className="oneChoiceButton btn-block"
           id={task.choices[1].id}
           value={task.choices[1].id}
         >
           {task.choices[1].text}
         </ToggleButton>
         <ToggleButton
-          className="oneChoiceButton"
+          className="oneChoiceButton btn-block"
           id={task.choices[2].id}
           value={task.choices[2].id}
         >
           {task.choices[2].text}
         </ToggleButton>
         <ToggleButton
-          className="oneChoiceButton"
+          className="oneChoiceButton btn-block"
           id={task.choices[3].id}
           value={task.choices[3].id}
         >

@@ -13,8 +13,9 @@ import { ModifyCreatedTest } from "./modify/ModifyCreatedTest";
 import { CreatedTests } from "./created/CreatedTests";
 import { NewTest } from "./new/NewTest";
 import { FillingTest } from "./filling/FillingTest";
-import { TestStart } from "./TestStart";
 import { fetchCompletedTests } from "../state/completedTests/actions";
+import { TestStart } from "./start/TestStart";
+import { Start } from "./start/Start";
 
 export function App() {
   const isLoggedIn = useSelector(getIsLoggedIn);
@@ -63,14 +64,9 @@ export function App() {
               {isLoggedIn && (
                 <Route path="/completedtests" element={<CompletedTests />} />
               )}
-
               {isLoggedIn && (
                 <Route exact path="/createdtests" element={<CreatedTests />} />
               )}
-              {isLoggedIn && (
-                <Route path="/s/:createdTestId" element={<TestStart />} />
-              )}
-
               {isLoggedIn && (
                 <Route
                   path="/results/:createdTestId"
@@ -90,7 +86,10 @@ export function App() {
                   element={<ModifyCreatedTest />}
                 />
               )}
-
+              {isLoggedIn && (
+                <Route path="/s/:createdTestId" element={<TestStart />} />
+              )}
+              <Route path="/start/:url" element={<Start />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Layout>

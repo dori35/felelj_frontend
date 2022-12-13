@@ -1,4 +1,4 @@
-import { completedTestsApi } from "../../api/restApi";
+import { completedTestsApi } from "../../api/completedTestsApi";
 import { addToken, addUserId } from "../utils/utils";
 
 export const SET_COMPLETEDTESTS = "SET_COMPLETEDTESTS";

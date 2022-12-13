@@ -7,7 +7,7 @@ export function FillingTask({ task, addAnswer, time }) {
     <div className="alma d-flex justify-content-center align-items-center">
       <Container className="py-5">
         <div className="d-flex justify-content-center">
-          <Card className="cardColor text-dark  border border-dark">
+          <Card className="vw-50 vh-50 cardColor text-dark  border border-dark">
             <Card.Body className="text-center">
               <div className="pb-5 mb-md-5 mt-md-4">
                 <Card.Title className="fw-bold text-uppercase">
