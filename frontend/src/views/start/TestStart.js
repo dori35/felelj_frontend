@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
-import md5 from "md5";
+import { useNavigate, useParams } from "react-router-dom";
 import { Form, Button, Card, Container, Row, Col } from "react-bootstrap";
-import QRCode from "react-qr-code";
 import { startTheTest } from "../../state/startTest/actions";
-import classnames from "classnames";
+import QRCode from "react-qr-code";
+import md5 from "md5";
 
 export function TestStart() {
   const dispatch = useDispatch();
@@ -41,6 +40,7 @@ export function TestStart() {
     dispatch(startTheTest(createdTestId, url, time));
     navigate("/");
   };
+
   return (
     <>
       {url && (

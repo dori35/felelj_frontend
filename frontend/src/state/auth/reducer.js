@@ -1,4 +1,4 @@
-import { STORE_USER, REMOVE_USER, SET_PROFILE, ISLOADING } from "./actions";
+import { STORE_USER, REMOVE_USER, SET_PROFILE } from "./actions";
 
 const initialState = {};
 

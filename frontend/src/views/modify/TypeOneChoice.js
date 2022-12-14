@@ -45,6 +45,7 @@ export function TypeOneChoice({ task, index, modifyTask }) {
     setSolutionOneChoice(e.target.value);
     modifyTask({ solutionOneChoice: e.target.value });
   };
+
   return (
     <>
       {

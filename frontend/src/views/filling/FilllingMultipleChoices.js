@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, ToggleButton, ToggleButtonGroup } from "react-bootstrap";
+import { ToggleButton, ToggleButtonGroup } from "react-bootstrap";
 import "./FillingMultipleChoices.css";
 
 export function FillingMultipleChoices({ task, addAnswer, time }) {
@@ -13,6 +13,7 @@ export function FillingMultipleChoices({ task, addAnswer, time }) {
       addAnswer({ id: task.id, answer: answer });
     }
   }, [time]);
+
   return (
     <>
       <ToggleButtonGroup type="checkbox" onChange={handleChange}>

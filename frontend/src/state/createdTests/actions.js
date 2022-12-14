@@ -1,11 +1,10 @@
-import { createdTestsApi } from "../../api/createdTestApi";
+import { createdTestsApi } from "../../api/createdTestsApi";
 import { addToken, addUserId } from "../utils/utils";
 
 export const SET_CREATEDTESTS = "SET_CREATEDTESTS";
 export const ADD_TEST = "ADD_TEST";
 export const UPDATE_TESTS = "UPDATE_TESTS";
 
-// Sync
 export const setCreatedTests = (tests) => ({
   type: SET_CREATEDTESTS,
   payload: tests,
@@ -16,7 +15,6 @@ export const updateTests = (tests) => ({
   payload: tests,
 });
 
-// Async
 export const fetchCreatedTests = () =>
   addToken(
     addUserId(async (dispatch, getState, _, token, userId) => {

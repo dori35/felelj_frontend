@@ -1,8 +1,9 @@
 import { Container } from "react-bootstrap";
-import Table from "react-bootstrap/Table";
 import { useSelector } from "react-redux";
 import { getCompletedTests } from "../../state/completedTests/selectors";
 import { CompletedTest } from "./CompletedTest";
+import Table from "react-bootstrap/Table";
+
 export function CompletedTests() {
   const completedTests = useSelector(getCompletedTests);
   return (

@@ -105,6 +105,7 @@ export function Start() {
       };
     }
   }, [test, currentIndex, time, answers, start]);
+
   return (
     <>
       {!isLoggedIn && <Login />}

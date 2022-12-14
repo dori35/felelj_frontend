@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Col, Form, InputGroup } from "react-bootstrap";
-import classnames from "classnames";
 
 export function TypeMultipleChoices({ task, index, modifyTask }) {
   const base = () => {
@@ -56,6 +55,7 @@ export function TypeMultipleChoices({ task, index, modifyTask }) {
     setSolutionMultipleChoices(newArray);
     modifyTask({ solutionMultipleChoices: newArray });
   };
+
   return (
     <>
       {

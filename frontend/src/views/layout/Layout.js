@@ -1,4 +1,5 @@
 import { Menu } from "../menu/Menu";
+import "./Layout.css";
 
 export function Layout({ children }) {
   return (

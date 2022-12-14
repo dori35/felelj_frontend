@@ -4,7 +4,6 @@ import { addToken, addUserId } from "../utils/utils";
 export const START_TEST = "START_TEST";
 export const SET_STARTTEST = "SET_STARTTEST";
 
-// Sync
 export const startTest = () => ({
   type: START_TEST,
 });
@@ -14,7 +13,6 @@ export const setTest = (test) => ({
   payload: test,
 });
 
-// Async
 export const startTheTest = (testId, url, startTime) =>
   addToken(
     addUserId(async (dispatch, getState, _, token, userId) => {

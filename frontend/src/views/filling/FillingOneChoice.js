@@ -13,6 +13,7 @@ export function FillingOneChoice({ task, addAnswer, time }) {
   const handleChange = (val) => {
     setAnswer(val.toString());
   };
+
   return (
     <>
       <ToggleButtonGroup

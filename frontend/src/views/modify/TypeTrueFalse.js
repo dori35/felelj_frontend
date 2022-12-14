@@ -13,6 +13,7 @@ export function TypeTrueFalse({ task, index, modifyTask }) {
     setSolutionTrueFalse(e.target.value);
     modifyTask({ solutionTrueFalse: e.target.value });
   };
+
   return (
     <div as={Col}>
       <InputGroup className="mb-3">

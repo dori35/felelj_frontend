@@ -5,9 +5,7 @@ export const STORE_USER = "STORE_USER";
 export const ADD_USER = "ADD_USER";
 export const REMOVE_USER = "REMOVE_USER";
 export const SET_PROFILE = "SET_PROFILE";
-export const ISLOADING = "ISLOADING";
 
-// Sync
 export const storeUser = (authData) => ({
   type: STORE_USER,
   payload: authData,
@@ -22,7 +20,6 @@ export const setProfile = (profile) => ({
   payload: profile,
 });
 
-// Async
 export const login = (identifier, password) => async (dispatch) => {
   const response = await authApi.login(identifier, password);
   if (response.error) {

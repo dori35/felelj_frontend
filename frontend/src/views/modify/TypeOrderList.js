@@ -14,6 +14,7 @@ export function TypeOrderList({ task, index, modifyTask }) {
   const [choice3, setChoice3] = useState(
     task.choices.length === 4 ? task.choices[3].text : ""
   );
+
   return (
     <>
       {

@@ -14,19 +14,16 @@ export const addUserId =
     fn(dispatch, getState, ...rest, userId);
   };
 
-export const shuffle = (array) => {
-  let currentIndex = array.length,
-    randomIndex;
+export const shuffle = (arr) => {
+  let current = arr.length,
+    random;
 
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
+  while (current !== 0) {
+    random = Math.floor(Math.random() * current);
+    current--;
 
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex],
-    ];
+    [arr[current], arr[random]] = [arr[random], arr[current]];
   }
 
-  return array;
+  return arr;
 };

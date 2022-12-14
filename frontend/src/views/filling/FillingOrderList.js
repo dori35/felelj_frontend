@@ -44,6 +44,7 @@ export function FillingOrderList({ task, addAnswer, time }) {
       });
     }
   }, [time]);
+
   return (
     <div className="list-container">
       {taskChoices.map((choice, index) => (

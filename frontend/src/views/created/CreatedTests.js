@@ -1,11 +1,10 @@
-import { useEffect } from "react";
 import { Container } from "react-bootstrap";
-import Table from "react-bootstrap/Table";
 import { useDispatch, useSelector } from "react-redux";
-import { getIsLoggedIn } from "../../state/auth/selectors";
 import { deleteTest } from "../../state/createdTests/actions";
 import { getCreatedTests } from "../../state/createdTests/selectors";
 import { CreatedTest } from "./CreatedTest";
+import Table from "react-bootstrap/Table";
+
 export function CreatedTests() {
   const createdTests = useSelector(getCreatedTests);
   const dispatch = useDispatch();
@@ -13,7 +12,6 @@ export function CreatedTests() {
     dispatch(deleteTest(test));
   };
 
-  const handleStartTestClick = (test) => {};
   return (
     <>
       <br />
@@ -37,7 +35,6 @@ export function CreatedTests() {
                 key={createdTest.id}
                 createdTest={createdTest}
                 onDeleteTestClick={() => handleDeleteTestClick(createdTest)}
-                onStartTestClick={() => handleStartTestClick(createdTest)}
               />
             ))}
           </tbody>

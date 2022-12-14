@@ -6,11 +6,7 @@ import classnames from "classnames";
 import "./CreatedTest.css";
 
 //overlay toltip fölé
-export function CreatedTest({
-  createdTest,
-  onDeleteTestClick,
-  onStartTestClick,
-}) {
+export function CreatedTest({ createdTest, onDeleteTestClick }) {
   return (
     <tr>
       <td>{createdTest.title}</td>
