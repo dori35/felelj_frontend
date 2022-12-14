@@ -14,7 +14,8 @@ import { CreatedTests } from "./created/CreatedTests";
 import { NewTest } from "./new/NewTest";
 import { FillingTest } from "./filling/FillingTest";
 import { fetchCompletedTests } from "../state/completedTests/actions";
-import { TestStart } from "./start/TestStart";
+import { TestResults } from "./results/TestResults";
+import { SettingStartTest } from "./settingStartTest/SettingStartTest";
 import { Start } from "./start/Start";
 
 export function App() {
@@ -60,7 +61,7 @@ export function App() {
               <Route exact path="/" element={<LandingPage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/registration" element={<Registration />} />
-              {isLoggedIn && <Route path="/createTest" element={<NewTest />} />}
+              {isLoggedIn && <Route path="/newtest" element={<NewTest />} />}
               {isLoggedIn && (
                 <Route path="/completedtests" element={<CompletedTests />} />
               )}
@@ -69,25 +70,29 @@ export function App() {
               )}
               {isLoggedIn && (
                 <Route
-                  path="/results/:createdTestId"
-                  element={<CompletedTests />}
+                  exact
+                  path="/modifytest/:createdTestId"
+                  element={<ModifyCreatedTest />}
                 />
               )}
               {isLoggedIn && (
                 <Route
-                  path="/startTest/:createdTestId"
+                  path="/results/:createdTestId"
+                  element={<TestResults />}
+                />
+              )}
+
+              {isLoggedIn && (
+                <Route
+                  path="/trytest/:createdTestId"
                   element={<FillingTest />}
                 />
               )}
               {isLoggedIn && (
                 <Route
-                  exact
-                  path="/createdtests/:createdTestId"
-                  element={<ModifyCreatedTest />}
+                  path="/settingstart/:createdTestId"
+                  element={<SettingStartTest />}
                 />
-              )}
-              {isLoggedIn && (
-                <Route path="/s/:createdTestId" element={<TestStart />} />
               )}
               <Route path="/start/:url" element={<Start />} />
               <Route path="*" element={<Navigate to="/" replace />} />

@@ -1,11 +1,11 @@
 import { startApi } from "../../api/startApi";
 import { addToken, addUserId } from "../utils/utils";
 
-export const START_TEST = "START_TEST";
+export const SETTING_STARTTEST = "SETTING_STARTTEST";
 export const SET_STARTTEST = "SET_STARTTEST";
 
-export const startTest = () => ({
-  type: START_TEST,
+export const settingStartTest = () => ({
+  type: SETTING_STARTTEST,
 });
 
 export const setTest = (test) => ({
@@ -13,11 +13,11 @@ export const setTest = (test) => ({
   payload: test,
 });
 
-export const startTheTest = (testId, url, startTime) =>
+export const settingStart = (testId, url, startTime) =>
   addToken(
     addUserId(async (dispatch, getState, _, token, userId) => {
-      await startApi.setStart(token, testId, userId, url, startTime);
-      dispatch(startTest());
+      await startApi.settingStartTest(token, testId, userId, url, startTime);
+      dispatch(settingStartTest());
     })
   );
 

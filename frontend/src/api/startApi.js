@@ -7,7 +7,7 @@ class StartApi {
     this.convertFn = convertFn;
   }
 
-  async setStart(token, testId, userId, url, startTime) {
+  async settingStartTest(token, testId, userId, url, startTime) {
     const startData = {
       url,
       startTime,

@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { Form, Button, Card, Container, Row, Col } from "react-bootstrap";
-import { startTheTest } from "../../state/startTest/actions";
+import { settingStart } from "../../state/startTest/actions";
 import QRCode from "react-qr-code";
 import md5 from "md5";
 
-export function TestStart() {
+export function SettingStartTest() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [time, setTime] = useState("");
@@ -37,7 +37,7 @@ export function TestStart() {
       return;
     }
     setError(false);
-    dispatch(startTheTest(createdTestId, url, time));
+    dispatch(settingStart(createdTestId, url, time));
     navigate("/");
   };
 
