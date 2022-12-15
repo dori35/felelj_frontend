@@ -1,6 +1,7 @@
 import classnames from "classnames";
 import { useEffect, useRef, useState } from "react";
 import { Button, Col } from "react-bootstrap";
+import Draggable from "react-draggable";
 import "./FillingTask.css";
 
 export function FillingOrderList({ task, addAnswer, time }) {
@@ -53,6 +54,7 @@ export function FillingOrderList({ task, addAnswer, time }) {
             <div
               style={{ float: "left", fontWeight: "bold" }}
             >{`${index}. `}</div>
+
             <div
               key={index}
               className={classnames("list-item btn", {

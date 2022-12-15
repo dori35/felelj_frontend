@@ -4,7 +4,6 @@ import { request } from "./request";
 class StartApi {
   constructor(resourcePath, convertFn) {
     this.resourcePath = resourcePath;
-    this.convertFn = convertFn;
   }
 
   async settingStartTest(token, testId, userId, url, startTime) {
@@ -15,7 +14,7 @@ class StartApi {
     await request(
       `${this.resourcePath}/${userId}/${testId}`,
       {
-        method: "POST",
+        method: "PUT",
         body: JSON.stringify(startData),
       },
       token
@@ -23,7 +22,7 @@ class StartApi {
   }
 
   async get(token, url) {
-    const test = await request(`/alma/${url}`, {}, token);
+    const test = await request(`${this.resourcePath}/${url}`, {}, token);
     if (test.random) {
       shuffle(test.tasks);
     }
@@ -31,4 +30,4 @@ class StartApi {
   }
 }
 
-export const startApi = new StartApi("/startTest");
+export const startApi = new StartApi("/starttest");

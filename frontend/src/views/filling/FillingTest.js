@@ -55,7 +55,7 @@ export function FillingTest() {
           setCurrentIndex(currentIndex + 1);
         } else if (time === 0) {
           console.log(test.id, answers);
-          dispatch(sendFillingTest(test.id, answers));
+          dispatch(sendFillingTest(test.id, answers, test.startDate));
           navigate("/");
         } else {
           setTime(time - 1);

@@ -20,10 +20,10 @@ export const fetchFillingTest = (testId) =>
     dispatch(setFillingTest(test));
   });
 
-export const sendFillingTest = (testId, answers) =>
+export const sendFillingTest = (testId, answers, startDate) =>
   addToken(
     addUserId(async (dispatch, getState, _, token, userId) => {
-      await fillingTestApi.send(token, testId, userId, answers);
+      await fillingTestApi.send(token, testId, userId, answers, startDate);
       dispatch(sendTest());
       dispatch(fetchCompletedTests());
     })

@@ -93,7 +93,7 @@ export function Start() {
           setCurrentIndex(currentIndex + 1);
         } else if (time === 0) {
           console.log(test.id, answers);
-          dispatch(sendFillingTest(test.id, answers));
+          dispatch(sendFillingTest(test.id, answers, test.startDate));
           navigate("/");
         } else {
           setTime(time - 1);
@@ -119,7 +119,7 @@ export function Start() {
       )}
       {isLoggedIn && late && <Late />}
       {isLoggedIn && started && <Started />}
-      {isLoggedIn && !late && !started && <Early />}
+      {isLoggedIn && !start && !late && !started && <Early />}
     </>
   );
 }

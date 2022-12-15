@@ -15,4 +15,4 @@ class TestResultsApi {
   }
 }
 
-export const testResultsApi = new TestResultsApi("/testResults");
+export const testResultsApi = new TestResultsApi("/testresults");

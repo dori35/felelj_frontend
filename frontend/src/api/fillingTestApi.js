@@ -2,19 +2,24 @@ import { shuffle } from "../state/utils/utils";
 import { request } from "./request";
 
 class FillingTestApi {
+  constructor(resourcePath, convertFn) {
+    this.resourcePath = resourcePath;
+  }
+
   async get(token, testId) {
-    const test = await request(`/fillingtestdtos/${testId}`, {}, token);
+    const test = await request(`${this.resourcePath}/${testId}`, {}, token);
     if (test.random) {
       shuffle(test.tasks);
     }
     return test;
   }
-  async send(token, testId, userId, answers) {
+  async send(token, testId, userId, answers, startDate) {
     const answerData = {
       answers,
+      startDate,
     };
     await request(
-      `/fillingtestdtos/${testId}/${userId}`,
+      `${this.resourcePath}/${testId}/${userId}`,
       {
         method: "POST",
         body: JSON.stringify(answerData),
@@ -24,4 +29,4 @@ class FillingTestApi {
   }
 }
 
-export const fillingTestApi = new FillingTestApi();
+export const fillingTestApi = new FillingTestApi("/fillingtestdtos");

@@ -1,11 +1,11 @@
 import { Button } from "react-bootstrap";
 import { BsFillTrashFill, BsPencilFill, BsTrophy } from "react-icons/bs";
 import { IoMdArrowDroprightCircle } from "react-icons/io";
+import { AiFillEye } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
 import "./CreatedTest.css";
 
-//overlay toltip fölé
 export function CreatedTest({ createdTest, onDeleteTestClick }) {
   return (
     <tr>
@@ -26,7 +26,7 @@ export function CreatedTest({ createdTest, onDeleteTestClick }) {
           <BsFillTrashFill />
         </Button>
         <Link
-          to={`/createdtests/${createdTest.id}`}
+          to={`/modifytest/${createdTest.id}`}
           className="btn btn-primary btn-sm"
         >
           <BsPencilFill />
@@ -38,20 +38,21 @@ export function CreatedTest({ createdTest, onDeleteTestClick }) {
           <BsTrophy />
         </Link>
         <Link
-          to={`/startTest/${createdTest.id}`}
+          to={`/trytest/${createdTest.id}`}
+          style={{ backgroundColor: "BurlyWood" }}
+          className={classnames("btn btn-sm", {
+            disabledLink: createdTest.taskNumber <= 0,
+          })}
+        >
+          <AiFillEye />
+        </Link>
+        <Link
+          to={`/settingstart/${createdTest.id}`}
           className={classnames("btn btn-success btn-sm", {
             disabledLink: createdTest.taskNumber <= 0,
           })}
         >
           <IoMdArrowDroprightCircle />
-        </Link>
-        <Link
-          to={`/s/${createdTest.id}`}
-          className={classnames("btn btn-success btn-sm", {
-            disabledLink: createdTest.taskNumber <= 0,
-          })}
-        >
-          HEy
         </Link>
       </td>
     </tr>
