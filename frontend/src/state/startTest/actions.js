@@ -3,6 +3,7 @@ import { addToken, addUserId } from "../utils/utils";
 
 export const SETTING_STARTTEST = "SETTING_STARTTEST";
 export const SET_STARTTEST = "SET_STARTTEST";
+export const SET_RESULTS = "SET_RESULTS";
 
 export const settingStartTest = () => ({
   type: SETTING_STARTTEST,
@@ -11,6 +12,11 @@ export const settingStartTest = () => ({
 export const setTest = (test) => ({
   type: SET_STARTTEST,
   payload: test,
+});
+
+export const setResults = (results) => ({
+  type: SET_RESULTS,
+  payload: results,
 });
 
 export const settingStart = (testId, url, startTime) =>
@@ -23,6 +29,11 @@ export const settingStart = (testId, url, startTime) =>
 
 export const fetchStartTest = (url) =>
   addToken(async (dispatch, getState, _, token) => {
-    let test = await startApi.get(token, url);
+    let test = await startApi.getStartTest(token, url);
     dispatch(setTest(test));
+  });
+export const fetchResults = (url, userId) =>
+  addToken(async (dispatch, getState, _, token) => {
+    let results = await startApi.getResults(token, url, userId);
+    dispatch(setResults(results));
   });

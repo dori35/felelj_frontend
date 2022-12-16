@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getIsLoggedIn } from "../../state/auth/selectors";
+import { getIsLoggedIn, getUserId } from "../../state/auth/selectors";
 import { sendFillingTest } from "../../state/fillingTests/actions";
 import { fetchStartTest } from "../../state/startTest/actions";
 import { getStartTest } from "../../state/startTest/selectors";
@@ -39,32 +39,34 @@ export function Start() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const currentDate = Date.parse(new Date());
-      const startDate = Date.parse(test.startDate);
-      const finishDate = Date.parse(test.startDate) + test.time;
-      if (test && test.startDate && test.startDate !== undefined) {
-        if (currentDate === startDate) {
-          //start
-          setStart(true);
-          clearInterval(interval);
-        } else if (
-          // keso
-          currentDate > finishDate
-        ) {
-          setLate(true);
-          clearInterval(interval);
-        } else if (currentDate < startDate) {
-          //korai
-          setSeconds(seconds + 1);
-        } else {
-          //már elindul
-          setStarted(true);
-          clearInterval(interval);
+      if (isLoggedIn) {
+        const currentDate = Date.parse(new Date());
+        const startDate = Date.parse(test.startDate);
+        const finishDate = Date.parse(test.startDate) + test.time;
+        if (test && test.startDate && test.startDate !== undefined) {
+          if (currentDate === startDate) {
+            //start
+            setStart(true);
+            clearInterval(interval);
+          } else if (
+            // keso
+            currentDate > finishDate
+          ) {
+            setLate(true);
+            clearInterval(interval);
+          } else if (currentDate < startDate) {
+            //korai
+            setSeconds(seconds + 1);
+          } else {
+            //már elindul
+            setStarted(true);
+            clearInterval(interval);
+          }
         }
       }
     }, 1000);
     return () => clearInterval(interval);
-  }, [test, seconds]);
+  }, [test, seconds, isLoggedIn]);
   useEffect(() => {
     if (test && test.tasks && test.tasks.length <= 0) {
       navigate("/");
@@ -111,17 +113,22 @@ export function Start() {
   return (
     <>
       {!isLoggedIn && <Login />}
-      {isLoggedIn && start && test && test.tasks && test.tasks.length > 0 && (
-        <FillingTask
-          key={test.tasks[currentIndex].id}
-          task={test.tasks[currentIndex]}
-          addAnswer={addAnswer}
-          time={time}
-        />
-      )}
+      {isLoggedIn &&
+        start &&
+        test &&
+        test.tasks &&
+        test.tasks.length > 0 &&
+        !finish && (
+          <FillingTask
+            key={test.tasks[currentIndex].id}
+            task={test.tasks[currentIndex]}
+            addAnswer={addAnswer}
+            time={time}
+          />
+        )}
       {isLoggedIn && late && <Late />}
       {isLoggedIn && started && <Started />}
-      {isLoggedIn && !start && !late && !started && !finish && <Early />}
+      {isLoggedIn && !start && !late && !started && <Early />}
       {isLoggedIn && finish && <Finish />}
     </>
   );

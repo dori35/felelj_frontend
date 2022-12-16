@@ -79,9 +79,9 @@ export function FillingOrderList({ task, addAnswer, time }) {
       {taskChoices.map((choice, index) => (
         <div key={index}>
           <Col>
-            <div
-              style={{ float: "left", fontWeight: "bold" }}
-            >{`${index}. `}</div>
+            <div style={{ float: "left", fontWeight: "bold" }}>{`${
+              index + 1
+            }. `}</div>
 
             <div
               key={index}
@@ -91,6 +91,7 @@ export function FillingOrderList({ task, addAnswer, time }) {
                 "btn btn-warning": choice.id === task.choices[2].id,
                 "btn btn-success": choice.id === task.choices[3].id,
                 "border border-info border-4": selected.includes(index),
+                disabled: added,
               })}
               onDragStart={(e) => (dragItem.current = index)}
               onDragEnter={(e) => (dragOverItem.current = index)}

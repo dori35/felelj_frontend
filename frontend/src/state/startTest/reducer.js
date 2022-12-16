@@ -1,4 +1,4 @@
-import { SET_STARTTEST } from "./actions";
+import { SET_RESULTS, SET_STARTTEST } from "./actions";
 
 const initialState = [];
 
@@ -7,6 +7,10 @@ export const StartTestReducer = (state = initialState, action) => {
 
   if (type === SET_STARTTEST) {
     return payload;
+  }
+
+  if (type === SET_RESULTS) {
+    return { ...state, ...payload };
   }
 
   return state;

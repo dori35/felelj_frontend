@@ -21,12 +21,22 @@ class StartApi {
     );
   }
 
-  async get(token, url) {
+  async getStartTest(token, url) {
     const test = await request(`${this.resourcePath}/${url}`, {}, token);
     if (test.random) {
       shuffle(test.tasks);
     }
     return test;
+  }
+
+  async getResults(token, url, userId) {
+    const results = await request(
+      `${this.resourcePath}/results/${url}/${userId}`,
+      {},
+      token
+    );
+
+    return results;
   }
 }
 

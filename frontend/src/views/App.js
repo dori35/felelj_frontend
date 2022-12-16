@@ -95,7 +95,6 @@ export function App() {
                   element={<SettingStartTest />}
                 />
               )}
-              {isLoggedIn && <Route path="/finishS" element={<Finish />} />}
               <Route path="/start/:url" element={<Start />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
