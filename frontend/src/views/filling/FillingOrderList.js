@@ -1,11 +1,11 @@
 import classnames from "classnames";
 import { useEffect, useRef, useState } from "react";
 import { Button, Col } from "react-bootstrap";
-import Draggable from "react-draggable";
 import "./FillingTask.css";
 
 export function FillingOrderList({ task, addAnswer, time }) {
   const [added, setAdded] = useState(false);
+  const [selected, setSelected] = useState([]);
   const handleClick = (e) => {
     addAnswer({
       id: task.id,
@@ -37,6 +37,34 @@ export function FillingOrderList({ task, addAnswer, time }) {
 
     settaskChoices(_taskChoices);
   };
+
+  const handleClickItem = (e, index) => {
+    let array = [...selected];
+    if (array.length < 2) {
+      if (array.includes(index)) {
+        let i = array.indexOf(index);
+        array.splice(i, 1);
+      } else {
+        array.push(index);
+      }
+    } else {
+      array = [];
+    }
+    setSelected(array);
+  };
+  useEffect(() => {
+    let array = [...selected];
+    if (array.length === 2) {
+      let _taskChoices = [...taskChoices];
+      const draggedItemContent = _taskChoices[array[0]];
+      _taskChoices[array[0]] = _taskChoices[array[1]];
+      _taskChoices[array[1]] = draggedItemContent;
+      console.log(taskChoices);
+      setSelected([]);
+      settaskChoices(_taskChoices);
+    }
+  }, [selected]);
+
   useEffect(() => {
     if (time === 0 && !added) {
       addAnswer({
@@ -62,12 +90,14 @@ export function FillingOrderList({ task, addAnswer, time }) {
                 "btn btn-danger": choice.id === task.choices[1].id,
                 "btn btn-warning": choice.id === task.choices[2].id,
                 "btn btn-success": choice.id === task.choices[3].id,
+                "border border-info border-4": selected.includes(index),
               })}
               onDragStart={(e) => (dragItem.current = index)}
               onDragEnter={(e) => (dragOverItem.current = index)}
               onDragEnd={handleSort}
               onDragOver={(e) => e.preventDefault()}
               draggable
+              onClick={(e) => handleClickItem(e, index)}
             >
               {choice.text}
             </div>
