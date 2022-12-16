@@ -17,6 +17,7 @@ import { fetchCompletedTests } from "../state/completedTests/actions";
 import { TestResults } from "./results/TestResults";
 import { SettingStartTest } from "./settingStartTest/SettingStartTest";
 import { Start } from "./start/Start";
+import { Finish } from "./start/Finish";
 
 export function App() {
   const isLoggedIn = useSelector(getIsLoggedIn);
@@ -94,6 +95,7 @@ export function App() {
                   element={<SettingStartTest />}
                 />
               )}
+              {isLoggedIn && <Route path="/finishS" element={<Finish />} />}
               <Route path="/start/:url" element={<Start />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>

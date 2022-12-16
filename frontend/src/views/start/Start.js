@@ -8,6 +8,7 @@ import { getStartTest } from "../../state/startTest/selectors";
 import { Login } from "../auth/Login";
 import { FillingTask } from "../filling/FillingTask";
 import { Early } from "./Early";
+import { Finish } from "./Finish";
 import { Late } from "./Late";
 import { Started } from "./Started";
 
@@ -29,6 +30,7 @@ export function Start() {
   const [start, setStart] = useState(false);
   const [late, setLate] = useState(false);
   const [started, setStarted] = useState(false);
+  const [finish, setFinish] = useState(false);
 
   const [answers, setAnswers] = useState([]);
   const addAnswer = (answer) => {
@@ -94,7 +96,7 @@ export function Start() {
         } else if (time === 0) {
           console.log(test.id, answers);
           dispatch(sendFillingTest(test.id, answers, test.startDate));
-          navigate("/");
+          setFinish(true);
         } else {
           setTime(time - 1);
         }
@@ -119,7 +121,8 @@ export function Start() {
       )}
       {isLoggedIn && late && <Late />}
       {isLoggedIn && started && <Started />}
-      {isLoggedIn && !start && !late && !started && <Early />}
+      {isLoggedIn && !start && !late && !started && !finish && <Early />}
+      {isLoggedIn && finish && <Finish />}
     </>
   );
 }
