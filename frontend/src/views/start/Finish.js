@@ -4,26 +4,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getIsLoggedIn, getUserId } from "../../state/auth/selectors";
 import { fetchResults } from "../../state/startTest/actions";
+import { getResults } from "../../state/startTest/selectors";
 
 export function Finish() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
   const userId = useSelector(getUserId);
+  const results = useSelector(getResults);
   const [processing, setProcessing] = useState(true);
   const { url } = useParams();
 
   useEffect(() => {
-    if (url !== "" && isLoggedIn && processing) {
+    if (url !== "" && userId) {
       const timer = setTimeout(async () => {
         await dispatch(fetchResults(url, userId));
-        setProcessing(false);
+        return () => {
+          clearTimeout(timer);
+        };
       }, 5000);
-
-      return () => {
-        clearTimeout(timer);
-      };
     }
-  }, [dispatch, url, processing]);
+  }, [dispatch, url]);
+
+  useEffect(() => {
+    if (!!results) {
+      setProcessing(false);
+    }
+  }, [results]);
 
   return (
     <>
@@ -37,7 +43,9 @@ export function Finish() {
                   {processing ? (
                     <Card.Title> Feldolgozás alatt</Card.Title>
                   ) : (
-                    <Card.Title>jelenlegi / max pont</Card.Title>
+                    <Card.Title>
+                      {results.myPoints} / {results.maxPoints}
+                    </Card.Title>
                   )}
                 </Card.Body>
               </Card>

@@ -47,23 +47,25 @@ export function Start() {
           if (currentDate === startDate) {
             //start
             setStart(true);
-            clearInterval(interval);
+
+            return () => clearInterval(interval);
           } else if (
             // keso
             currentDate > finishDate
           ) {
             setLate(true);
-            clearInterval(interval);
+            return () => clearInterval(interval);
           } else if (currentDate < startDate) {
             //korai
             setSeconds(seconds + 1);
           } else {
             //már elindul
             setStarted(true);
-            clearInterval(interval);
+            return () => clearInterval(interval);
           }
         }
       }
+      console.log("alma");
     }, 1000);
     return () => clearInterval(interval);
   }, [test, seconds, isLoggedIn]);
@@ -99,9 +101,14 @@ export function Start() {
           console.log(test.id, answers);
           dispatch(sendFillingTest(test.id, answers, test.startDate));
           setFinish(true);
+          navigate(`/start/results/${url}`);
+          return () => {
+            clearTimeout(timer);
+          };
         } else {
           setTime(time - 1);
         }
+        console.log("kenyer");
       }, 1000);
 
       return () => {
@@ -113,23 +120,17 @@ export function Start() {
   return (
     <>
       {!isLoggedIn && <Login />}
-      {isLoggedIn &&
-        start &&
-        test &&
-        test.tasks &&
-        test.tasks.length > 0 &&
-        !finish && (
-          <FillingTask
-            key={test.tasks[currentIndex].id}
-            task={test.tasks[currentIndex]}
-            addAnswer={addAnswer}
-            time={time}
-          />
-        )}
-      {isLoggedIn && late && <Late />}
-      {isLoggedIn && started && <Started />}
-      {isLoggedIn && !start && !late && !started && <Early />}
-      {isLoggedIn && finish && <Finish />}
+      {isLoggedIn && start && test && test.tasks && test.tasks.length > 0 && (
+        <FillingTask
+          key={test.tasks[currentIndex].id}
+          task={test.tasks[currentIndex]}
+          addAnswer={addAnswer}
+          time={time}
+        />
+      )}
+      {isLoggedIn && late && !finish && <Late />}
+      {isLoggedIn && started && !finish && <Started />}
+      {isLoggedIn && !start && !late && !started && !finish && <Early />}
     </>
   );
 }

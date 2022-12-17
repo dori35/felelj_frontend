@@ -10,7 +10,7 @@ export const StartTestReducer = (state = initialState, action) => {
   }
 
   if (type === SET_RESULTS) {
-    return { ...state, ...payload };
+    return { ...state, results: payload };
   }
 
   return state;

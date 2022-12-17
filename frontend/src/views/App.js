@@ -96,6 +96,9 @@ export function App() {
                 />
               )}
               <Route path="/start/:url" element={<Start />} />
+              {isLoggedIn && (
+                <Route path="/start/results/:url" element={<Finish />} />
+              )}
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Layout>

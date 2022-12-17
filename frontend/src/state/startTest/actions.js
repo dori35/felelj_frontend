@@ -32,6 +32,7 @@ export const fetchStartTest = (url) =>
     let test = await startApi.getStartTest(token, url);
     dispatch(setTest(test));
   });
+
 export const fetchResults = (url, userId) =>
   addToken(async (dispatch, getState, _, token) => {
     let results = await startApi.getResults(token, url, userId);
