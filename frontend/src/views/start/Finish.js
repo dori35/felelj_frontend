@@ -44,7 +44,7 @@ export function Finish() {
                     <Card.Title> Feldolgozás alatt</Card.Title>
                   ) : (
                     <Card.Title>
-                      {results.myPoints} / {results.maxPoints}
+                      {results.currentPoints} / {results.maxPoints}
                     </Card.Title>
                   )}
                 </Card.Body>
