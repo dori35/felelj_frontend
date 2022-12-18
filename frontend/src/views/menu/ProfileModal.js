@@ -9,31 +9,31 @@ export function ProfileModal({ show, onShow, onHide, profile }) {
       <Modal.Body className="show-grid">
         <Container>
           <Row>
-            <Col xs={6} md={4} style={{ fontWeight: "bold" }}>
+            <Col xs={3} md={4} style={{ fontWeight: "bold" }}>
               {profile.role === "TEACHER" ? "TANÁR" : "DIÁK"}
             </Col>
           </Row>
           <Row>
-            <Col xs={6} md={4}>
+            <Col xs={2} md={4}>
               Név:
             </Col>
-            <Col xs={6} md={4}>
+            <Col xs={10} md={4}>
               {profile.name}
             </Col>
-          </Row>
+          </Row>{" "}
           <Row>
-            <Col xs={6} md={4}>
+            <Col xs={5} md={4}>
               Neptun-kód:
             </Col>
-            <Col xs={6} md={4}>
+            <Col xs={7} md={4}>
               {profile.identifier}
             </Col>
-          </Row>
+          </Row>{" "}
           <Row>
-            <Col xs={6} md={4}>
+            <Col xs={3} md={4}>
               E-mail:
             </Col>
-            <Col xs={6} md={4}>
+            <Col xs={9} md={4}>
               {profile.email}
             </Col>
           </Row>

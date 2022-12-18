@@ -9,8 +9,8 @@ export function CompletedTests() {
   return (
     <>
       {completedTests.length >= 0 && (
-        <Container className="my-5">
-          <Table>
+        <div className="table-responsive mx-md-5  mt-md-3">
+          <Table className="table-sm">
             <thead className="bg-dark text-white">
               <tr>
                 <th>Cím</th>
@@ -27,7 +27,7 @@ export function CompletedTests() {
               ))}
             </tbody>
           </Table>
-        </Container>
+        </div>
       )}
     </>
   );

@@ -41,11 +41,11 @@ export function Finish() {
                 <Card.Body>
                   <Card.Title> Eremények</Card.Title>
                   {processing ? (
-                    <Card.Title> Feldolgozás alatt</Card.Title>
+                    <Card.Text> Feldolgozás alatt</Card.Text>
                   ) : (
-                    <Card.Title>
+                    <Card.Text>
                       {results.currentPoints} / {results.maxPoints}
-                    </Card.Title>
+                    </Card.Text>
                   )}
                 </Card.Body>
               </Card>

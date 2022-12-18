@@ -6,8 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { fetchProfile, logout } from "../../state/auth/actions";
 import { getProfile } from "../../state/auth/selectors";
 import { ProfileModal } from "./ProfileModal";
+import classnames from "classnames";
 
-export function Profile() {
+export function Profile({ dis }) {
   const profile = useSelector(getProfile);
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
@@ -36,7 +37,10 @@ export function Profile() {
         id="navProfile"
         title="Profil"
         align="end"
-        style={{ textAlign: "center", padding: "0px 30px" }}
+        className={classnames({
+          "d-none": dis,
+        })}
+        disabled={dis}
       >
         <NavDropdown.Item onClick={handleClickProfileModal}>
           <CgProfile /> Adatok

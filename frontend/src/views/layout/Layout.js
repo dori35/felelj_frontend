@@ -1,4 +1,4 @@
-import { Menu } from "../menu/Menu";
+import { Menu2 } from "../menu/Menu2";
 import "./Layout.css";
 
 export function Layout({ children }) {
@@ -7,7 +7,7 @@ export function Layout({ children }) {
       <div className="bg"></div>
       <div className="bg bg2"></div>
       <div className="bg bg3"></div>
-      <Menu />
+      <Menu2 />
       {children}
     </>
   );

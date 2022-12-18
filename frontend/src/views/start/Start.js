@@ -128,7 +128,7 @@ export function Start() {
           time={time}
         />
       )}
-      {isLoggedIn && late && !finish && <Late />}
+      {isLoggedIn && !start && late && !finish && <Late />}
       {isLoggedIn && started && !finish && <Started />}
       {isLoggedIn && !start && !late && !started && !finish && <Early />}
     </>

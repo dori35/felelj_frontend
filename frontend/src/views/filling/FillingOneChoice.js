@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ToggleButton, ToggleButtonGroup } from "react-bootstrap";
+import { Row, ToggleButton, ToggleButtonGroup } from "react-bootstrap";
 import "./FillingOneChoice.css";
 
 export function FillingOneChoice({ task, addAnswer, time }) {
@@ -21,35 +21,42 @@ export function FillingOneChoice({ task, addAnswer, time }) {
         name={`oneChoice-${task.id}`}
         onChange={handleChange}
       >
-        <ToggleButton
-          className="oneChoiceButton btn-block"
-          id={task.choices[0].id}
-          value={task.choices[0].id}
-        >
-          {task.choices[0].text}
-        </ToggleButton>
-        <ToggleButton
-          className="oneChoiceButton btn-block"
-          id={task.choices[1].id}
-          value={task.choices[1].id}
-        >
-          {task.choices[1].text}
-        </ToggleButton>
-        <ToggleButton
-          className="oneChoiceButton btn-block"
-          id={task.choices[2].id}
-          value={task.choices[2].id}
-        >
-          {task.choices[2].text}
-        </ToggleButton>
-        <ToggleButton
-          className="oneChoiceButton btn-block"
-          id={task.choices[3].id}
-          value={task.choices[3].id}
-        >
-          {task.choices[3].text}
-        </ToggleButton>
-      </ToggleButtonGroup>{" "}
+        <Row>
+          <ToggleButton
+            className="border-dark col "
+            id={task.choices[0].id}
+            variant="primary"
+            value={task.choices[0].id}
+          >
+            {task.choices[0].text}
+          </ToggleButton>
+          <ToggleButton
+            className=" border-dark col  "
+            id={task.choices[1].id}
+            variant="danger"
+            value={task.choices[1].id}
+          >
+            {task.choices[1].text}
+          </ToggleButton>
+          <div className="w-100"></div>
+          <ToggleButton
+            className=" border-dark col"
+            id={task.choices[2].id}
+            variant="warning"
+            value={task.choices[2].id}
+          >
+            almaaaa
+          </ToggleButton>
+          <ToggleButton
+            className="border-dark col  "
+            id={task.choices[3].id}
+            variant="success"
+            value={task.choices[3].id}
+          >
+            alm
+          </ToggleButton>
+        </Row>
+      </ToggleButtonGroup>
     </>
   );
 }
