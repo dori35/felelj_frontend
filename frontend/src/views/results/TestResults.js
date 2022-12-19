@@ -13,16 +13,12 @@ export function TestResults() {
     dispatch(fetchTestResults(createdTestId));
   }, [dispatch, createdTestId]);
   const results = useSelector(getTestResults);
-  /* <>
-      {" "}
-      {results &&
-        results.map((result, index) => <p key={index}>{result.fillDate}</p>)}
-    </>*/
+
   return (
     <>
       {results && results.length >= 0 && (
-        <Container className="my-5">
-          <Table>
+        <Container className="table-responsive mx-md-5 mt-md-3 my-5">
+          <Table className="table-sm ">
             <thead className="bg-dark text-white">
               <tr>
                 <th>Teszt időpontja</th>

@@ -29,6 +29,7 @@ export function ModifyCreatedTest() {
   const [random, setRandom] = useState("");
   const [tasks, setTasks] = useState("");
   const [modTasks, setModTasks] = useState("");
+
   useEffect(() => {
     if (test) {
       setTitle(test.title);
@@ -38,7 +39,7 @@ export function ModifyCreatedTest() {
       setModTasks(JSON.parse(JSON.stringify(test.tasks)));
     }
   }, [test]);
-  console.log(modTasks);
+
   let taskSchema = {
     text: "",
     taskType: "ONE_CHOICE",
@@ -47,6 +48,7 @@ export function ModifyCreatedTest() {
     solution: "",
     choices: "",
   };
+
   const handleNewTaskButtonClick = (e) => {
     addTask(taskSchema);
   };
@@ -165,7 +167,7 @@ export function ModifyCreatedTest() {
 
   const removeTask = (index) => {
     let m = modTasks.filter((t, i) => index !== i);
-    setModTasks(m);
+    setModTasks([...m]);
   };
 
   const modifyTask = (mTask, par) => {
@@ -177,6 +179,9 @@ export function ModifyCreatedTest() {
     mTask[Object.entries(par)[0][0]] = Object.entries(par)[0][1];
   };
 
+  useEffect(() => {
+    console.log(modTasks);
+  }, [modTasks]);
   return (
     <>
       {title && (

@@ -1,7 +1,7 @@
-import { Button } from "react-bootstrap";
 import { BsStarFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
-export function CompletedTest({ completedTest }) {
+export function CompletedTest({ completedTest, index }) {
   console.log(completedTest);
   return (
     <tr>
@@ -16,9 +16,12 @@ export function CompletedTest({ completedTest }) {
       <td>{`${completedTest.currentPoint}/${completedTest.maxPoint}`}</td>
       <td>{completedTest.taskNumber}</td>
       <td>
-        <Button className="btn-warning btn-sm">
+        <Link
+          className="btn btn-warning btn-sm"
+          to={`/completedtests/${completedTest.id}/${index}`}
+        >
           <BsStarFill />
-        </Button>
+        </Link>
       </td>
     </tr>
   );

@@ -1,0 +1,13 @@
+.mistake {
+  border-color: #ff0000 !important;
+  border-width: 5px;
+}
+
+.correct {
+  border-color: #00ff00 !important;
+  border-width: 5px;
+}
+.correctLeftOut {
+  border-color: #ffff00 !important;
+  border-width: 5px;
+}

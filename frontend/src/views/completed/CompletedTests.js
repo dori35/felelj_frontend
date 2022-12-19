@@ -1,4 +1,3 @@
-import { Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { getCompletedTests } from "../../state/completedTests/selectors";
 import { CompletedTest } from "./CompletedTest";
@@ -24,7 +23,11 @@ export function CompletedTests() {
             </thead>
             <tbody className="bg-light">
               {completedTests.map((completedTest, index) => (
-                <CompletedTest key={index} completedTest={completedTest} />
+                <CompletedTest
+                  key={index}
+                  completedTest={completedTest}
+                  index={index}
+                />
               ))}
             </tbody>
           </Table>

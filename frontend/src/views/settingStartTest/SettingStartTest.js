@@ -44,78 +44,75 @@ export function SettingStartTest() {
   return (
     <>
       {url && (
-        <div className="d-flex justify-content-center align-items-center">
-          <Container className="py-5">
-            <div className="d-flex justify-content-center">
-              <Card>
-                <Card.Header>Teszt linkje</Card.Header>
-                <Card.Body>
-                  <p className="mb-3 text-black-50 ">
-                    Másold ki a linket és oszd meg a tesztet írókkal vagy
-                    szkenneltesd be a QR-kódot!
-                  </p>
-                  {url && <span>{`http://localhost:3000/start/${url}`}</span>}
-                  <Button
-                    className="mx-5"
-                    variant="dark"
-                    onClick={() =>
-                      navigator.clipboard.writeText(
-                        `http://localhost:3000/start/${url}`
-                      )
-                    }
-                  >
-                    Másol
-                  </Button>
+        <div className="d-flex justify-content-center align-items-center py-5">
+          <Card>
+            <Card.Header>Teszt linkje</Card.Header>
+            <Card.Body>
+              <p className="mb-3 text-black-50 ">
+                Másold ki a linket és oszd meg a tesztet írókkal vagy
+                szkenneltesd be a QR-kódot!
+              </p>
+              {url && <span>{`http://localhost:3000/start/${url}`}</span>}
+              <Button
+                className="mx-5"
+                variant="dark"
+                onClick={() =>
+                  navigator.clipboard.writeText(
+                    `http://localhost:3000/start/${url}`
+                  )
+                }
+              >
+                Másol
+              </Button>
 
-                  <hr />
-                  <div style={{ alignItems: "center" }} className="my-3">
-                    <QRCode
-                      style={{
-                        display: "block",
-                        marginLeft: "auto",
-                        marginRight: "auto",
-                        align: "center",
-                      }}
-                      value={`http://localhost:3000/${url}`}
-                    />
+              <hr />
+              <Col style={{ width: "100%" }}>
+                <div style={{ alignItems: "center" }} className="my-3">
+                  <QRCode
+                    style={{
+                      display: "block",
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                      align: "center",
+                    }}
+                    value={`http://localhost:3000/${url}`}
+                  />
+                </div>
+              </Col>
+              <Form onSubmit={handleSubmit}>
+                <Row className="my-4 ">
+                  <Col>
+                    <Form.Group controlId="duedate">
+                      <Form.Control
+                        type="time"
+                        name="formTime"
+                        value={time}
+                        onChange={(e) => setTime(e.target.value)}
+                        required
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <div>
+                      <Button
+                        className="btn btn-success "
+                        type="submit"
+                        disabled={url === "" || time === ""}
+                      >
+                        Ok
+                      </Button>
+                    </div>
+                  </Col>
+                </Row>
+                {error && (
+                  <div style={{ color: "red" }}>
+                    Valami hiba történt! (Csak a jelenleginél később időponton
+                    lehet tesztet íratni!)
                   </div>
-
-                  <Form onSubmit={handleSubmit}>
-                    <Row className="my-4 ">
-                      <Col>
-                        <Form.Group controlId="duedate">
-                          <Form.Control
-                            type="time"
-                            name="formTime"
-                            value={time}
-                            onChange={(e) => setTime(e.target.value)}
-                            required
-                          />
-                        </Form.Group>
-                      </Col>
-                      <Col>
-                        <div>
-                          <Button
-                            className="btn btn-success "
-                            type="submit"
-                            disabled={url === "" || time === ""}
-                          >
-                            Ok
-                          </Button>
-                        </div>
-                      </Col>
-                    </Row>
-                    {error && (
-                      <div style={{ color: "red" }}>
-                        Valami hiba történt! (Csak a jelenleginél később
-                        időponton lehet tesztet íratni!)
-                      </div>
-                    )}
-                  </Form>
-                </Card.Body>
-              </Card>
-            </div>
-          </Container>
+                )}
+              </Form>
+            </Card.Body>
+          </Card>
         </div>
       )}
     </>

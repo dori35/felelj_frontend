@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Card, Container, Form } from "react-bootstrap";
+import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../state/auth/actions";
@@ -64,6 +64,7 @@ export function Login() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       type="password"
+                      autoComplete="on"
                     />
                     <Form.Label>Jelszó</Form.Label>
                   </Form.Group>
@@ -72,9 +73,11 @@ export function Login() {
                       Nem megfelelő neptun-kód vagy jelszó!
                     </p>
                   )}
-                  <Button className="btn-lg px-5" type="submit">
-                    Belépés
-                  </Button>
+                  <Container fluid>
+                    <Button className="btn-lg  px-5  " type="submit">
+                      Belépés
+                    </Button>
+                  </Container>
                 </div>
               </Form>
             </Card.Body>

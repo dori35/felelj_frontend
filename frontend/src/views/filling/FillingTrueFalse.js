@@ -24,30 +24,28 @@ export function FillingTrueFalse({ task, addAnswer, time }) {
       style={{ width: "100%" }}
     >
       <Container fluid>
-        <Row>
-          <Button
-            id={`true-${task.id}`}
-            className={classnames("btn-lg border-dark  col-6 ", {
-              "border border-info border-4": answer === "1",
-            })}
-            variant="success"
-            value="1"
-            onClick={(e) => handleClick(e)}
-          >
-            Igaz
-          </Button>
-          <Button
-            id={`false-${task.id}`}
-            className={classnames("btn-lg border-dark col-6 ", {
-              "border border-info border-4": answer === "0",
-            })}
-            variant="danger"
-            value="0"
-            onClick={(e) => handleClick(e)}
-          >
-            Hamis
-          </Button>
-        </Row>
+        <Button
+          id={`true-${task.id}`}
+          className={classnames("btn-lg border-dark mx-2 col-4 ", {
+            "border border-info border-4": answer === "1",
+          })}
+          variant="success"
+          value="1"
+          onClick={(e) => handleClick(e)}
+        >
+          Igaz
+        </Button>
+        <Button
+          id={`false-${task.id}`}
+          className={classnames("btn-lg border-dark mx-2 col-4  ", {
+            "border border-info border-4": answer === "0",
+          })}
+          variant="danger"
+          value="0"
+          onClick={(e) => handleClick(e)}
+        >
+          Hamis
+        </Button>
       </Container>
     </ButtonGroup>
   );

@@ -18,5 +18,6 @@ export const request = async (path = "", options = {}, token, userId) => {
     ...options,
     headers,
   });
+
   return response.json();
 };

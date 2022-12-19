@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, CloseButton, Col, Container, Form, Row } from "react-bootstrap";
 import { ModifyCreatedChoices } from "./ModifyCreatedChoices";
 
@@ -12,6 +12,15 @@ export function ModifyCreatedTask({
   const [point, setPoint] = useState(task.point);
   const [timeFrame, setTimeFrame] = useState(task.timeFrame);
   const [text, setText] = useState(task.text);
+
+  useEffect(() => {
+    if (task) {
+      setTaskType(task.taskType);
+      setPoint(task.point);
+      setTimeFrame(task.timeFrame);
+      setText(task.text);
+    }
+  }, [task]);
 
   const handleChange = (e) => {
     if (task.solution !== "") {
@@ -42,7 +51,6 @@ export function ModifyCreatedTask({
       modifyTask({ choices: [] });
     }
   };
-
   return (
     <div>
       <Container className="py-3">
@@ -156,7 +164,7 @@ export function ModifyCreatedTask({
                     type="radio"
                     value="ONE_CHOICE"
                     id={`type-ONE_CHOICE-${index}`}
-                    defaultChecked={task.taskType === "ONE_CHOICE"}
+                    checked={taskType === "ONE_CHOICE"}
                     onChange={(e) => handleChange(e)}
                   />
                   <Form.Check
@@ -165,7 +173,7 @@ export function ModifyCreatedTask({
                     type="radio"
                     value="MULTIPLE_CHOICES"
                     id={`type-MULTIPLE_CHOICES-${index}`}
-                    defaultChecked={task.taskType === "MULTIPLE_CHOICES"}
+                    checked={taskType === "MULTIPLE_CHOICES"}
                     onChange={(e) => handleChange(e)}
                   />
                   <Form.Check
@@ -174,7 +182,7 @@ export function ModifyCreatedTask({
                     type="radio"
                     value="TRUE_FALSE"
                     id={`type-TRUE_FALSE-${index}`}
-                    defaultChecked={task.taskType === "TRUE_FALSE"}
+                    checked={taskType === "TRUE_FALSE"}
                     onChange={(e) => handleChange(e)}
                   />
                   <Form.Check
@@ -183,7 +191,7 @@ export function ModifyCreatedTask({
                     type="radio"
                     value="ORDER_LIST"
                     id={`type-ORDER_LIST-${index}`}
-                    defaultChecked={task.taskType === "ORDER_LIST"}
+                    checked={taskType === "ORDER_LIST"}
                     onChange={(e) => handleChange(e)}
                   />
                 </Form.Group>
