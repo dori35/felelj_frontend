@@ -10,3 +10,7 @@
   float: right;
   margin: 20px;
 }
+
+.overFlow {
+  overflow-x: scroll;
+}

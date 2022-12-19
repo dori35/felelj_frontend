@@ -15,10 +15,11 @@ export function CompletedTests() {
               <tr>
                 <th>Cím</th>
                 <th>Tárgy</th>
-                <th>Kitöltés dátuma</th>
+                <th>Teszt időpontja</th>
                 <th>Időkeret</th>
                 <th>Pont (Kapott/ Össz)</th>
                 <th>Kérdések száma</th>
+                <th>Művelet</th>
               </tr>
             </thead>
             <tbody className="bg-light">

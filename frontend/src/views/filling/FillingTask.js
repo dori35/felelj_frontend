@@ -5,7 +5,7 @@ import "./FillingTask.css";
 export function FillingTask({ task, addAnswer, time }) {
   return (
     <div className="d-flex justify-content-center align-items-center">
-      <Container className="py-5">
+      <Container className=" py-5">
         <div className="d-flex justify-content-center">
           <Card className="cardColor text-dark  border border-dark  vw-100 mx-md-5">
             <Card.Body className="text-center">

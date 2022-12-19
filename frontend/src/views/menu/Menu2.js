@@ -73,7 +73,12 @@ export function Menu2() {
         )}
         {!isLoggedIn && (
           <>
-            <Navbar.Toggle aria-controls="navbarScroll2" />
+            <Navbar.Toggle
+              aria-controls="navbarScroll2"
+              onClick={(e) => {
+                setDis(!dis);
+              }}
+            />
             <Navbar.Collapse id="navbarScroll2">
               <Nav
                 className="ms-auto my-2 my-lg-0"

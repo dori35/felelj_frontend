@@ -1,43 +1,54 @@
 import { useEffect, useState } from "react";
-import { Col, Row, ToggleButton, ToggleButtonGroup } from "react-bootstrap";
+import { Button, ButtonGroup, Container, Row } from "react-bootstrap";
 import "./FillingTrueFalse.css";
+import classnames from "classnames";
 
 export function FillingTrueFalse({ task, addAnswer, time }) {
   const [answer, setAnswer] = useState("");
-  const handleChange = (val) => setAnswer(val.toString());
+  const handleClick = (e) => {
+    console.log(e.target.value);
+    setAnswer(e.target.value);
+  };
 
   useEffect(() => {
     if (time === 0) {
+      console.log(answer);
       addAnswer({ id: task.id, answer: answer });
     }
   }, [time]);
 
   return (
-    <>
-      <ToggleButtonGroup
-        type="radio"
-        name={`trueFalse-${task.id}`}
-        onChange={handleChange}
-      >
-        <Col>
-          <ToggleButton
+    <ButtonGroup
+      type="radio"
+      name={`trueFalse-${task.id}`}
+      style={{ width: "100%" }}
+    >
+      <Container fluid>
+        <Row>
+          <Button
             id={`true-${task.id}`}
-            className="btn-lg border-dark   "
+            className={classnames("btn-lg border-dark  col-6 ", {
+              "border border-info border-4": answer === "1",
+            })}
             variant="success"
-            value={1}
+            value="1"
+            onClick={(e) => handleClick(e)}
           >
             Igaz
-          </ToggleButton>
-          <ToggleButton
+          </Button>
+          <Button
             id={`false-${task.id}`}
-            className="btn-lg border-dark  "
+            className={classnames("btn-lg border-dark col-6 ", {
+              "border border-info border-4": answer === "0",
+            })}
             variant="danger"
-            value={0}
+            value="0"
+            onClick={(e) => handleClick(e)}
           >
             Hamis
-          </ToggleButton>
-        </Col>
-      </ToggleButtonGroup>
-    </>
+          </Button>
+        </Row>
+      </Container>
+    </ButtonGroup>
   );
 }
