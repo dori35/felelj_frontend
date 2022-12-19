@@ -7,7 +7,7 @@ export function CompletedTest({ completedTest }) {
     <tr>
       <td>{completedTest.title}</td>
       <td>{completedTest.subject}</td>
-      <td>{completedTest.startDate}</td>
+      <td>{completedTest.fillDate}</td>
       <td>
         {Math.floor(completedTest.timeFrame / 60) +
           ":" +

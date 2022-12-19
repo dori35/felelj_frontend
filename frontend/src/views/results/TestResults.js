@@ -25,7 +25,7 @@ export function TestResults() {
           <Table>
             <thead className="bg-dark text-white">
               <tr>
-                <th>Kitöltés dátuma</th>
+                <th>Teszt időpontja</th>
                 <th>Cím</th>
                 <th>Tárgy</th>
                 <th>Random sorrend</th>

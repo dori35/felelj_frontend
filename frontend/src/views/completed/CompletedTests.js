@@ -15,7 +15,7 @@ export function CompletedTests() {
               <tr>
                 <th>Cím</th>
                 <th>Tárgy</th>
-                <th>Teszt időpontja</th>
+                <th>Beküldés időpontja</th>
                 <th>Időkeret</th>
                 <th>Pont (Kapott/ Össz)</th>
                 <th>Kérdések száma</th>
