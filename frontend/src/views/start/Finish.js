@@ -70,7 +70,7 @@ export function Finish() {
                           {results.maxPoints}
                         </span>
                       </Card.Text>
-                      <Col className="  pb-4 ">
+                      <Container fluid>
                         <Row>
                           <Col className="  mxy-0 px-0 mt-3 text-center  ">
                             <span
@@ -79,7 +79,7 @@ export function Finish() {
                             >
                               2.
                             </span>
-                            <Col className=" mxy-0 pxy-0 pb-2  bg-warning  ">
+                            <Col className=" mxy-0 pxy-0 pb-2  bg-warning ">
                               <DropdownButton
                                 variant="warning"
                                 menuVariant="dark"
@@ -103,7 +103,7 @@ export function Finish() {
                               </DropdownButton>
                             </Col>
                           </Col>
-                          <Col className=" mxy-0 px-0 mt-2 text-center">
+                          <Col className=" mxy-0 px-0 mt-2 text-center ">
                             <span
                               style={{ fontWeight: "bold" }}
                               className=" align-items-center"
@@ -134,7 +134,7 @@ export function Finish() {
                               </DropdownButton>
                             </Col>
                           </Col>
-                          <Col className=" mxy-0 px-0 mt-4 text-center">
+                          <Col className=" mxy-0 px-0 mt-4 text-center ">
                             <span
                               style={{ fontWeight: "bold" }}
                               className=" align-items-center"
@@ -166,7 +166,7 @@ export function Finish() {
                             </Col>{" "}
                           </Col>
                         </Row>
-                      </Col>
+                      </Container>
                     </>
                   )}
                 </Card.Body>

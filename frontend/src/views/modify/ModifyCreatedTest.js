@@ -157,8 +157,8 @@ export function ModifyCreatedTest() {
       }
     });
     console.log(title, subject, random, modTasks);
-    //dispatch(modifyTest(createdTestId, title, subject, random, modTasks));
-    //navigate("/");
+    dispatch(modifyTest(createdTestId, title, subject, random, modTasks));
+    navigate("/");
   };
 
   const addTask = (task) => {
@@ -180,8 +180,9 @@ export function ModifyCreatedTest() {
   };
 
   useEffect(() => {
-    console.log(modTasks);
+    // console.log(modTasks);
   }, [modTasks]);
+
   return (
     <>
       {title && (

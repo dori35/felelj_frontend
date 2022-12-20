@@ -27,7 +27,7 @@ export function TestResults() {
                 <th>Random sorrend</th>
                 <th>Időkeret</th>
                 <th>Kérdések száma</th>
-                <th>Össz pont</th>
+                <th>Össz. pont</th>
                 <th>Átlag pont</th>
                 <th>Legtöbb pont</th>
                 <th>Legkevesebb pont</th>
@@ -37,7 +37,7 @@ export function TestResults() {
             </thead>
             <tbody className="bg-light">
               {results.map((result, index) => (
-                <TestResult key={index} result={result} />
+                <TestResult key={index} result={result} index={index} />
               ))}
             </tbody>
           </Table>

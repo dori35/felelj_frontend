@@ -1,7 +1,7 @@
 import { BsPeopleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-export function TestResult({ result }) {
+export function TestResult({ result, index }) {
   return (
     <tr>
       <td>{result.startDate}</td>
@@ -20,7 +20,10 @@ export function TestResult({ result }) {
       <td>{result.leastPoint}</td>
       <td>{result.fillersNumber}</td>
       <td>
-        <Link className="btn btn-primary btn-sm">
+        <Link
+          to={`/results/fillers/${index}`}
+          className="btn btn-primary btn-sm"
+        >
           <BsPeopleFill />
         </Link>
       </td>
