@@ -1,5 +1,6 @@
 import { Card, Container } from "react-bootstrap";
 import { CompletedChoices } from "./CompletedChoices";
+import classnames from "classnames";
 
 export function CompletedTask({ task }) {
   return (
@@ -14,7 +15,12 @@ export function CompletedTask({ task }) {
                     {task.text}
                   </Card.Title>
                   <div>
-                    <span className="pointSpan " style={{ color: "red" }}>
+                    <span
+                      className={classnames("pointSpan ", {
+                        " correctColor": task.currentPoint > 0,
+                        " mistakeColor": task.currentPoint <= 0,
+                      })}
+                    >
                       {`${task.currentPoint} / ${task.point}`}
                     </span>
                   </div>

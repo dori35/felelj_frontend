@@ -1,3 +1,6 @@
+import { BsPeopleFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
+
 export function TestResult({ result }) {
   return (
     <tr>
@@ -12,11 +15,15 @@ export function TestResult({ result }) {
       </td>
       <td>{result.taskNumber}</td>
       <td>{result.maxPoint}</td>
-
       <td>{result.averagePoint}</td>
       <td>{result.bestPoint}</td>
       <td>{result.leastPoint}</td>
       <td>{result.fillersNumber}</td>
+      <td>
+        <Link className="btn btn-primary btn-sm">
+          <BsPeopleFill />
+        </Link>
+      </td>
     </tr>
   );
 }

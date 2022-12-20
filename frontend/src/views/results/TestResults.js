@@ -17,8 +17,8 @@ export function TestResults() {
   return (
     <>
       {results && results.length >= 0 && (
-        <Container className="table-responsive mx-md-5 mt-md-3 my-5">
-          <Table className="table-sm ">
+        <div className=" table-responsive mx-md-5 mt-md-3  ">
+          <Table className="table-sm " style={{ textAlign: "center" }}>
             <thead className="bg-dark text-white">
               <tr>
                 <th>Teszt időpontja</th>
@@ -32,6 +32,7 @@ export function TestResults() {
                 <th>Legtöbb pont</th>
                 <th>Legkevesebb pont</th>
                 <th>Kitöltők száma</th>
+                <th>Művelet</th>
               </tr>
             </thead>
             <tbody className="bg-light">
@@ -40,7 +41,7 @@ export function TestResults() {
               ))}
             </tbody>
           </Table>
-        </Container>
+        </div>
       )}
     </>
   );

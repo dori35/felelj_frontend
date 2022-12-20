@@ -2,7 +2,6 @@ import { BsStarFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 export function CompletedTest({ completedTest, index }) {
-  console.log(completedTest);
   return (
     <tr>
       <td>{completedTest.title}</td>

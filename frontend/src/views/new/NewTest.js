@@ -31,7 +31,9 @@ export function NewTest() {
   const handleNewTaskButtonClick = (e) => {
     addTask(taskSchema);
   };
-
+  const handleTaskCloseButtonClick = (index) => {
+    removeTask(index);
+  };
   const handleModifyTaskSubmit = (e) => {
     e.preventDefault();
     console.log(title, subject, random, modTasks);
@@ -41,6 +43,10 @@ export function NewTest() {
 
   const addTask = (task) => {
     setModTasks([...modTasks, task]);
+  };
+  const removeTask = (index) => {
+    let m = modTasks.filter((t, i) => index !== i);
+    setModTasks([...m]);
   };
 
   const modifyTask = (mTask, par) => {
@@ -105,6 +111,9 @@ export function NewTest() {
                     task={task}
                     modifyTask={(par) => modifyTask(task, par)}
                     index={index}
+                    handleTaskCloseButtonClick={() =>
+                      handleTaskCloseButtonClick(index)
+                    }
                   />
                 ))}
                 <Button type="button" onClick={handleNewTaskButtonClick}>

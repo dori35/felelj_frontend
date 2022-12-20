@@ -9,7 +9,7 @@ export function CompletedTests() {
     <>
       {completedTests.length >= 0 && (
         <div className="table-responsive mx-md-5  mt-md-3">
-          <Table className="table-sm">
+          <Table className="table-sm" style={{ textAlign: "center" }}>
             <thead className="bg-dark text-white">
               <tr>
                 <th>Cím</th>

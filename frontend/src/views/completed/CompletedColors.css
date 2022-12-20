@@ -11,3 +11,10 @@
   border-color: #ffff00 !important;
   border-width: 5px;
 }
+.correctColor {
+  color: #228b22;
+}
+
+.mistakeColor {
+  color: #ff0000;
+}
