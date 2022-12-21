@@ -29,16 +29,29 @@ export function TypeOneChoice({ task, index, modifyTask }) {
     task.solution !== "" ? base : ""
   );
   const [choice0, setChoice0] = useState(
-    task.choices.length === 4 ? task.choices[0] : { text: "" }
+    task.choices.length === 4 ? task.choices[0].text : { text: "" }
   );
   const [choice1, setChoice1] = useState(
-    task.choices.length === 4 ? task.choices[1] : { text: "" }
+    task.choices.length === 4 ? task.choices[1].text : { text: "" }
   );
   const [choice2, setChoice2] = useState(
-    task.choices.length === 4 ? task.choices[2] : { text: "" }
+    task.choices.length === 4 ? task.choices[2].text : { text: "" }
   );
   const [choice3, setChoice3] = useState(
-    task.choices.length === 4 ? task.choices[3] : { text: "" }
+    task.choices.length === 4 ? task.choices[3].text : { text: "" }
+  );
+
+  const [choice0Id, setChoice0Id] = useState(
+    task.choices.length === 4 ? task.choices[0].id : ""
+  );
+  const [choice1Id, setChoice1Id] = useState(
+    task.choices.length === 4 ? task.choices[1].id : ""
+  );
+  const [choice2Id, setChoice2Id] = useState(
+    task.choices.length === 4 ? task.choices[2].id : ""
+  );
+  const [choice3Id, setChoice3Id] = useState(
+    task.choices.length === 4 ? task.choices[3].id : ""
   );
 
   const handleCheckSolution = (e) => {
@@ -57,12 +70,12 @@ export function TypeOneChoice({ task, index, modifyTask }) {
               name={`solution-OneChoice-${index}`}
               type="radio"
               value={0}
-              defaultChecked={task.solution === `${choice0.id}`}
+              defaultChecked={task.solution === `${choice0Id}`}
               onChange={(e) => handleCheckSolution(e)}
             />
             <Form.Control
               aria-label="Text input with checkbox"
-              value={choice0.text}
+              value={choice0}
               onChange={(e) => {
                 setChoice0(e.target.value);
                 modifyTask({
@@ -98,12 +111,12 @@ export function TypeOneChoice({ task, index, modifyTask }) {
               name={`solution-OneChoice-${index}`}
               type="radio"
               value={1}
-              defaultChecked={task.solution === `${choice1.id}`}
+              defaultChecked={task.solution === `${choice1Id}`}
               onChange={(e) => handleCheckSolution(e)}
             />
             <Form.Control
               aria-label="Text input with checkbox"
-              value={choice1.text}
+              value={choice1}
               onChange={(e) => {
                 setChoice1(e.target.value);
                 modifyTask({
@@ -139,12 +152,12 @@ export function TypeOneChoice({ task, index, modifyTask }) {
               name={`solution-OneChoice-${index}`}
               type="radio"
               value={2}
-              defaultChecked={task.solution === `${choice2.id}`}
+              defaultChecked={task.solution === `${choice2Id}`}
               onChange={(e) => handleCheckSolution(e)}
             />
             <Form.Control
               aria-label="Text input with checkbox"
-              value={choice2.text}
+              value={choice2}
               onChange={(e) => {
                 setChoice2(e.target.value);
                 modifyTask({
@@ -180,12 +193,12 @@ export function TypeOneChoice({ task, index, modifyTask }) {
               name={`solution-OneChoice-${index}`}
               type="radio"
               value={3}
-              defaultChecked={task.solution === `${choice3.id}`}
+              defaultChecked={task.solution === `${choice3Id}`}
               onChange={(e) => handleCheckSolution(e)}
             />
             <Form.Control
               aria-label="Text input with checkbox"
-              value={choice3.text}
+              value={choice3}
               onChange={(e) => {
                 setChoice3(e.target.value);
                 modifyTask({

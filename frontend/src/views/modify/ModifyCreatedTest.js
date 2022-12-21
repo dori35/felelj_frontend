@@ -169,11 +169,11 @@ export function ModifyCreatedTest() {
   };
 
   const modifyTask = (mTask, par) => {
+    // let p = par;
     /*let m = JSON.parse(JSON.stringify(modTasks));
     let t = m.filter((ta, i) => mTask === ta);
-    t[Object.entries(par)[0][0]] = Object.entries(par)[0][1];
-    setModTasks(m);*/
-
+    t[Object.entries(p)[0][0]] = Object.entries(p)[0][1];*/
+    //setModTasks(m);
     mTask[Object.entries(par)[0][0]] = Object.entries(par)[0][1];
   };
 
