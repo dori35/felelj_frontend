@@ -25,7 +25,7 @@ export function NewTest() {
       setTitle(test.title);
       setSubject(test.subject);
       setRandom(test.random);
-      setModTasks(JSON.parse(JSON.stringify(test.tasks)));
+      setModTasks([]);
     }
   }, [test]);
 
