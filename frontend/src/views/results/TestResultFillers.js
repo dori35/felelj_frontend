@@ -1,31 +1,51 @@
+import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { fetchTestResults } from "../../state/testResults/actions";
 import { getTestResults } from "../../state/testResults/selectros";
 import { TestFiller } from "./TestFiller";
 export function TestResultFillers() {
   const { Index } = useParams();
+  const { createdTestId } = useParams();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchTestResults(createdTestId));
+  }, [dispatch, createdTestId]);
   const results = useSelector(getTestResults);
+  const [fillers, setFillers] = useState([]);
 
-  const fillers = results[Index].fillers;
+  useEffect(() => {
+    if (results !== null && results.length > 0) {
+      setFillers(results[Index].fillers);
+    }
+  }, [results]);
+
   return (
     <>
-      <div className="table-responsive mx-md-5 mt-md-3">
-        <Table className="table-sm " style={{ textAlign: "center" }}>
-          <thead className="bg-dark text-white">
-            <tr>
-              <th>Neptun-kód</th>
-              <th>Elért pontszám</th>
-              <th>Művelet</th>
-            </tr>
-          </thead>
-          <tbody className="bg-light">
-            {fillers.map((filler, index) => (
-              <TestFiller key={index} filler={filler} index={Index} />
-            ))}
-          </tbody>
-        </Table>
-      </div>
+      {fillers.length > 0 && (
+        <div className="table-responsive mx-md-5 mt-md-3">
+          <Table className="table-sm " style={{ textAlign: "center" }}>
+            <thead className="bg-dark text-white">
+              <tr>
+                <th>Neptun-kód</th>
+                <th>Elért pontszám</th>
+                <th>Művelet</th>
+              </tr>
+            </thead>
+            <tbody className="bg-light">
+              {fillers.map((filler, index) => (
+                <TestFiller
+                  key={index}
+                  filler={filler}
+                  index={Index}
+                  createdTestId={createdTestId}
+                />
+              ))}
+            </tbody>
+          </Table>
+        </div>
+      )}
     </>
   );
 }

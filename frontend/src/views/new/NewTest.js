@@ -12,7 +12,7 @@ export function NewTest() {
   let testSchema = {
     title: "",
     subject: "",
-    random: 0,
+    random: false,
   };
   const [test, setTest] = useState(testSchema);
   const [title, setTitle] = useState(test.title);

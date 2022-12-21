@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { BsStarFill } from "react-icons/bs";
 
-export function TestFiller({ filler, index }) {
+export function TestFiller({ filler, index, createdTestId }) {
   return (
     <>
       <tr>
@@ -9,7 +9,7 @@ export function TestFiller({ filler, index }) {
         <td>{filler.points}</td>
         <td>
           <Link
-            to={`/results/fillers/${index}/${filler.userId}`}
+            to={`/results/${createdTestId}/fillers/${index}/${filler.userId}`}
             className="btn btn-warning btn-sm"
           >
             <BsStarFill />

@@ -37,7 +37,12 @@ export function TestResults() {
             </thead>
             <tbody className="bg-light">
               {results.map((result, index) => (
-                <TestResult key={index} result={result} index={index} />
+                <TestResult
+                  key={index}
+                  result={result}
+                  index={index}
+                  testId={createdTestId}
+                />
               ))}
             </tbody>
           </Table>

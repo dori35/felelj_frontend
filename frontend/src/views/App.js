@@ -93,13 +93,13 @@ export function App() {
               )}
               {isLoggedIn && (
                 <Route
-                  path="/results/fillers/:Index"
+                  path="/results/:createdTestId/fillers/:Index"
                   element={<TestResultFillers />}
                 />
               )}{" "}
               {isLoggedIn && (
                 <Route
-                  path="/results/fillers/:Index/:fillerId"
+                  path="/results/:createdTestId/fillers/:Index/:fillerId"
                   element={<TestFillerTask />}
                 />
               )}

@@ -1,7 +1,7 @@
 import { BsPeopleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-export function TestResult({ result, index }) {
+export function TestResult({ result, index, testId }) {
   return (
     <tr>
       <td>{result.startDate}</td>
@@ -21,7 +21,7 @@ export function TestResult({ result, index }) {
       <td>{result.fillersNumber}</td>
       <td>
         <Link
-          to={`/results/fillers/${index}`}
+          to={`/results/${testId}/fillers/${index}`}
           className="btn btn-primary btn-sm"
         >
           <BsPeopleFill />
