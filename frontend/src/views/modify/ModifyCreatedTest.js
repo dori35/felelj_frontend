@@ -27,7 +27,6 @@ export function ModifyCreatedTest() {
   const [title, setTitle] = useState("");
   const [subject, setSubject] = useState("");
   const [random, setRandom] = useState("");
-  const [tasks, setTasks] = useState("");
   const [modTasks, setModTasks] = useState("");
 
   useEffect(() => {
@@ -35,7 +34,6 @@ export function ModifyCreatedTest() {
       setTitle(test.title);
       setSubject(test.subject);
       setRandom(test.random);
-      setTasks(test.tasks);
       setModTasks(JSON.parse(JSON.stringify(test.tasks)));
     }
   }, [test]);

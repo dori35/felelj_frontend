@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -20,12 +20,21 @@ export function NewTest() {
   const [random, setRandom] = useState(test.random);
   const [modTasks, setModTasks] = useState([]);
 
+  useEffect(() => {
+    if (test) {
+      setTitle(test.title);
+      setSubject(test.subject);
+      setRandom(test.random);
+      setModTasks(JSON.parse(JSON.stringify(test.tasks)));
+    }
+  }, [test]);
+
   let taskSchema = {
     text: "",
-    taskType: "TRUE_FALSE",
+    taskType: "ONE_CHOICE",
     timeFrame: 0,
     point: "",
-    solution: 0,
+    solution: "",
     choices: "",
   };
   const handleNewTaskButtonClick = (e) => {
@@ -36,6 +45,104 @@ export function NewTest() {
   };
   const handleModifyTaskSubmit = (e) => {
     e.preventDefault();
+
+    if (title.length <= 0) {
+      console.log("title");
+      return;
+    }
+    if (subject.length <= 0) {
+      console.log("subject");
+      return;
+    }
+    if (typeof random != "boolean") {
+      console.log("random");
+      return;
+    }
+
+    modTasks.forEach((m) => {
+      if (m.taskType === "ORDER_LIST") {
+        if (m.choices.length !== 4) {
+          console.log("choicesLength");
+          return;
+        }
+        if (
+          m.choices[0].text === "" ||
+          m.choices[1].text === "" ||
+          m.choices[2].text === "" ||
+          m.choices[3].text === ""
+        ) {
+          console.log("choicesText");
+          return;
+        }
+      }
+      if (m.taskType === "MULTIPLE_CHOICES") {
+        if (m.choices.length !== 4) {
+          console.log("choices");
+          return;
+        }
+        if (
+          m.choices[0].text === "" ||
+          m.choices[1].text === "" ||
+          m.choices[2].text === "" ||
+          m.choices[3].text === ""
+        ) {
+          console.log("choices");
+          return;
+        }
+
+        if (
+          !m.solutionMultipleChoices ||
+          (!!m.solutionMultipleChoices && m.solutionMultipleChoices.length <= 1)
+        ) {
+          console.log("solutionMultipleChoices");
+          return;
+        }
+      }
+      if (m.taskType === "ONE_CHOICE") {
+        if (m.choices.length !== 4) {
+          console.log("choicesLength");
+          return;
+        }
+        if (
+          m.choices[0].text === "" ||
+          m.choices[1].text === "" ||
+          m.choices[2].text === "" ||
+          m.choices[3].text === ""
+        ) {
+          console.log("choicesText");
+          return;
+        }
+
+        if (!m.solutionOneChoice) {
+          console.log("solutionOneChoice");
+          return;
+        }
+      }
+      if (m.taskType === "TRUE_FALSE") {
+        if (
+          !m.solutionTrueFalse ||
+          (!!m.solutionTrueFalse &&
+            m.solutionTrueFalse !== "0" &&
+            m.solutionTrueFalse !== "1")
+        ) {
+          console.log("solutionTrueFalse");
+          return;
+        }
+      }
+
+      if (m.point < 1 && m.point > 100) {
+        console.log("point");
+        return;
+      }
+      if (m.text.length <= 0) {
+        console.log("text");
+        return;
+      }
+      if (m.timeFrame < 5 && m.timeFrame > 20) {
+        console.log("timeFrame");
+        return;
+      }
+    });
     console.log(title, subject, random, modTasks);
     dispatch(newTest(title, subject, random, modTasks));
     navigate("/");
@@ -63,7 +170,11 @@ export function NewTest() {
               <Card.Title className="fw-bold text-uppercase">
                 Teszt adatai
               </Card.Title>
-              <Form onSubmit={handleModifyTaskSubmit}>
+              <Form
+                noValidate
+                validated={false}
+                onSubmit={handleModifyTaskSubmit}
+              >
                 <Row>
                   <Form.Label column="lg" lg={2}>
                     Teszt címe:
@@ -72,9 +183,11 @@ export function NewTest() {
                     <Form.Control
                       size="lg"
                       type="text"
-                      placeholder={test.title}
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
+                      required
+                      isInvalid={title.length <= 0}
+                      isValid={title.length > 0}
                     />
                   </Col>
                   <Form.Group as={Col} md="4" controlId="role">
@@ -97,25 +210,28 @@ export function NewTest() {
                     <Form.Control
                       size="lg"
                       type="text"
-                      placeholder={test.subject}
                       value={subject}
                       onChange={(e) => setSubject(e.target.value)}
+                      required
+                      isInvalid={subject.length <= 0}
+                      isValid={subject.length > 0}
                     />
                   </Col>
                 </Row>
                 <br />
 
-                {modTasks.map((task, index) => (
-                  <ModifyCreatedTask
-                    key={index}
-                    task={task}
-                    modifyTask={(par) => modifyTask(task, par)}
-                    index={index}
-                    handleTaskCloseButtonClick={() =>
-                      handleTaskCloseButtonClick(index)
-                    }
-                  />
-                ))}
+                {modTasks &&
+                  modTasks.map((task, index) => (
+                    <ModifyCreatedTask
+                      key={index}
+                      task={task}
+                      modifyTask={(par) => modifyTask(task, par)}
+                      index={index}
+                      handleTaskCloseButtonClick={() =>
+                        handleTaskCloseButtonClick(index)
+                      }
+                    />
+                  ))}
                 <Button type="button" onClick={handleNewTaskButtonClick}>
                   Új Feladat
                 </Button>

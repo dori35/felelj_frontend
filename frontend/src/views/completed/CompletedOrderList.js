@@ -104,6 +104,14 @@ export function CompletedOrderList({ task }) {
                   </Col>{" "}
                 </div>
               ))}
+              {answerChoices.length === 0 && (
+                <>
+                  <br />
+                  <span style={{ fontWeight: "bold" }}>
+                    Nem rendezted sorba
+                  </span>
+                </>
+              )}
             </Col>
           </Row>
         </Container>
