@@ -20,7 +20,7 @@ import { Start } from "./start/Start";
 import { Finish } from "./start/Finish";
 import { CompletedTestResults } from "./completed/CompletedTestResults";
 import { TestResultFillers } from "./results/TestResultFillers";
-import { TestFillerTask } from "./results/TestFillerTasks";
+import { TestResultTasks } from "./results/TestResultTasks";
 
 export function App() {
   const isLoggedIn = useSelector(getIsLoggedIn);
@@ -100,7 +100,7 @@ export function App() {
               {isLoggedIn && (
                 <Route
                   path="/results/:createdTestId/fillers/:Index/:fillerId"
-                  element={<TestFillerTask />}
+                  element={<TestResultTasks />}
                 />
               )}
               {isLoggedIn && (

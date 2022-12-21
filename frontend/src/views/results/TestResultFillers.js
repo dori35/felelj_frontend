@@ -4,15 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchTestResults } from "../../state/testResults/actions";
 import { getTestResults } from "../../state/testResults/selectros";
-import { TestFiller } from "./TestFiller";
+import { TestResultFiller } from "./TestResultFiller";
 export function TestResultFillers() {
   const { Index } = useParams();
   const { createdTestId } = useParams();
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchTestResults(createdTestId));
-  }, [dispatch, createdTestId]);
   const results = useSelector(getTestResults);
+
+  useEffect(() => {
+    if (!results || results.length === 0) {
+      dispatch(fetchTestResults(createdTestId));
+    }
+  }, [dispatch, createdTestId]);
+
   const [fillers, setFillers] = useState([]);
 
   useEffect(() => {
@@ -35,7 +39,7 @@ export function TestResultFillers() {
             </thead>
             <tbody className="bg-light">
               {fillers.map((filler, index) => (
-                <TestFiller
+                <TestResultFiller
                   key={index}
                   filler={filler}
                   index={Index}

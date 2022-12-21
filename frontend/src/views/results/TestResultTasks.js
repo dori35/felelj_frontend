@@ -6,16 +6,18 @@ import { fetchTestResults } from "../../state/testResults/actions";
 import { getTestResults } from "../../state/testResults/selectros";
 import { CompletedTask } from "../completed/CompletedTask";
 
-export function TestFillerTask() {
+export function TestResultTasks() {
   const { Index, createdTestId, fillerId } = useParams();
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchTestResults(createdTestId));
-  }, [dispatch, createdTestId]);
   const results = useSelector(getTestResults);
+  useEffect(() => {
+    if (!results || results.length === 0) {
+      dispatch(fetchTestResults(createdTestId));
+    }
+  }, [dispatch, createdTestId]);
+
   const [fillers, setFillers] = useState([]);
   const [tasks, setTasks] = useState([]);
-
   useEffect(() => {
     if (results !== null && results.length > 0) {
       setFillers(results[Index].fillers);
