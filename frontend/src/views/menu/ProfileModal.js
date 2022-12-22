@@ -17,23 +17,23 @@ export function ProfileModal({ show, onShow, onHide, profile }) {
             <Col xs={2} md={4}>
               Név:
             </Col>
-            <Col xs={10} md={4}>
+            <Col xs={12} md={4}>
               {profile.name}
             </Col>
           </Row>{" "}
           <Row>
-            <Col xs={5} md={4}>
+            <Col xs={7} md={4}>
               Neptun-kód:
             </Col>
-            <Col xs={7} md={4}>
+            <Col xs={3} md={4}>
               {profile.identifier}
             </Col>
           </Row>{" "}
           <Row>
-            <Col xs={3} md={4}>
+            <Col xs={4} md={4}>
               E-mail:
             </Col>
-            <Col xs={9} md={4}>
+            <Col xs={12} md={4}>
               {profile.email}
             </Col>
           </Row>

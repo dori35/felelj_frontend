@@ -7,7 +7,7 @@ export function CompletedTests() {
   const completedTests = useSelector(getCompletedTests);
   return (
     <>
-      {completedTests.length >= 0 && (
+      {completedTests && completedTests.length >= 0 && (
         <div className="table-responsive mx-md-5  mt-md-3">
           <Table className="table-sm" style={{ textAlign: "center" }}>
             <thead className="bg-dark text-white">
