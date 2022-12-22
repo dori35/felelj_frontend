@@ -1,0 +1,28 @@
+.circle {
+  background: rgb(132, 188, 151);
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  position: relative;
+  margin: 10px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: larger;
+  vertical-align: right;
+}
+
+.textCircle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.pointSpan {
+  font-weight: bold;
+  font-size: larger;
+}
+
+.cardColor {
+  background: rgb(212, 247, 229);
+}

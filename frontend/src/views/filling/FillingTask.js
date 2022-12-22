@@ -1,6 +1,6 @@
 import { Card, Container } from "react-bootstrap";
 import { FillingChoices } from "./FillingChoices";
-import "./FillingTask.css";
+import "../css/filling/FillingTask.css";
 
 export function FillingTask({ task, addAnswer, time }) {
   return (
@@ -17,7 +17,7 @@ export function FillingTask({ task, addAnswer, time }) {
                   <span className="pointSpan"> {`(${task.point} pont)`}</span>
                 </div>
                 <div align="center" className="circle border border-success">
-                  <span className="text_circle">{time}</span>
+                  <span className="textCircle">{time}</span>
                 </div>
                 <FillingChoices task={task} addAnswer={addAnswer} time={time} />
               </div>

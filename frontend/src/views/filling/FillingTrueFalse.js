@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, ButtonGroup, Container } from "react-bootstrap";
-import "./FillingTrueFalse.css";
 import classnames from "classnames";
+import "../css/filling/FillingTrueFalse.css";
 
 export function FillingTrueFalse({ task, addAnswer, time }) {
   const [answer, setAnswer] = useState("");

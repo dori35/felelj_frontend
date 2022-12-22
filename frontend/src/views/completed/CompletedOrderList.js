@@ -1,7 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { useState } from "react";
 import classnames from "classnames";
-import "./CompletedColors.css";
+import "../css/completed/CompletedColors.css";
 
 export function CompletedOrderList({ task }) {
   const baseSolution = () => {

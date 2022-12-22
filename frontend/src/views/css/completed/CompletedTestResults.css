@@ -47,3 +47,28 @@
   margin-right: 20px;
   font-size: 30px;
 }
+
+.mistakeSquare {
+  background-color: #ff0000;
+}
+
+.correctSquare {
+  background-color: #00ff00;
+}
+
+.correctLeftOutSquare {
+  background-color: #ffff00;
+}
+
+.box {
+  height: 0;
+  width: 3%;
+  padding-bottom: 3%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.explanation {
+  margin-left: 5px;
+  vertical-align: middle;
+}

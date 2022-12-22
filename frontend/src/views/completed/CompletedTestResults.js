@@ -3,10 +3,10 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getCompletedTests } from "../../state/completedTests/selectors";
 import { CompletedTask } from "./CompletedTask";
-import "./CompletedTestResults.css";
+import "../css/completed/CompletedTestResults.css";
 
 export function CompletedTestResults() {
-  const { completedTestId, Index } = useParams();
+  const { Index } = useParams();
   const completedTests = useSelector(getCompletedTests);
   const test = completedTests[Index];
 

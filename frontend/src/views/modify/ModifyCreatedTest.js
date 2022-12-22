@@ -13,7 +13,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { modifyTest } from "../../state/createdTests/actions";
 import { getCreatedTests } from "../../state/createdTests/selectors";
 import { ModifyCreatedTask } from "./ModifyCreatedTask";
-import _ from "lodash";
 
 export function ModifyCreatedTest() {
   const dispatch = useDispatch();

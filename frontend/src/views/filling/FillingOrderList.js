@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import { useEffect, useRef, useState } from "react";
 import { Button, Col } from "react-bootstrap";
-import "./FillingTask.css";
+import "../css/filling/FillingOrderList.css";
 
 export function FillingOrderList({ task, addAnswer, time }) {
   const [added, setAdded] = useState(false);

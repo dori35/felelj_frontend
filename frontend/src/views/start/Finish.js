@@ -12,7 +12,7 @@ import { useParams } from "react-router-dom";
 import { getIsLoggedIn, getUserId } from "../../state/auth/selectors";
 import { fetchResults } from "../../state/startTest/actions";
 import { getResults } from "../../state/startTest/selectors";
-import "./Finish.css";
+import "../css/start/Finish.css";
 
 export function Finish() {
   const dispatch = useDispatch();

@@ -1,6 +1,6 @@
 import { Button, ButtonGroup, Container } from "react-bootstrap";
 import classnames from "classnames";
-import "./CompletedColors.css";
+import "../css/completed/CompletedColors.css";
 
 export function CompletedTrueFalse({ task }) {
   return (

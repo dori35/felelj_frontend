@@ -1,12 +1,12 @@
 import { Menu } from "../menu/Menu";
-import "./Layout.css";
+import "../css/layout/Layout.css";
 
 export function Layout({ children }) {
   return (
     <>
-      <div className="bg"></div>
-      <div className="bg bg2"></div>
-      <div className="bg bg3"></div>
+      <div className="mainBg"></div>
+      <div className="mainBg bg2"></div>
+      <div className="mainBg bg3"></div>
       <Menu />
       {children}
     </>

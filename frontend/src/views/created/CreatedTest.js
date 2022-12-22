@@ -4,7 +4,7 @@ import { IoMdArrowDroprightCircle } from "react-icons/io";
 import { AiFillEye } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
-import "./CreatedTest.css";
+import "../css/created/CreatedTest.css";
 
 export function CreatedTest({ createdTest, onDeleteTestClick }) {
   return (

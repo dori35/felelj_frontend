@@ -1,6 +1,6 @@
 import { Button, ButtonGroup, Container } from "react-bootstrap";
-import "./CompletedColors.css";
 import classnames from "classnames";
+import "../css/completed/CompletedColors.css";
 
 export function CompletedMultipleChoices({ task }) {
   const solutionArray = task.solution.split(",");

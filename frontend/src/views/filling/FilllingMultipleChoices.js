@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, ButtonGroup, Container, Row } from "react-bootstrap";
 import classnames from "classnames";
-import "./FillingMultipleChoices.css";
+import "../css/filling/FillingMultipleChoices.css";
 
 export function FillingMultipleChoices({ task, addAnswer, time }) {
   const [answer, setAnswer] = useState([]);
