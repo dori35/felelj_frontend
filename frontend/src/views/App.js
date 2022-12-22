@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCreatedTests } from "../state/createdTests/actions";
 import { useEffect, useState } from "react";
 import { Layout } from "./layout/Layout";
-import { getIsLoggedIn } from "../state/auth/selectors";
+import { getIsLoggedIn, getRoles } from "../state/auth/selectors";
 import { Login } from "./auth/Login";
 import { restoreUser } from "../state/auth/actions";
 import { LandingPage } from "./landingPage/LandingPage";
@@ -24,6 +24,7 @@ import { TestResultTasks } from "./results/TestResultTasks";
 
 export function App() {
   const isLoggedIn = useSelector(getIsLoggedIn);
+  const roles = useSelector(getRoles);
   const [loaded, setLoaded] = useState(false);
   const hasToken = window.sessionStorage.getItem("token") ? true : false;
   const dispatch = useDispatch();
@@ -47,7 +48,9 @@ export function App() {
     const fetch = async () => {
       try {
         if (isLoggedIn) {
-          await dispatch(fetchCreatedTests());
+          if (roles.includes("TEACHER")) {
+            await dispatch(fetchCreatedTests());
+          }
           await dispatch(fetchCompletedTests());
           setLoaded(true);
         }
