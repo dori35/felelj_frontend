@@ -4,6 +4,7 @@ import { addToken, addUserId } from "../utils/utils";
 
 export const SET_FILLINGTEST = "SET_FILLINGTEST";
 export const SEND_FILLINGTEST = "SEND_FILLINGTEST";
+export const REMOVE_FILLINGTEST = "REMOVE_FILLINGTEST";
 
 export const setFillingTest = (test) => ({
   type: SET_FILLINGTEST,
@@ -12,6 +13,10 @@ export const setFillingTest = (test) => ({
 
 export const sendTest = () => ({
   type: SEND_FILLINGTEST,
+});
+
+export const removeFillingTest = () => ({
+  type: REMOVE_FILLINGTEST,
 });
 
 export const fetchFillingTest = (testId) =>

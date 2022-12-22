@@ -1,4 +1,8 @@
-import { SEND_FILLINGTEST, SET_FILLINGTEST } from "./actions";
+import {
+  REMOVE_FILLINGTEST,
+  SEND_FILLINGTEST,
+  SET_FILLINGTEST,
+} from "./actions";
 
 const initialState = [];
 
@@ -12,5 +16,10 @@ export const FillingTestReducer = (state = initialState, action) => {
   if (type === SEND_FILLINGTEST) {
     return {};
   }
+
+  if (type === REMOVE_FILLINGTEST) {
+    return {};
+  }
+
   return state;
 };

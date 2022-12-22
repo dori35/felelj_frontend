@@ -1,4 +1,4 @@
-import { SET_COMPLETEDTESTS } from "./actions";
+import { REMOVE_COMPLETEDTESTS, SET_COMPLETEDTESTS } from "./actions";
 
 const initialState = [];
 
@@ -7,6 +7,10 @@ export const completedTestsReducer = (state = initialState, action) => {
 
   if (type === SET_COMPLETEDTESTS) {
     return payload;
+  }
+
+  if (type === REMOVE_COMPLETEDTESTS) {
+    return {};
   }
 
   return state;

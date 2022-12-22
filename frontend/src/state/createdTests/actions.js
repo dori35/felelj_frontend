@@ -4,6 +4,7 @@ import { addToken, addUserId } from "../utils/utils";
 export const SET_CREATEDTESTS = "SET_CREATEDTESTS";
 export const ADD_TEST = "ADD_TEST";
 export const UPDATE_TESTS = "UPDATE_TESTS";
+export const REMOVE_TESTS = "REMOVE_TESTS";
 
 export const setCreatedTests = (tests) => ({
   type: SET_CREATEDTESTS,
@@ -13,6 +14,10 @@ export const setCreatedTests = (tests) => ({
 export const updateTests = (tests) => ({
   type: UPDATE_TESTS,
   payload: tests,
+});
+
+export const removeTests = () => ({
+  type: REMOVE_TESTS,
 });
 
 export const fetchCreatedTests = () =>

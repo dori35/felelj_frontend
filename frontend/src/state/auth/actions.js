@@ -1,4 +1,9 @@
 import { authApi } from "../../api/authApi";
+import { removeCompletedTests } from "../completedTests/actions";
+import { removeTests } from "../createdTests/actions";
+import { removeFillingTest } from "../fillingTests/actions";
+import { removeStartTest } from "../startTest/actions";
+import { removeTestResults } from "../testResults/actions";
 import { addToken, addUserId } from "../utils/utils";
 
 export const STORE_USER = "STORE_USER";
@@ -43,6 +48,11 @@ export const signup =
 export const logout = () => (dispatch) => {
   authApi.logout();
   dispatch(removeUser());
+  dispatch(removeTests());
+  dispatch(removeCompletedTests());
+  dispatch(removeFillingTest());
+  dispatch(removeStartTest());
+  dispatch(removeTestResults());
 };
 
 export const restoreUser = () => async (dispatch) => {

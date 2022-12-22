@@ -1,4 +1,4 @@
-import { SET_RESULTS, SET_STARTTEST } from "./actions";
+import { REMOVE_STARTTEST, SET_RESULTS, SET_STARTTEST } from "./actions";
 
 const initialState = [];
 
@@ -11,6 +11,10 @@ export const StartTestReducer = (state = initialState, action) => {
 
   if (type === SET_RESULTS) {
     return { ...state, results: payload };
+  }
+
+  if (type === REMOVE_STARTTEST) {
+    return {};
   }
 
   return state;

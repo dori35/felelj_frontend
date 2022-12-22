@@ -4,6 +4,7 @@ import { addToken, addUserId } from "../utils/utils";
 export const SETTING_STARTTEST = "SETTING_STARTTEST";
 export const SET_STARTTEST = "SET_STARTTEST";
 export const SET_RESULTS = "SET_RESULTS";
+export const REMOVE_STARTTEST = "REMOVE_STARTTEST";
 
 export const settingStartTest = () => ({
   type: SETTING_STARTTEST,
@@ -17,6 +18,10 @@ export const setTest = (test) => ({
 export const setResults = (results) => ({
   type: SET_RESULTS,
   payload: results,
+});
+
+export const removeStartTest = () => ({
+  type: REMOVE_STARTTEST,
 });
 
 export const settingStart = (testId, url, startTime) =>

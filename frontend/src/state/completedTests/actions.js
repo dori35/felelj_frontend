@@ -2,10 +2,15 @@ import { completedTestsApi } from "../../api/completedTestsApi";
 import { addToken, addUserId } from "../utils/utils";
 
 export const SET_COMPLETEDTESTS = "SET_COMPLETEDTESTS";
+export const REMOVE_COMPLETEDTESTS = "REMOVE_COMPLETEDTESTS";
 
 export const setCompletedTests = (tests) => ({
   type: SET_COMPLETEDTESTS,
   payload: tests,
+});
+
+export const removeCompletedTests = () => ({
+  type: REMOVE_COMPLETEDTESTS,
 });
 
 export const fetchCompletedTests = () =>
