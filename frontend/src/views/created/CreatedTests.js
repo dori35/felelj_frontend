@@ -19,7 +19,7 @@ export function CreatedTests() {
             <thead className="bg-dark text-white">
               <tr>
                 <th>Cím</th>
-                <th>Tárgy</th>
+                <th>Tantárgy</th>
                 <th>Időkeret</th>
                 <th>Létrehozva</th>
                 <th>Pont</th>

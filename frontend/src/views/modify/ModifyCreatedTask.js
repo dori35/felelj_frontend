@@ -77,10 +77,15 @@ export function ModifyCreatedTask({
                       modifyTask({ text: e.target.value });
                     }}
                     required
-                    isInvalid={text.length <= 0}
-                    isValid={text.length > 0}
+                    isInvalid={text.length <= 0 || text.length > 200}
+                    isValid={text.length > 0 && text.length <= 200}
                   />
                   <Form.Control.Feedback>Megfelelő</Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">
+                    {text.length > 200
+                      ? "Túl hosszú szöveg"
+                      : "Kötelező kitölteni"}
+                  </Form.Control.Feedback>
                 </Col>
               </Row>
               <br />

@@ -58,10 +58,10 @@ export function ModifyCreatedTest() {
     e.preventDefault();
 
     let errors = [];
-    if (title.length <= 0) {
+    if (title.length <= 0 || title.length > 20) {
       errors.push("title");
     }
-    if (subject.length <= 0) {
+    if (subject.length <= 0 || subject.length > 20) {
       errors.push("subject");
     }
     if (typeof random != "boolean") {
@@ -133,7 +133,7 @@ export function ModifyCreatedTest() {
       if (m.point < 1 || m.point > 100) {
         errors.push("point");
       }
-      if (m.text.length <= 0) {
+      if (m.text.length <= 0 || m.text.length > 200) {
         errors.push("text");
       }
       if (m.timeFrame < 5 || m.timeFrame > 20) {

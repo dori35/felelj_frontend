@@ -23,7 +23,7 @@ export function TestResults() {
               <tr>
                 <th>Teszt időpontja</th>
                 <th>Cím</th>
-                <th>Tárgy</th>
+                <th>Tantárgy</th>
                 <th>Random sorrend</th>
                 <th>Időkeret</th>
                 <th>Kérdések száma</th>

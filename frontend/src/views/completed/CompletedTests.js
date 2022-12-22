@@ -13,7 +13,7 @@ export function CompletedTests() {
             <thead className="bg-dark text-white">
               <tr>
                 <th>Cím</th>
-                <th>Tárgy</th>
+                <th>Tantárgy</th>
                 <th>Beküldés időpontja</th>
                 <th>Időkeret</th>
                 <th>Pont (Kapott/ Össz)</th>

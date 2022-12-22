@@ -25,7 +25,7 @@ export function CompletedTask({ task }) {
                     </span>
                   </div>
                   <div align="center" className="circle border border-success">
-                    <span className="text_circle">{task.timeFrame}</span>
+                    <span className="textCircle">{task.timeFrame}</span>
                   </div>{" "}
                   <CompletedChoices task={task} />
                 </div>
