@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Col, Form, InputGroup } from "react-bootstrap";
 
 export function TypeOneChoice({ task, index, modifyTask }) {
+  console.log(task);
   const base = () => {
     let s = task.solution;
 
@@ -29,16 +30,16 @@ export function TypeOneChoice({ task, index, modifyTask }) {
     task.solution !== "" ? base : ""
   );
   const [choice0, setChoice0] = useState(
-    task.choices.length === 4 ? task.choices[0].text : { text: "" }
+    task.choices.length === 4 ? task.choices[0].text : ""
   );
   const [choice1, setChoice1] = useState(
-    task.choices.length === 4 ? task.choices[1].text : { text: "" }
+    task.choices.length === 4 ? task.choices[1].text : ""
   );
   const [choice2, setChoice2] = useState(
-    task.choices.length === 4 ? task.choices[2].text : { text: "" }
+    task.choices.length === 4 ? task.choices[2].text : ""
   );
   const [choice3, setChoice3] = useState(
-    task.choices.length === 4 ? task.choices[3].text : { text: "" }
+    task.choices.length === 4 ? task.choices[3].text : ""
   );
 
   const [choice0Id, setChoice0Id] = useState(
@@ -70,7 +71,9 @@ export function TypeOneChoice({ task, index, modifyTask }) {
               name={`solution-OneChoice-${index}`}
               type="radio"
               value={0}
-              defaultChecked={task.solution === `${choice0Id}`}
+              defaultChecked={
+                task.solution !== "" && task.solution === `${choice0Id}`
+              }
               onChange={(e) => handleCheckSolution(e)}
             />
             <Form.Control
@@ -111,7 +114,9 @@ export function TypeOneChoice({ task, index, modifyTask }) {
               name={`solution-OneChoice-${index}`}
               type="radio"
               value={1}
-              defaultChecked={task.solution === `${choice1Id}`}
+              defaultChecked={
+                task.solution !== "" && task.solution === `${choice1Id}`
+              }
               onChange={(e) => handleCheckSolution(e)}
             />
             <Form.Control
@@ -152,7 +157,9 @@ export function TypeOneChoice({ task, index, modifyTask }) {
               name={`solution-OneChoice-${index}`}
               type="radio"
               value={2}
-              defaultChecked={task.solution === `${choice2Id}`}
+              defaultChecked={
+                task.solution !== "" && task.solution === `${choice2Id}`
+              }
               onChange={(e) => handleCheckSolution(e)}
             />
             <Form.Control
@@ -193,7 +200,9 @@ export function TypeOneChoice({ task, index, modifyTask }) {
               name={`solution-OneChoice-${index}`}
               type="radio"
               value={3}
-              defaultChecked={task.solution === `${choice3Id}`}
+              defaultChecked={
+                task.solution !== "" && task.solution === `${choice3Id}`
+              }
               onChange={(e) => handleCheckSolution(e)}
             />
             <Form.Control

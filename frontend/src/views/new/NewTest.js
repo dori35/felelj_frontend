@@ -46,24 +46,21 @@ export function NewTest() {
   const handleModifyTaskSubmit = (e) => {
     e.preventDefault();
 
+    let errors = [];
     if (title.length <= 0) {
-      console.log("title");
-      return;
+      errors.push("title");
     }
     if (subject.length <= 0) {
-      console.log("subject");
-      return;
+      errors.push("subject");
     }
     if (typeof random != "boolean") {
-      console.log("random");
-      return;
+      errors.push("random");
     }
 
     modTasks.forEach((m) => {
       if (m.taskType === "ORDER_LIST") {
         if (m.choices.length !== 4) {
-          console.log("choicesLength");
-          return;
+          errors.push("choicesLength");
         }
         if (
           m.choices[0].text === "" ||
@@ -71,14 +68,12 @@ export function NewTest() {
           m.choices[2].text === "" ||
           m.choices[3].text === ""
         ) {
-          console.log("choicesText");
-          return;
+          errors.push("choicesText");
         }
       }
       if (m.taskType === "MULTIPLE_CHOICES") {
         if (m.choices.length !== 4) {
-          console.log("choices");
-          return;
+          errors.push("choices");
         }
         if (
           m.choices[0].text === "" ||
@@ -86,22 +81,19 @@ export function NewTest() {
           m.choices[2].text === "" ||
           m.choices[3].text === ""
         ) {
-          console.log("choices");
-          return;
+          errors.push("choicesText");
         }
 
         if (
           !m.solutionMultipleChoices ||
           (!!m.solutionMultipleChoices && m.solutionMultipleChoices.length <= 1)
         ) {
-          console.log("solutionMultipleChoices");
-          return;
+          errors.push("solutionMultipleChoices");
         }
       }
       if (m.taskType === "ONE_CHOICE") {
         if (m.choices.length !== 4) {
-          console.log("choicesLength");
-          return;
+          errors.push("choicesLength");
         }
         if (
           m.choices[0].text === "" ||
@@ -109,13 +101,11 @@ export function NewTest() {
           m.choices[2].text === "" ||
           m.choices[3].text === ""
         ) {
-          console.log("choicesText");
-          return;
+          errors.push("choicesText");
         }
 
         if (!m.solutionOneChoice) {
-          console.log("solutionOneChoice");
-          return;
+          errors.push("solutionOneChoice");
         }
       }
       if (m.taskType === "TRUE_FALSE") {
@@ -125,27 +115,28 @@ export function NewTest() {
             m.solutionTrueFalse !== "0" &&
             m.solutionTrueFalse !== "1")
         ) {
-          console.log("solutionTrueFalse");
-          return;
+          errors.push("solutionTrueFalse");
         }
       }
 
-      if (m.point < 1 && m.point > 100) {
-        console.log("point");
-        return;
+      if (m.point < 1 || m.point > 100) {
+        errors.push("point");
       }
       if (m.text.length <= 0) {
-        console.log("text");
-        return;
+        errors.push("text");
       }
-      if (m.timeFrame < 5 && m.timeFrame > 20) {
-        console.log("timeFrame");
-        return;
+      if (m.timeFrame < 5 || m.timeFrame > 20) {
+        errors.push("timeFrame");
       }
     });
-    console.log(title, subject, random, modTasks);
-    dispatch(newTest(title, subject, random, modTasks));
-    navigate("/");
+
+    if (errors.length > 0) {
+      console.log(errors);
+    } else {
+      console.log(title, subject, random, modTasks);
+      dispatch(newTest(title, subject, random, modTasks));
+      navigate("/");
+    }
   };
 
   const addTask = (task) => {

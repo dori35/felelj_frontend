@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Col, Form, InputGroup } from "react-bootstrap";
 
 export function TypeMultipleChoices({ task, index, modifyTask }) {
+  console.log(task);
   const base = () => {
     let array = [];
 
@@ -31,16 +32,16 @@ export function TypeMultipleChoices({ task, index, modifyTask }) {
     task.solution !== "" ? base : []
   );
   const [choice0, setChoice0] = useState(
-    task.choices.length === 4 ? task.choices[0].text : { text: "" }
+    task.choices.length === 4 ? task.choices[0].text : ""
   );
   const [choice1, setChoice1] = useState(
-    task.choices.length === 4 ? task.choices[1].text : { text: "" }
+    task.choices.length === 4 ? task.choices[1].text : ""
   );
   const [choice2, setChoice2] = useState(
-    task.choices.length === 4 ? task.choices[2].text : { text: "" }
+    task.choices.length === 4 ? task.choices[2].text : ""
   );
   const [choice3, setChoice3] = useState(
-    task.choices.length === 4 ? task.choices[3].text : { text: "" }
+    task.choices.length === 4 ? task.choices[3].text : ""
   );
 
   const [choice0Id, setChoice0Id] = useState(
@@ -80,7 +81,10 @@ export function TypeMultipleChoices({ task, index, modifyTask }) {
               name={`solution-OneChoice-${index}`}
               value={0}
               defaultChecked={
-                task.solution ? solutionArray.includes(`${choice0Id}`) : false
+                task.solution
+                  ? solutionArray.length > 0 &&
+                    solutionArray.includes(`${choice0Id}`)
+                  : false
               }
               onChange={(e) => handleCheckSolution(e)}
             />
@@ -122,7 +126,10 @@ export function TypeMultipleChoices({ task, index, modifyTask }) {
               name={`solution-OneChoice-${index}`}
               value={1}
               defaultChecked={
-                task.solution ? solutionArray.includes(`${choice1Id}`) : false
+                task.solution
+                  ? solutionArray.length > 0 &&
+                    solutionArray.includes(`${choice1Id}`)
+                  : false
               }
               onChange={(e) => handleCheckSolution(e)}
             />
@@ -164,7 +171,10 @@ export function TypeMultipleChoices({ task, index, modifyTask }) {
               name={`solution-OneChoice-${index}`}
               value={2}
               defaultChecked={
-                task.solution ? solutionArray.includes(`${choice2Id}`) : false
+                task.solution
+                  ? solutionArray.length > 0 &&
+                    solutionArray.includes(`${choice2Id}`)
+                  : false
               }
               onChange={(e) => handleCheckSolution(e)}
             />
@@ -206,7 +216,10 @@ export function TypeMultipleChoices({ task, index, modifyTask }) {
               name={`solution-OneChoice-${index}`}
               value={3}
               defaultChecked={
-                task.solution ? solutionArray.includes(`${choice3Id}`) : false
+                task.solution
+                  ? solutionArray.length > 0 &&
+                    solutionArray.includes(`${choice3Id}`)
+                  : false
               }
               onChange={(e) => handleCheckSolution(e)}
             />
