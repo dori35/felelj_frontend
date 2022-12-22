@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { Form, Button, Card, Container, Row, Col } from "react-bootstrap";
+import { Form, Button, Card, Row, Col } from "react-bootstrap";
 import { settingStart } from "../../state/startTest/actions";
 import QRCode from "react-qr-code";
 import md5 from "md5";

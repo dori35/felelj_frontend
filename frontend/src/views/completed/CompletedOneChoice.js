@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, Container, Row } from "react-bootstrap";
+import { Button, ButtonGroup, Container } from "react-bootstrap";
 import "./CompletedColors.css";
 import classnames from "classnames";
 

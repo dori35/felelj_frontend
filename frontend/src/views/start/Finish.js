@@ -9,13 +9,9 @@ import {
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getIsLoggedIn, getToken, getUserId } from "../../state/auth/selectors";
+import { getIsLoggedIn, getUserId } from "../../state/auth/selectors";
 import { fetchResults } from "../../state/startTest/actions";
-import {
-  getResults,
-  getTopThree,
-  gettopThree,
-} from "../../state/startTest/selectors";
+import { getResults } from "../../state/startTest/selectors";
 import "./Finish.css";
 
 export function Finish() {

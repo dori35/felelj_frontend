@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getIsLoggedIn, getUserId } from "../../state/auth/selectors";
+import { getIsLoggedIn } from "../../state/auth/selectors";
 import { sendFillingTest } from "../../state/fillingTests/actions";
 import { fetchStartTest } from "../../state/startTest/actions";
 import { getStartTest } from "../../state/startTest/selectors";
 import { Login } from "../auth/Login";
 import { FillingTask } from "../filling/FillingTask";
 import { Early } from "./Early";
-import { Finish } from "./Finish";
 import { Late } from "./Late";
 import { Started } from "./Started";
 
