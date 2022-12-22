@@ -22,8 +22,9 @@ export function Start() {
       dispatch(fetchStartTest(url));
     }
   }, [dispatch, url]);
-
   const test = useSelector(getStartTest);
+  const startDate = test ? Date.parse(test.startDate) : null;
+  const finishDate = test ? startDate + test.time * 1000 : null;
   const [seconds, setSeconds] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [time, setTime] = useState(1);
@@ -31,6 +32,7 @@ export function Start() {
   const [late, setLate] = useState(false);
   const [started, setStarted] = useState(false);
   const [finish, setFinish] = useState(false);
+  const [early, setEarly] = useState(false);
 
   const [answers, setAnswers] = useState([]);
   const addAnswer = (answer) => {
@@ -38,37 +40,37 @@ export function Start() {
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const interval = setTimeout(() => {
       if (isLoggedIn) {
-        const currentDate = Date.parse(new Date());
-        const startDate = Date.parse(test.startDate);
-        const finishDate = Date.parse(test.startDate) + test.time;
-        if (test && test.startDate && test.startDate !== undefined) {
+        let currentDate = Date.parse(new Date());
+        if (test && startDate && finishDate) {
           if (currentDate === startDate) {
             //start
             setStart(true);
-
-            return () => clearInterval(interval);
-          } else if (
+            console.log("start");
+            return () => clearTimeout(interval);
+          } else if (currentDate > finishDate) {
             // keso
-            currentDate > finishDate
-          ) {
             setLate(true);
-            return () => clearInterval(interval);
+            console.log("keso");
+            return () => clearTimeout(interval);
           } else if (currentDate < startDate) {
             //korai
+            setEarly(true);
+            console.log("korai");
             setSeconds(seconds + 1);
           } else {
             //már elindul
             setStarted(true);
-            return () => clearInterval(interval);
+            console.log("mar elindult");
+            return () => clearTimeout(interval);
           }
         }
       }
-      console.log("alma");
     }, 1000);
-    return () => clearInterval(interval);
+    return () => clearTimeout(interval);
   }, [test, seconds, isLoggedIn]);
+
   useEffect(() => {
     if (test && test.tasks && test.tasks.length <= 0) {
       navigate("/");
@@ -128,9 +130,11 @@ export function Start() {
           time={time}
         />
       )}
+      {isLoggedIn && !start && !late && !started && !finish && early && (
+        <Early />
+      )}
+      {isLoggedIn && started && !late && !finish && <Started />}
       {isLoggedIn && !start && late && !finish && <Late />}
-      {isLoggedIn && started && !finish && <Started />}
-      {isLoggedIn && !start && !late && !started && !finish && <Early />}
     </>
   );
 }
