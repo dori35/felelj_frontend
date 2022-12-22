@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Col, Form, InputGroup } from "react-bootstrap";
 
 export function TypeMultipleChoices({ task, index, modifyTask }) {
-  console.log(task);
   const base = () => {
     let array = [];
 

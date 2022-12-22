@@ -41,7 +41,7 @@ export function ModifyCreatedTest() {
   let taskSchema = {
     text: "",
     taskType: "ONE_CHOICE",
-    timeFrame: 0,
+    timeFrame: 5,
     point: "",
     solution: "",
     choices: "",
@@ -169,7 +169,7 @@ export function ModifyCreatedTest() {
 
   return (
     <>
-      {title && (
+      {test && (
         <div>
           <Container className="py-5">
             <div>
@@ -215,12 +215,14 @@ export function ModifyCreatedTest() {
                           value={title}
                           onChange={(e) => setTitle(e.target.value)}
                           required
-                          isInvalid={title.length <= 0}
-                          isValid={title.length > 0}
+                          isInvalid={title.length <= 0 || title.length > 20}
+                          isValid={title.length > 0 && title.length <= 20}
                         />
                         <Form.Control.Feedback>Megfelelő</Form.Control.Feedback>
                         <Form.Control.Feedback type="invalid">
-                          Kötelező kitölteni
+                          {title.length > 20
+                            ? "Túl hosszú szöveg"
+                            : "Kötelező kitölteni"}
                         </Form.Control.Feedback>
                       </Col>
                       <Form.Group as={Col} md="4" controlId="role">
@@ -246,12 +248,14 @@ export function ModifyCreatedTest() {
                           value={subject}
                           onChange={(e) => setSubject(e.target.value)}
                           required
-                          isInvalid={subject.length <= 0}
-                          isValid={subject.length > 0}
+                          isInvalid={subject.length <= 0 || subject.length > 20}
+                          isValid={subject.length > 0 && subject.length <= 20}
                         />
                         <Form.Control.Feedback>Megfelelő</Form.Control.Feedback>
                         <Form.Control.Feedback type="invalid">
-                          Kötelező kitölteni
+                          {subject.length > 20
+                            ? "Túl hosszú szöveg"
+                            : "Kötelező kitölteni"}
                         </Form.Control.Feedback>
                       </Col>
                     </Row>
