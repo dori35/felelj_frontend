@@ -13,7 +13,7 @@ export function Menu() {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const roles = useSelector(getRoles);
   const activeKeyFunc = () => {};
-
+  console.log(window.location.pathname);
   return (
     <Navbar bg="transparent" expand="lg" className="text-uppercase fw-bold ">
       <Container fluid>

@@ -173,7 +173,7 @@ export function ModifyCreatedTask({
                     onChange={(e) => handleChange(e)}
                   />
                   <Form.Check
-                    label="Egy vagy több jó válasz"
+                    label="Egy/több jó válasz"
                     name={`type-${index}`}
                     type="radio"
                     value="MULTIPLE_CHOICES"
