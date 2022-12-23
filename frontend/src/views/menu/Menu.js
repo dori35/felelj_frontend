@@ -12,8 +12,31 @@ export function Menu() {
   const [dis, setDis] = useState(false);
   const isLoggedIn = useSelector(getIsLoggedIn);
   const roles = useSelector(getRoles);
-  const activeKeyFunc = () => {};
-  console.log(window.location.pathname);
+  const activeKeyFunc = () => {
+    let loc = window.location.pathname;
+
+    if (loc === "/registration" || loc === "/login") {
+      return loc;
+    }
+
+    if (
+      loc === "/newtest" ||
+      loc === "/completedtests" ||
+      loc === "/createdtests"
+    ) {
+      return loc;
+    }
+
+    if (
+      loc.includes("/modifytest") ||
+      loc.includes("/results") ||
+      loc.includes("/trytest") ||
+      loc.includes("/settingstart")
+    ) {
+      return "/createdtests";
+    }
+  };
+
   return (
     <Navbar bg="transparent" expand="lg" className="text-uppercase fw-bold ">
       <Container fluid>
@@ -30,7 +53,7 @@ export function Menu() {
             />
             <Navbar.Collapse id="navbarScroll">
               <Nav
-                className="ms-auto  my-2 my-lg-0"
+                className="ms-auto  my-2 my-lg-0  "
                 style={{ maxHeight: "100px" }}
                 navbarScroll
                 defaultActiveKey={activeKeyFunc()}
@@ -39,7 +62,7 @@ export function Menu() {
                   <Nav.Link
                     as={Link}
                     to="/newtest"
-                    eventKey="newTest"
+                    eventKey="/newtest"
                     className="mx-3"
                   >
                     Új teszt
@@ -49,7 +72,7 @@ export function Menu() {
                   <Nav.Link
                     as={Link}
                     to="/createdtests"
-                    eventKey="createdTests"
+                    eventKey="/createdtests"
                     className="mx-3"
                   >
                     Létrehozott tesztek
@@ -59,7 +82,7 @@ export function Menu() {
                   <Nav.Link
                     as={Link}
                     to="/completedtests"
-                    eventKey="completedTests"
+                    eventKey="/completedtests"
                     className="mx-3"
                   >
                     Kitöltött tesztek
@@ -67,7 +90,9 @@ export function Menu() {
                 )}
               </Nav>
             </Navbar.Collapse>
-            <Profile dis={dis} />
+            <Nav>
+              <Profile dis={dis} />
+            </Nav>
           </>
         )}
         {!isLoggedIn && (
@@ -83,11 +108,12 @@ export function Menu() {
                 className="ms-auto my-2 my-lg-0"
                 style={{ maxHeight: "100px" }}
                 navbarScroll
+                defaultActiveKey={activeKeyFunc()}
               >
                 <Nav.Link
                   to="/registration"
                   as={Link}
-                  eventKey="registration"
+                  eventKey="/registration"
                   className="mx-3"
                 >
                   Regisztráció
@@ -95,7 +121,7 @@ export function Menu() {
                 <Nav.Link
                   to="/login"
                   as={Link}
-                  eventKey="login"
+                  eventKey="/login"
                   className="mx-3"
                 >
                   Bejelentkezés
