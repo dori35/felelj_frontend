@@ -156,7 +156,9 @@ export function TypeOneChoice({ task, index, modifyTask }) {
             />
             <Form.Control.Feedback>Megfelelő</Form.Control.Feedback>
             <Form.Control.Feedback type="invalid">
-              Kötelező kitölteni
+              {!!task.choices[1] && task.choices[1].text.length > 20
+                ? "Túl hosszú szöveg"
+                : "Kötelező kitölteni"}
             </Form.Control.Feedback>
           </InputGroup>
           <InputGroup className="mb-3">
@@ -203,7 +205,9 @@ export function TypeOneChoice({ task, index, modifyTask }) {
             />
             <Form.Control.Feedback>Megfelelő</Form.Control.Feedback>
             <Form.Control.Feedback type="invalid">
-              Kötelező kitölteni
+              {!!task.choices[2] && task.choices[2].text.length > 20
+                ? "Túl hosszú szöveg"
+                : "Kötelező kitölteni"}
             </Form.Control.Feedback>
           </InputGroup>
           <InputGroup className="mb-3">
@@ -250,7 +254,9 @@ export function TypeOneChoice({ task, index, modifyTask }) {
             />
             <Form.Control.Feedback>Megfelelő</Form.Control.Feedback>
             <Form.Control.Feedback type="invalid">
-              Kötelező kitölteni
+              {!!task.choices[3] && task.choices[3].text.length > 20
+                ? "Túl hosszú szöveg"
+                : "Kötelező kitölteni"}
             </Form.Control.Feedback>
           </InputGroup>
         </div>
