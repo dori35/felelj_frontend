@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { getIsLoggedIn, getRoles } from "../../state/auth/selectors";
 import { Link } from "react-router-dom";
 import { Profile } from "./Profile";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export function Menu() {
   const [dis, setDis] = useState(false);
@@ -57,7 +57,7 @@ export function Menu() {
                 className="ms-auto  my-2 my-lg-0  "
                 style={{ maxHeight: "100px" }}
                 navbarScroll
-                activeKey={activeKeyFunc()}
+                defaultActiveKey={activeKeyFunc()}
               >
                 {roles && roles.includes("TEACHER") && (
                   <Nav.Link
@@ -109,7 +109,7 @@ export function Menu() {
                 className="ms-auto my-2 my-lg-0"
                 style={{ maxHeight: "100px" }}
                 navbarScroll
-                activeKey={activeKeyFunc()}
+                defaultActiveKey={activeKeyFunc()}
               >
                 <Nav.Link
                   to="/registration"
