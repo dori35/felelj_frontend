@@ -6,42 +6,48 @@ import { useSelector } from "react-redux";
 import { getIsLoggedIn, getRoles } from "../../state/auth/selectors";
 import { Link } from "react-router-dom";
 import { Profile } from "./Profile";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function Menu() {
   const [dis, setDis] = useState(false);
   const isLoggedIn = useSelector(getIsLoggedIn);
   const roles = useSelector(getRoles);
+  const [location, setLocation] = useState(window.location.pathname);
 
-  const activeKeyFunc = () => {
-    let loc = window.location.pathname;
+  const activeKeyFunc = (l = window.location.pathname) => {
+    if (l === "/registration" || l === "/login") {
+      return l;
+    }
 
-    if (loc === "/registration" || loc === "/login") {
-      return loc;
+    if (l === "/newtest" || l === "/completedtests" || l === "/createdtests") {
+      return l;
     }
 
     if (
-      loc === "/newtest" ||
-      loc === "/completedtests" ||
-      loc === "/createdtests"
-    ) {
-      return loc;
-    }
-
-    if (
-      loc.includes("/modifytest") ||
-      loc.includes("/results") ||
-      loc.includes("/trytest") ||
-      loc.includes("/settingstart")
+      l.includes("/modifytest") ||
+      l.includes("/results") ||
+      l.includes("/trytest") ||
+      l.includes("/settingstart")
     ) {
       return "/createdtests";
     }
+
+    return "";
   };
+
+  const [loc, setLoc] = useState(activeKeyFunc());
+
+  useEffect(() => {
+    let newLoc = activeKeyFunc(window.location.pathname);
+    if (loc !== newLoc) {
+      setLoc(newLoc);
+    }
+  }, [location]);
 
   return (
     <Navbar bg="transparent" expand="lg" className="text-uppercase fw-bold ">
       <Container fluid>
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={Link} to="/" onClick={setLocation("/")}>
           <img src={logo} alt="logo" height="50" />
         </Navbar.Brand>
         {isLoggedIn && (
@@ -57,7 +63,7 @@ export function Menu() {
                 className="ms-auto  my-2 my-lg-0  "
                 style={{ maxHeight: "100px" }}
                 navbarScroll
-                defaultActiveKey={activeKeyFunc()}
+                activeKey={loc}
               >
                 {roles && roles.includes("TEACHER") && (
                   <Nav.Link
@@ -65,6 +71,7 @@ export function Menu() {
                     to="/newtest"
                     eventKey="/newtest"
                     className="mx-3"
+                    onClick={setLocation("/newtest")}
                   >
                     Új teszt
                   </Nav.Link>
@@ -75,6 +82,7 @@ export function Menu() {
                     to="/createdtests"
                     eventKey="/createdtests"
                     className="mx-3"
+                    onClick={setLocation("/createdtests")}
                   >
                     Létrehozott tesztek
                   </Nav.Link>
@@ -85,6 +93,7 @@ export function Menu() {
                     to="/completedtests"
                     eventKey="/completedtests"
                     className="mx-3"
+                    onClick={setLocation("/completedtests")}
                   >
                     Kitöltött tesztek
                   </Nav.Link>
@@ -109,13 +118,14 @@ export function Menu() {
                 className="ms-auto my-2 my-lg-0"
                 style={{ maxHeight: "100px" }}
                 navbarScroll
-                defaultActiveKey={activeKeyFunc()}
+                activeKey={loc}
               >
                 <Nav.Link
                   to="/registration"
                   as={Link}
                   eventKey="/registration"
                   className="mx-3"
+                  onClick={setLocation("/registration")}
                 >
                   Regisztráció
                 </Nav.Link>
@@ -124,6 +134,7 @@ export function Menu() {
                   as={Link}
                   eventKey="/login"
                   className="mx-3"
+                  onClick={setLocation("/login")}
                 >
                   Bejelentkezés
                 </Nav.Link>
