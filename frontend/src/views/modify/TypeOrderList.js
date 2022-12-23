@@ -38,18 +38,24 @@ export function TypeOrderList({ task, index, modifyTask }) {
               required
               isInvalid={
                 !task.choices ||
-                task.choices.length < 1 ||
-                task.choices[0].text.length <= 0
+                task.choices.length !== 4 ||
+                (!!task.choices[0] &&
+                  (task.choices[0].text.length <= 0 ||
+                    task.choices[0].text.length > 20))
               }
               isValid={
                 !!task.choices &&
-                task.choices.length >= 1 &&
-                task.choices[0].text.length > 0
+                task.choices.length === 4 &&
+                !!task.choices[0] &&
+                task.choices[0].text.length > 0 &&
+                task.choices[0].text.length <= 20
               }
             />
             <Form.Control.Feedback>Megfelelő</Form.Control.Feedback>
             <Form.Control.Feedback type="invalid">
-              Kötelező kitölteni
+              {!!task.choices[0] && task.choices[0].text.length > 20
+                ? "Túl hosszú szöveg"
+                : "Kötelező kitölteni"}
             </Form.Control.Feedback>
           </InputGroup>
           <InputGroup className="mb-3">
@@ -72,18 +78,24 @@ export function TypeOrderList({ task, index, modifyTask }) {
               required
               isInvalid={
                 !task.choices ||
-                task.choices.length < 2 ||
-                task.choices[1].text.length <= 0
+                task.choices.length !== 4 ||
+                (!!task.choices[1] &&
+                  (task.choices[1].text.length <= 0 ||
+                    task.choices[1].text.length > 20))
               }
               isValid={
                 !!task.choices &&
-                task.choices.length >= 2 &&
-                task.choices[1].text.length > 0
+                task.choices.length === 4 &&
+                !!task.choices[1] &&
+                task.choices[1].text.length > 0 &&
+                task.choices[1].text.length <= 20
               }
             />
             <Form.Control.Feedback>Megfelelő</Form.Control.Feedback>
             <Form.Control.Feedback type="invalid">
-              Kötelező kitölteni
+              {!!task.choices[1] && task.choices[1].text.length > 20
+                ? "Túl hosszú szöveg"
+                : "Kötelező kitölteni"}
             </Form.Control.Feedback>
           </InputGroup>
           <InputGroup className="mb-3">
@@ -105,18 +117,24 @@ export function TypeOrderList({ task, index, modifyTask }) {
               required
               isInvalid={
                 !task.choices ||
-                task.choices.length < 3 ||
-                task.choices[2].text.length <= 0
+                task.choices.length !== 4 ||
+                (!!task.choices[2] &&
+                  (task.choices[2].text.length <= 0 ||
+                    task.choices[2].text.length > 20))
               }
               isValid={
                 !!task.choices &&
-                task.choices.length >= 3 &&
-                task.choices[2].text.length > 0
+                task.choices.length === 4 &&
+                !!task.choices[2] &&
+                task.choices[2].text.length > 0 &&
+                task.choices[2].text.length <= 20
               }
             />
             <Form.Control.Feedback>Megfelelő</Form.Control.Feedback>
             <Form.Control.Feedback type="invalid">
-              Kötelező kitölteni
+              {!!task.choices[2] && task.choices[2].text.length > 20
+                ? "Túl hosszú szöveg"
+                : "Kötelező kitölteni"}
             </Form.Control.Feedback>
           </InputGroup>
           <InputGroup className="mb-3">
@@ -138,18 +156,24 @@ export function TypeOrderList({ task, index, modifyTask }) {
               required
               isInvalid={
                 !task.choices ||
-                task.choices.length < 4 ||
-                task.choices[3].text.length <= 0
+                task.choices.length !== 4 ||
+                (!!task.choices[3] &&
+                  (task.choices[3].text.length <= 0 ||
+                    task.choices[3].text.length > 20))
               }
               isValid={
                 !!task.choices &&
-                task.choices.length >= 4 &&
-                task.choices[3].text.length > 0
+                task.choices.length === 4 &&
+                !!task.choices[3] &&
+                task.choices[3].text.length > 0 &&
+                task.choices[3].text.length <= 20
               }
             />
             <Form.Control.Feedback>Megfelelő</Form.Control.Feedback>
             <Form.Control.Feedback type="invalid">
-              Kötelező kitölteni
+              {!!task.choices[3] && task.choices[3].text.length > 20
+                ? "Túl hosszú szöveg"
+                : "Kötelező kitölteni"}
             </Form.Control.Feedback>
           </InputGroup>
         </div>

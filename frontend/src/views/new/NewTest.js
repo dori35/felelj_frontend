@@ -58,32 +58,39 @@ export function NewTest() {
     }
 
     modTasks.forEach((m) => {
-      if (m.taskType === "ORDER_LIST") {
+      if (m.point < 1 || m.point > 100) {
+        errors.push("point");
+      }
+      if (m.text.length <= 0 || m.text.length > 200) {
+        errors.push("text");
+      }
+      if (m.timeFrame < 5 || m.timeFrame > 20) {
+        errors.push("timeFrame");
+      }
+
+      if (
+        m.taskType === "ORDER_LIST" ||
+        m.taskType === "MULTIPLE_CHOICES" ||
+        m.taskType === "ONE_CHOICE"
+      ) {
         if (m.choices.length !== 4) {
           errors.push("choicesLength");
         }
         if (
-          m.choices[0].text === "" ||
-          m.choices[1].text === "" ||
-          m.choices[2].text === "" ||
-          m.choices[3].text === ""
+          m.choices[0].text.length <= 0 ||
+          m.choices[0].text.length > 20 ||
+          m.choices[1].text.length <= 0 ||
+          m.choices[1].text.length > 20 ||
+          m.choices[2].text.length <= 0 ||
+          m.choices[2].text.length > 20 ||
+          m.choices[3].text.length <= 0 ||
+          m.choices[3].text.length > 20
         ) {
           errors.push("choicesText");
         }
       }
-      if (m.taskType === "MULTIPLE_CHOICES") {
-        if (m.choices.length !== 4) {
-          errors.push("choices");
-        }
-        if (
-          m.choices[0].text === "" ||
-          m.choices[1].text === "" ||
-          m.choices[2].text === "" ||
-          m.choices[3].text === ""
-        ) {
-          errors.push("choicesText");
-        }
 
+      if (m.taskType === "MULTIPLE_CHOICES") {
         if (
           !m.solutionMultipleChoices ||
           (!!m.solutionMultipleChoices && m.solutionMultipleChoices.length <= 1)
@@ -91,23 +98,13 @@ export function NewTest() {
           errors.push("solutionMultipleChoices");
         }
       }
-      if (m.taskType === "ONE_CHOICE") {
-        if (m.choices.length !== 4) {
-          errors.push("choicesLength");
-        }
-        if (
-          m.choices[0].text === "" ||
-          m.choices[1].text === "" ||
-          m.choices[2].text === "" ||
-          m.choices[3].text === ""
-        ) {
-          errors.push("choicesText");
-        }
 
-        if (!m.solutionOneChoice) {
+      if (m.taskType === "ONE_CHOICE") {
+        if (!m.solutionOneChoice || m.solutionOneChoice === "") {
           errors.push("solutionOneChoice");
         }
       }
+
       if (m.taskType === "TRUE_FALSE") {
         if (
           !m.solutionTrueFalse ||
@@ -117,16 +114,6 @@ export function NewTest() {
         ) {
           errors.push("solutionTrueFalse");
         }
-      }
-
-      if (m.point < 1 || m.point > 100) {
-        errors.push("point");
-      }
-      if (m.text.length <= 0 || m.text.length > 200) {
-        errors.push("text");
-      }
-      if (m.timeFrame < 5 || m.timeFrame > 20) {
-        errors.push("timeFrame");
       }
     });
 
