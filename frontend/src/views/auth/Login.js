@@ -26,9 +26,9 @@ export function Login() {
   useEffect(() => {
     if (roles) {
       if (roles.includes("TEACHER")) {
-        navigate("/createdtests");
+        navigate("/");
       } else if (roles.includes("STUDENT")) {
-        navigate("/completedtests");
+        navigate("/");
       }
     }
   }, [navigate, roles]);

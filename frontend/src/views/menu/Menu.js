@@ -47,7 +47,13 @@ export function Menu() {
   return (
     <Navbar bg="transparent" expand="lg" className="text-uppercase fw-bold ">
       <Container fluid>
-        <Navbar.Brand as={Link} to="/" onClick={setLocation("/")}>
+        <Navbar.Brand
+          as={Link}
+          to="/"
+          onClick={(e) => {
+            setLocation("/");
+          }}
+        >
           <img src={logo} alt="logo" height="50" />
         </Navbar.Brand>
         {isLoggedIn && (
@@ -71,7 +77,9 @@ export function Menu() {
                     to="/newtest"
                     eventKey="/newtest"
                     className="mx-3"
-                    onClick={setLocation("/newtest")}
+                    onClick={(e) => {
+                      setLocation("/newtest");
+                    }}
                   >
                     Új teszt
                   </Nav.Link>
@@ -82,7 +90,9 @@ export function Menu() {
                     to="/createdtests"
                     eventKey="/createdtests"
                     className="mx-3"
-                    onClick={setLocation("/createdtests")}
+                    onClick={(e) => {
+                      setLocation("/createdtests");
+                    }}
                   >
                     Létrehozott tesztek
                   </Nav.Link>
@@ -93,7 +103,9 @@ export function Menu() {
                     to="/completedtests"
                     eventKey="/completedtests"
                     className="mx-3"
-                    onClick={setLocation("/completedtests")}
+                    onClick={(e) => {
+                      setLocation("/completedtests");
+                    }}
                   >
                     Kitöltött tesztek
                   </Nav.Link>
@@ -125,7 +137,9 @@ export function Menu() {
                   as={Link}
                   eventKey="/registration"
                   className="mx-3"
-                  onClick={setLocation("/registration")}
+                  onClick={(e) => {
+                    setLocation("/registration");
+                  }}
                 >
                   Regisztráció
                 </Nav.Link>
@@ -134,7 +148,9 @@ export function Menu() {
                   as={Link}
                   eventKey="/login"
                   className="mx-3"
-                  onClick={setLocation("/login")}
+                  onClick={(e) => {
+                    setLocation("/login");
+                  }}
                 >
                   Bejelentkezés
                 </Nav.Link>
