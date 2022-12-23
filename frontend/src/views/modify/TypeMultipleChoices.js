@@ -278,9 +278,9 @@ export function TypeMultipleChoices({ task, index, modifyTask }) {
           </InputGroup>
         </div>
       }
-      {solutionMultipleChoices.length <= 1 && (
+      {solutionMultipleChoices.length < 1 && (
         <span style={{ color: "red" }}>
-          Kérlek válassz ki több helyes választ!
+          Kérlek válassz ki egy vagy több helyes választ!
         </span>
       )}
     </>

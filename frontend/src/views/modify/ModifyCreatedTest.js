@@ -104,7 +104,7 @@ export function ModifyCreatedTest() {
       if (m.taskType === "MULTIPLE_CHOICES") {
         if (
           !m.solutionMultipleChoices ||
-          (!!m.solutionMultipleChoices && m.solutionMultipleChoices.length <= 1)
+          (!!m.solutionMultipleChoices && m.solutionMultipleChoices.length < 1)
         ) {
           errors.push("solutionMultipleChoices");
         }
