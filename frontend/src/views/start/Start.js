@@ -9,6 +9,7 @@ import { Login } from "../auth/Login";
 import { FillingTask } from "../filling/FillingTask";
 import { Early } from "./Early";
 import { Late } from "./Late";
+import { NotFound } from "./NotFound";
 import { Started } from "./Started";
 
 export function Start() {
@@ -16,16 +17,9 @@ export function Start() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
   const { url } = useParams();
-  const [error, setError] = useState(false);
   useEffect(() => {
     if (url !== "") {
-      try {
-        dispatch(fetchStartTest(url));
-      } catch (error) {
-        setError(true);
-        console.log(error.message);
-        navigate("/");
-      }
+      dispatch(fetchStartTest(url));
     }
   }, [dispatch, url]);
   const test = useSelector(getStartTest);
@@ -127,6 +121,7 @@ export function Start() {
 
   return (
     <>
+      {<NotFound />}
       {!isLoggedIn && <Login />}
       {isLoggedIn && start && test && test.tasks && test.tasks.length > 0 && (
         <FillingTask

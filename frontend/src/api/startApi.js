@@ -23,7 +23,7 @@ class StartApi {
 
   async getStartTest(token, url) {
     const test = await request(`${this.resourcePath}/${url}`, {}, token);
-    if (test.random) {
+    if (!!test && test.random) {
       shuffle(test.tasks);
     }
     return test;

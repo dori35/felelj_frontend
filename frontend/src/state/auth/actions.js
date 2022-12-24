@@ -30,9 +30,8 @@ export const login = (identifier, password) => async (dispatch) => {
   if (!response.error) {
     dispatch(storeUser(response));
   } else {
-    throw new Error("Authentication");
+    throw new Error("Login failed!");
   }
-  return response;
 };
 
 export const signup =
@@ -44,6 +43,9 @@ export const signup =
       email,
       role
     );
+    if (response.error) {
+      throw new Error("Sign up failed!");
+    }
     return response;
   };
 
@@ -72,6 +74,9 @@ export const restoreUser = () => async (dispatch) => {
         })
       );
     }
+    if (user.error) {
+      throw new Error("Restore User failed!");
+    }
   }
 };
 
@@ -81,6 +86,9 @@ export const fetchProfile = () =>
       const profile = await authApi.getUserById(userId, token);
       if (!profile.error) {
         dispatch(setProfile({ profile: profile }));
+      }
+      if (profile.error) {
+        throw new Error("Set profile failed!");
       }
     })
   );

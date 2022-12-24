@@ -58,7 +58,7 @@ export function Registration() {
       const response = await dispatch(
         signup(e.name, e.password, e.identifier, e.email, e.role)
       );
-      if (response.text === "success registration") {
+      if (response.text === "successful registration") {
         setShowSuccess(true);
         setShowDanger(false);
       } else {

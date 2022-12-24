@@ -21,6 +21,7 @@ import { Finish } from "./start/Finish";
 import { CompletedTestResults } from "./completed/CompletedTestResults";
 import { TestResultFillers } from "./results/TestResultFillers";
 import { TestResultTasks } from "./results/TestResultTasks";
+import { NotFound } from "./start/NotFound";
 
 export function App() {
   const isLoggedIn = useSelector(getIsLoggedIn);
