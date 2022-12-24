@@ -16,9 +16,16 @@ export function Start() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
   const { url } = useParams();
+  const [error, setError] = useState(false);
   useEffect(() => {
     if (url !== "") {
-      dispatch(fetchStartTest(url));
+      try {
+        dispatch(fetchStartTest(url));
+      } catch (error) {
+        setError(true);
+        console.log(error.message);
+        navigate("/");
+      }
     }
   }, [dispatch, url]);
   const test = useSelector(getStartTest);

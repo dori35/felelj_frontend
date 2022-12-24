@@ -35,7 +35,10 @@ export const settingStart = (testId, url, startTime) =>
 export const fetchStartTest = (url) =>
   addToken(async (dispatch, getState, _, token) => {
     let test = await startApi.getStartTest(token, url);
-    dispatch(setTest(test));
+    console.log(test);
+    if (!test.error) {
+      dispatch(setTest(test));
+    }
   });
 
 export const fetchResults = (url, userId) =>

@@ -29,7 +29,10 @@ export const login = (identifier, password) => async (dispatch) => {
   const response = await authApi.login(identifier, password);
   if (!response.error) {
     dispatch(storeUser(response));
+  } else {
+    throw new Error("Authentication");
   }
+  return response;
 };
 
 export const signup =
@@ -60,13 +63,15 @@ export const restoreUser = () => async (dispatch) => {
     const data = JSON.parse(atob(token.split(".")[1]));
     const userIdentifier = data.sub;
     const user = await authApi.getUserByIdentifier(userIdentifier, token);
-    dispatch(
-      storeUser({
-        ...user,
-        token,
-        type: "Bearer",
-      })
-    );
+    if (!user.error) {
+      dispatch(
+        storeUser({
+          ...user,
+          token,
+          type: "Bearer",
+        })
+      );
+    }
   }
 };
 
@@ -74,6 +79,8 @@ export const fetchProfile = () =>
   addToken(
     addUserId(async (dispatch, getState, _, token, userId) => {
       const profile = await authApi.getUserById(userId, token);
-      dispatch(setProfile({ profile: profile }));
+      if (!profile.error) {
+        dispatch(setProfile({ profile: profile }));
+      }
     })
   );
