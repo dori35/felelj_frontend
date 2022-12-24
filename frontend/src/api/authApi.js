@@ -10,7 +10,9 @@ class AuthApi {
       method: "POST",
       body: JSON.stringify(authData),
     });
-    window.sessionStorage.setItem("token", response.token);
+    if (!!response.token) {
+      window.sessionStorage.setItem("token", response.token);
+    }
     return response;
   }
 
@@ -22,7 +24,7 @@ class AuthApi {
       email,
       role,
     };
-    const response = await request("/signup", {
+    const response = await request("/api/auth/signup", {
       method: "POST",
       body: JSON.stringify(newUserData),
     });

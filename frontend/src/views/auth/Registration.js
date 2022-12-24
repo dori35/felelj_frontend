@@ -19,13 +19,15 @@ export function Registration() {
   const dispatch = useDispatch();
 
   let schema = object({
-    name: string().required("Kötelező kitölteni"),
+    name: string().trim().required("Kötelező kitölteni"),
     identifier: string()
+      .trim()
       .required("Kötelező kitölteni")
       .min(6, "Pontosan 6 karakterből kell állnia")
       .max(6, "Pontosan 6 karakterből kell állnia"),
-    email: string().required("Kötelező kitölteni").email(),
+    email: string().trim().required("Kötelező kitölteni").email(),
     password: string()
+      .trim()
       .required("Kötelező kitölteni")
       .min(4, "Min. 4 karakterből kell állnia")
       .test(
@@ -43,6 +45,7 @@ export function Registration() {
       ),
 
     password2: string()
+      .trim()
       .required("Kötelező kitölteni")
       .oneOf([ref("password"), null], "Nem egyezik a jelszó"),
     role: string()

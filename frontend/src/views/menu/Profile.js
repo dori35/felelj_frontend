@@ -25,11 +25,17 @@ export function Profile({ dis }) {
   };
 
   const handleClickProfileModal = (e) => {
+    e.preventDefault();
+    let err = false;
     try {
-      e.preventDefault();
       dispatch(fetchProfile());
+    } catch (error) {
+      console.log("error");
+      err = true;
+    }
+    if (!err) {
       handleShow();
-    } catch (error) {}
+    }
   };
   return (
     <>

@@ -27,10 +27,9 @@ export const setProfile = (profile) => ({
 
 export const login = (identifier, password) => async (dispatch) => {
   const response = await authApi.login(identifier, password);
-  if (response.error) {
-    throw new Error("Authentication failed!");
+  if (!response.error) {
+    dispatch(storeUser(response));
   }
-  dispatch(storeUser(response));
 };
 
 export const signup =

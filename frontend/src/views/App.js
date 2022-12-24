@@ -38,6 +38,7 @@ export function App() {
           setLoaded(true);
         }
       } catch (error) {
+        console.log("hiba restoreUser");
         setLoaded(true);
       }
     };
