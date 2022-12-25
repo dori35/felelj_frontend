@@ -27,8 +27,12 @@ export const removeStartTest = () => ({
 export const settingStart = (testId, url, startTime) =>
   addToken(
     addUserId(async (dispatch, getState, _, token, userId) => {
-      await startApi.settingStartTest(token, testId, userId, url, startTime);
-      dispatch(settingStartTest());
+      try {
+        await startApi.settingStartTest(token, testId, userId, url, startTime);
+        dispatch(settingStartTest());
+      } catch (error) {
+        console.log("sajttttt");
+      }
     })
   );
 

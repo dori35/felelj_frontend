@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { Form, Button, Card, Row, Col } from "react-bootstrap";
 import { settingStart } from "../../state/startTest/actions";
 import QRCode from "react-qr-code";
 import md5 from "md5";
+import { getCreatedTests } from "../../state/createdTests/selectors";
 
 export function SettingStartTest() {
   const dispatch = useDispatch();
@@ -13,6 +14,9 @@ export function SettingStartTest() {
   const [error, setError] = useState(false);
   const { createdTestId } = useParams();
   const [url, setUrl] = useState("");
+  const tests = useSelector(getCreatedTests);
+
+  const test = tests.find((test) => test.id === createdTestId);
 
   useEffect(() => {
     const current = new Date();
@@ -43,7 +47,7 @@ export function SettingStartTest() {
 
   return (
     <>
-      {url && (
+      {url && !!test && (
         <div className="d-flex justify-content-center align-items-center py-5">
           <Card>
             <Card.Header>Teszt linkje</Card.Header>
