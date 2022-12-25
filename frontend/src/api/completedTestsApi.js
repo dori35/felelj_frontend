@@ -7,8 +7,19 @@ class CompletedTestsApi {
   }
 
   async getAll(token, userId) {
-    const tests = await request(this.resourcePath, {}, token, userId);
-    return tests.map(this.convertFn);
+    let tests = [];
+    try {
+      tests = await request(this.resourcePath, {}, token, userId);
+      if (!!tests.error) {
+        console.log("error completed");
+        return tests;
+      } else {
+        return tests.map(this.convertFn);
+      }
+    } catch (error) {
+      console.log("getall completed");
+      return tests;
+    }
   }
 }
 
