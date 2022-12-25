@@ -34,7 +34,11 @@ export const fetchFillingTest = (testId) =>
 export const sendFillingTest = (testId, answers, startDate) =>
   addToken(
     addUserId(async (dispatch, getState, _, token, userId) => {
-      await fillingTestApi.send(token, testId, userId, answers, startDate);
+      try {
+        await fillingTestApi.send(token, testId, userId, answers, startDate);
+      } catch (error) {
+        console.log("error kuldesnel");
+      }
       dispatch(sendTest());
       dispatch(fetchCompletedTests());
     })
