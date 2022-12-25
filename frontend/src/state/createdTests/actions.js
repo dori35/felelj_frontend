@@ -64,7 +64,11 @@ export const newTest = (title, subject, random, tasks) =>
 export const deleteTest = (test) =>
   addToken(
     addUserId(async (dispatch, getState, _, token, userId) => {
-      await createdTestsApi.deleteTest(token, userId, test.id);
+      try {
+        await createdTestsApi.deleteTest(token, userId, test.id);
+      } catch (error) {
+        console.log("hiba törlés során");
+      }
       let tests = await createdTestsApi.getAll(token, userId);
       dispatch(updateTests(tests));
     })
