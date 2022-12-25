@@ -121,21 +121,30 @@ export function Start() {
 
   return (
     <>
-      {<NotFound />}
-      {!isLoggedIn && <Login />}
-      {isLoggedIn && start && test && test.tasks && test.tasks.length > 0 && (
-        <FillingTask
-          key={test.tasks[currentIndex].id}
-          task={test.tasks[currentIndex]}
-          addAnswer={addAnswer}
-          time={time}
-        />
-      )}
-      {isLoggedIn && !start && !late && !started && !finish && early && (
-        <Early />
-      )}
-      {isLoggedIn && started && !late && !finish && <Started />}
-      {isLoggedIn && !start && late && !finish && <Late />}
+      {!!test.error && <NotFound />}
+      {!test.error && !isLoggedIn && <Login />}
+      {!test.error &&
+        isLoggedIn &&
+        start &&
+        test &&
+        test.tasks &&
+        test.tasks.length > 0 && (
+          <FillingTask
+            key={test.tasks[currentIndex].id}
+            task={test.tasks[currentIndex]}
+            addAnswer={addAnswer}
+            time={time}
+          />
+        )}
+      {!test.error &&
+        isLoggedIn &&
+        !start &&
+        !late &&
+        !started &&
+        !finish &&
+        early && <Early />}
+      {!test.error && isLoggedIn && started && !late && !finish && <Started />}
+      {!test.error && isLoggedIn && !start && late && !finish && <Late />}
     </>
   );
 }

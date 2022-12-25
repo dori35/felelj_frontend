@@ -6,9 +6,13 @@ class FillingTestApi {
     this.resourcePath = resourcePath;
   }
 
-  async get(token, testId) {
-    const test = await request(`${this.resourcePath}/${testId}`, {}, token);
-    if (test.random) {
+  async get(token, testId, userId) {
+    const test = await request(
+      `${this.resourcePath}/${testId}/${userId}`,
+      {},
+      token
+    );
+    if (!!test && test.random) {
       shuffle(test.tasks);
     }
     return test;

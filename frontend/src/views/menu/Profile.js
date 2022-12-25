@@ -43,7 +43,7 @@ export function Profile({ dis }) {
         id="navProfile"
         title="Profil"
         align="end"
-        className={classnames({
+        className={classnames("fw-light", {
           "d-none": dis,
         })}
         disabled={dis}

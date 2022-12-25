@@ -45,7 +45,7 @@ export function Menu() {
   }, [location]);
 
   return (
-    <Navbar bg="transparent" expand="lg" className="text-uppercase fw-bold ">
+    <Navbar bg="transparent" expand="lg" className="text-uppercase">
       <Container fluid>
         <Navbar.Brand
           as={Link}
@@ -66,7 +66,7 @@ export function Menu() {
             />
             <Navbar.Collapse id="navbarScroll">
               <Nav
-                className="ms-auto  my-2 my-lg-0  "
+                className="ms-auto  my-2 my-lg-0 "
                 style={{ maxHeight: "100px" }}
                 navbarScroll
                 activeKey={loc}
@@ -112,9 +112,7 @@ export function Menu() {
                 )}
               </Nav>
             </Navbar.Collapse>
-            <Nav>
-              <Profile dis={dis} />
-            </Nav>
+            <Profile dis={dis} />
           </>
         )}
         {!isLoggedIn && (

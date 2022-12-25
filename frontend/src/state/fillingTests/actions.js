@@ -20,10 +20,16 @@ export const removeFillingTest = () => ({
 });
 
 export const fetchFillingTest = (testId) =>
-  addToken(async (dispatch, getState, _, token) => {
-    let test = await fillingTestApi.get(token, testId);
-    dispatch(setFillingTest(test));
-  });
+  addToken(
+    addUserId(async (dispatch, getState, _, token, userId) => {
+      try {
+        let test = await fillingTestApi.get(token, testId, userId);
+        dispatch(setFillingTest(test));
+      } catch (error) {
+        console.log("körte");
+      }
+    })
+  );
 
 export const sendFillingTest = (testId, answers, startDate) =>
   addToken(

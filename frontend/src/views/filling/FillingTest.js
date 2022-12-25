@@ -6,6 +6,7 @@ import {
   sendFillingTest,
 } from "../../state/fillingTests/actions";
 import { getFillingTest } from "../../state/fillingTests/selectors";
+import { FillingNotFound } from "./FillingNotFound";
 import { FillingTask } from "./FillingTask";
 
 export function FillingTest() {
@@ -78,6 +79,7 @@ export function FillingTest() {
           time={time}
         />
       )}
+      {test && test.error && <FillingNotFound />}
     </>
   );
 }
