@@ -31,15 +31,19 @@ export const fetchCreatedTests = () =>
 export const modifyTest = (testId, title, subject, random, tasks) =>
   addToken(
     addUserId(async (dispatch, getState, _, token, userId) => {
-      await createdTestsApi.modifyTest(
-        token,
-        userId,
-        testId,
-        title,
-        subject,
-        random,
-        tasks
-      );
+      try {
+        await createdTestsApi.modifyTest(
+          token,
+          userId,
+          testId,
+          title,
+          subject,
+          random,
+          tasks
+        );
+      } catch (error) {
+        console.log("modositas hiba");
+      }
       let tests = await createdTestsApi.getAll(token, userId);
       dispatch(updateTests(tests));
     })
@@ -48,14 +52,18 @@ export const modifyTest = (testId, title, subject, random, tasks) =>
 export const newTest = (title, subject, random, tasks) =>
   addToken(
     addUserId(async (dispatch, getState, _, token, userId) => {
-      await createdTestsApi.newTest(
-        token,
-        userId,
-        title,
-        subject,
-        random,
-        tasks
-      );
+      try {
+        await createdTestsApi.newTest(
+          token,
+          userId,
+          title,
+          subject,
+          random,
+          tasks
+        );
+      } catch (error) {
+        console.log("uj hiba");
+      }
       let tests = await createdTestsApi.getAll(token, userId);
       dispatch(updateTests(tests));
     })

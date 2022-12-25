@@ -27,7 +27,7 @@ export function ModifyCreatedTest() {
   const [subject, setSubject] = useState("");
   const [random, setRandom] = useState("");
   const [modTasks, setModTasks] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (test) {
@@ -127,7 +127,6 @@ export function ModifyCreatedTest() {
         }
       }
     });
-
     if (errors.length > 0) {
       console.log(errors);
     } else {
@@ -156,7 +155,7 @@ export function ModifyCreatedTest() {
 
   return (
     <>
-      {test && (
+      {test && !error && (
         <div>
           <Container className="py-5">
             <div>
