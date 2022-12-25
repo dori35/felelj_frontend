@@ -23,8 +23,12 @@ export const removeTests = () => ({
 export const fetchCreatedTests = () =>
   addToken(
     addUserId(async (dispatch, getState, _, token, userId) => {
-      let tests = await createdTestsApi.getAll(token, userId);
-      dispatch(setCreatedTests(tests));
+      try {
+        let tests = await createdTestsApi.getAll(token, userId);
+        dispatch(setCreatedTests(tests));
+      } catch (error) {
+        console.log("error a createdtestnel");
+      }
     })
   );
 
