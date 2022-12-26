@@ -45,7 +45,7 @@ class AuthApi {
   }
 
   async getUserById(userId, token) {
-    const profile = await request(`/userdtos/${userId}`, {}, token);
+    const profile = await request(`/profile/${userId}`, {}, token);
     return profile;
   }
 }
