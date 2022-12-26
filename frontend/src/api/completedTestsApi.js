@@ -29,6 +29,6 @@ const convertTestsIds = (tests) => ({
 });
 
 export const completedTestsApi = new CompletedTestsApi(
-  "/completedtestdtos",
+  "/completedtest",
   convertTestsIds
 );

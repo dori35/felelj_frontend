@@ -74,6 +74,6 @@ const convertTestsIds = (tests) => ({
 });
 
 export const createdTestsApi = new CreatedTestsApi(
-  "/createdtestdtos",
+  "/createdtest",
   convertTestsIds
 );

@@ -33,4 +33,4 @@ class FillingTestApi {
   }
 }
 
-export const fillingTestApi = new FillingTestApi("/fillingtestdtos");
+export const fillingTestApi = new FillingTestApi("/fillingtest");
