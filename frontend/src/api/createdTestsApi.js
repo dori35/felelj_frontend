@@ -29,7 +29,7 @@ class CreatedTestsApi {
       random,
       tasks,
     };
-    await request(
+    let a = await request(
       `${this.resourcePath}/${userId}/${testId}`,
       {
         method: "POST",
@@ -37,6 +37,7 @@ class CreatedTestsApi {
       },
       token
     );
+    console.log(a);
   }
 
   async newTest(token, userId, title, subject, random, tasks) {
