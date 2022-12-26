@@ -14,10 +14,14 @@ export const request = async (path = "", options = {}, token, userId) => {
   if (userId) {
     url += `/${userId}`;
   }
-  const response = await fetch(url, {
-    ...options,
-    headers,
-  });
-
+  let response = {};
+  try {
+    response = await fetch(url, {
+      ...options,
+      headers,
+    });
+  } catch (error) {
+    console.log("fegbf");
+  }
   return response.json();
 };

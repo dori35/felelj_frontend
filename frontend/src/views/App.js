@@ -76,7 +76,7 @@ export function App() {
               )}{" "}
               {isLoggedIn && (
                 <Route
-                  path="/completedtests/:completedTestId/:Index"
+                  path="/completedtests/:Index"
                   element={<CompletedTestResults />}
                 />
               )}

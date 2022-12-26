@@ -17,7 +17,7 @@ export function CompletedTest({ completedTest, index }) {
       <td>
         <Link
           className="btn btn-warning btn-sm"
-          to={`/completedtests/${completedTest.id}/${index}`}
+          to={`/completedtests/${index}`}
         >
           <BsStarFill />
         </Link>
