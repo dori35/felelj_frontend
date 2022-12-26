@@ -33,7 +33,11 @@ export function CreatedTest({ createdTest, onDeleteTestClick }) {
         </Link>
         <Link
           to={`/results/${createdTest.id}`}
-          className="btn btn-warning btn-sm"
+          className={classnames("btn btn-warning btn-sm", {
+            disabledLink: createdTest.taskNumber <= 0,
+            disabled: createdTest.taskNumber <= 0,
+            "d-none": createdTest.taskNumber <= 0,
+          })}
         >
           <BsTrophy />
         </Link>
@@ -42,6 +46,8 @@ export function CreatedTest({ createdTest, onDeleteTestClick }) {
           style={{ backgroundColor: "BurlyWood" }}
           className={classnames("btn btn-sm", {
             disabledLink: createdTest.taskNumber <= 0,
+            disabled: createdTest.taskNumber <= 0,
+            "d-none": createdTest.taskNumber <= 0,
           })}
         >
           <AiFillEye />
@@ -50,6 +56,8 @@ export function CreatedTest({ createdTest, onDeleteTestClick }) {
           to={`/settingstart/${createdTest.id}`}
           className={classnames("btn btn-success btn-sm", {
             disabledLink: createdTest.taskNumber <= 0,
+            disabled: createdTest.taskNumber <= 0,
+            "d-none": createdTest.taskNumber <= 0,
           })}
         >
           <IoMdArrowDroprightCircle />

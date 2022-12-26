@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchTestResults } from "../../state/testResults/actions";
 import { getTestResults } from "../../state/testResults/selectros";
 import { TestResultFiller } from "./TestResultFiller";
@@ -9,6 +9,7 @@ import { TestResultFiller } from "./TestResultFiller";
 export function TestResultFillers() {
   const { Index } = useParams();
   const { createdTestId } = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const results = useSelector(getTestResults);
 
@@ -21,14 +22,25 @@ export function TestResultFillers() {
   const [fillers, setFillers] = useState([]);
 
   useEffect(() => {
-    if (results !== null && results.length > 0) {
-      setFillers(results[Index].fillers);
+    if (!!results && !!results.error) {
+      navigate("/");
+    }
+    if (results !== null && !results.error && results.length > 0) {
+      if (
+        isNaN(parseInt(Index)) ||
+        !results[Index] ||
+        !results[Index].fillers
+      ) {
+        navigate("/");
+      } else {
+        setFillers(results[Index].fillers);
+      }
     }
   }, [results]);
 
   return (
     <>
-      {fillers.length > 0 && (
+      {!!fillers && fillers.length > 0 && (
         <div className="table-responsive mx-md-5 mt-md-3">
           <Table className="table-sm " style={{ textAlign: "center" }}>
             <thead className="bg-dark text-white">

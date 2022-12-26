@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchTestResults } from "../../state/testResults/actions";
 import { getTestResults } from "../../state/testResults/selectros";
 import { CompletedTask } from "../completed/CompletedTask";
@@ -9,6 +9,7 @@ import { CompletedTask } from "../completed/CompletedTask";
 export function TestResultTasks() {
   const { Index, createdTestId, fillerId } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const results = useSelector(getTestResults);
   useEffect(() => {
     if (!results || results.length === 0) {
@@ -19,23 +20,42 @@ export function TestResultTasks() {
   const [fillers, setFillers] = useState([]);
   const [tasks, setTasks] = useState([]);
   useEffect(() => {
+    if (!!results && !!results.error) {
+      navigate("/");
+    }
     if (results !== null && results.length > 0) {
-      setFillers(results[Index].fillers);
+      if (
+        isNaN(parseInt(Index)) ||
+        !results[Index] ||
+        !results[Index].fillers
+      ) {
+        navigate("/");
+      } else {
+        setFillers(results[Index].fillers);
+      }
     }
   }, [results]);
 
   useEffect(() => {
     if (fillers !== null && fillers.length > 0) {
-      setTasks(
-        results[Index].fillers.find((e) => e.userId.toString() === fillerId)
-          .tasks
-      );
+      if (isNaN(parseInt(fillerId))) {
+        navigate("/");
+      } else {
+        let filler = results[Index].fillers.find(
+          (e) => e.userId.toString() === fillerId
+        );
+        if (!filler || !filler.tasks) {
+          navigate("/");
+        } else {
+          setTasks(filler.tasks);
+        }
+      }
     }
   }, [fillers]);
 
   return (
     <>
-      {tasks && (
+      {!!results && !results.error && !!tasks && (
         <Container className="py-5">
           <div>
             <Card className=" bg-dark text-light">

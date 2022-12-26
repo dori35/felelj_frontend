@@ -6,11 +6,17 @@ class TestResultsApi {
   }
 
   async getAll(token, testId, userId) {
-    const results = await request(
-      `${this.resourcePath}/${testId}/${userId}`,
-      {},
-      token
-    );
+    let results = [];
+    try {
+      results = await request(
+        `${this.resourcePath}/${testId}/${userId}`,
+        {},
+        token
+      );
+    } catch (error) {
+      console.log("hibaa");
+    }
+    console.log(results);
     return results;
   }
 }
