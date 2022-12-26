@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Table } from "react-bootstrap";
+import { Card, Container, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchTestResults } from "../../state/testResults/actions";
@@ -15,15 +15,9 @@ export function TestResults() {
   }, [dispatch, createdTestId]);
   const results = useSelector(getTestResults);
 
-  useEffect(() => {
-    if (!!results && !!results.error) {
-      navigate("/");
-    }
-  }, [results]);
-
   return (
     <>
-      {results && !results.error && results.length >= 0 && (
+      {results && !results.error && results.length >= 0 ? (
         <div className=" table-responsive mx-md-5 mt-md-3  ">
           <Table className="table-sm " style={{ textAlign: "center" }}>
             <thead className="bg-dark text-white">
@@ -54,6 +48,18 @@ export function TestResults() {
             </tbody>
           </Table>
         </div>
+      ) : (
+        <Container className="py-5">
+          <div>
+            <Card className=" bg-dark text-light">
+              <Card.Body>
+                <Card.Title className="fw-bold text-uppercase text-danger">
+                  A teszthez nem tartozik kitöltés.
+                </Card.Title>
+              </Card.Body>
+            </Card>
+          </div>
+        </Container>
       )}
     </>
   );

@@ -55,7 +55,7 @@ export function TestResultTasks() {
 
   return (
     <>
-      {!!results && !results.error && !!tasks && (
+      {!!results && !results.error && !!tasks && tasks.length > 0 && (
         <Container className="py-5">
           <div>
             <Card className=" bg-dark text-light">
