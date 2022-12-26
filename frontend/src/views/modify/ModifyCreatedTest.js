@@ -44,7 +44,7 @@ export function ModifyCreatedTest() {
     timeFrame: 5,
     point: "",
     solution: "",
-    choices: "",
+    choices: [],
   };
 
   const handleNewTaskButtonClick = (e) => {
@@ -86,8 +86,7 @@ export function ModifyCreatedTest() {
       ) {
         if (m.choices.length !== 4) {
           errors.push("choicesLength");
-        }
-        if (
+        } else if (
           m.choices[0].text.length <= 0 ||
           m.choices[0].text.length > 20 ||
           m.choices[1].text.length <= 0 ||
