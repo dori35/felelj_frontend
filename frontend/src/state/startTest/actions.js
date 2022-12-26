@@ -48,6 +48,10 @@ export const fetchStartTest = (url) =>
 
 export const fetchResults = (url, userId) =>
   addToken(async (dispatch, getState, _, token) => {
-    let results = await startApi.getResults(token, url, userId);
-    dispatch(setResults(results));
+    try {
+      let results = await startApi.getResults(token, url, userId);
+      dispatch(setResults(results));
+    } catch (error) {
+      console.log("results hiba");
+    }
   });
