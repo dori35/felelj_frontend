@@ -215,7 +215,7 @@ export function ModifyCreatedTest() {
                           type="checkbox"
                           id="randomSwitch"
                           name={`random${test.id}`}
-                          label="Random módon legyenek a kérdések"
+                          label="Random módon legyenek a feladatok"
                           defaultChecked={test.random}
                           onChange={(e) => setRandom(e.target.checked)}
                         />
