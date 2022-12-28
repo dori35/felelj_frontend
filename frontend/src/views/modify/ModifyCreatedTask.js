@@ -32,8 +32,8 @@ export function ModifyCreatedTask({
     if (!!task.solutionOneChoice && task.solutionOneChoice !== "") {
       modifyTask({ solutionOneChoice: "" });
     }
-    if (!!task.solutionMultipleChoices && task.solutionMultipleChoices !== "") {
-      modifyTask({ solutionMultipleChoices: "" });
+    if (!!task.solutionMultipleChoices && task.solutionMultipleChoices !== []) {
+      modifyTask({ solutionMultipleChoices: [] });
     }
     if (e.target.value === "ONE_CHOICE") {
       setTaskType("ONE_CHOICE");
