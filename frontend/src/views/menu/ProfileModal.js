@@ -10,7 +10,7 @@ export function ProfileModal({ show, onShow, onHide, profile }) {
         <Container>
           <Row>
             <Col xs={3} md={4} style={{ fontWeight: "bold" }}>
-              {profile.role === "TEACHER" ? "TANÁR" : "DIÁK"}
+              {profile.role === "TEACHER" ? "OKTATÓ" : "DIÁK"}
             </Col>
           </Row>
           <Row>

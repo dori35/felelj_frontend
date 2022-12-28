@@ -110,7 +110,7 @@ export function SettingStartTest() {
                 </Row>
                 {error && (
                   <div style={{ color: "red" }}>
-                    Valami hiba történt! (Csak a jelenleginél később időponton
+                    Valami hiba történt! (Csak a jelenleginél később időpontban
                     lehet tesztet íratni!)
                   </div>
                 )}
