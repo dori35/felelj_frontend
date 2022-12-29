@@ -30,9 +30,7 @@ export const settingStart = (testId, url, startTime) =>
       try {
         await startApi.settingStartTest(token, testId, userId, url, startTime);
         dispatch(settingStartTest());
-      } catch (error) {
-        console.log("sajttttt");
-      }
+      } catch (error) {}
     })
   );
 
@@ -41,9 +39,7 @@ export const fetchStartTest = (url) =>
     try {
       let test = await startApi.getStartTest(token, url);
       dispatch(setTest(test));
-    } catch (error) {
-      console.log("alma");
-    }
+    } catch (error) {}
   });
 
 export const fetchResults = (url, userId) =>
@@ -51,7 +47,5 @@ export const fetchResults = (url, userId) =>
     try {
       let results = await startApi.getResults(token, url, userId);
       dispatch(setResults(results));
-    } catch (error) {
-      console.log("results hiba");
-    }
+    } catch (error) {}
   });

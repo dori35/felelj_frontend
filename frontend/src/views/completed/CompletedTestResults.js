@@ -1,31 +1,15 @@
 import { Card, Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getCompletedTests } from "../../state/completedTests/selectors";
 import { CompletedTask } from "./CompletedTask";
 import "../css/completed/CompletedTestResults.css";
-import { useEffect } from "react";
 
 export function CompletedTestResults() {
-  const navigate = useNavigate();
   const { Index } = useParams();
   const completedTests = useSelector(getCompletedTests);
   const test = completedTests[Index];
 
-  /*
-  useEffect(() => {
-    if (
-      (!!completedTests &&
-        completedTests.length > 0 &&
-        !completedTests[Index]) ||
-      (!!completedTests &&
-        completedTests.length > 0 &&
-        !!completedTests[Index] &&
-        completedTests[Index].id !== completedTestId)
-    ) {
-      navigate("/");
-    }
-  }, [completedTests, completedTestId, Index]);*/
   return (
     <>
       {!!test && !!test.tasks && test.tasks.length > 0 ? (

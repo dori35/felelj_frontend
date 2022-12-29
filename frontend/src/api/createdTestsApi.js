@@ -11,13 +11,11 @@ class CreatedTestsApi {
     try {
       tests = await request(this.resourcePath, {}, token, userId);
       if (!!tests.error) {
-        console.log("error created");
         return tests;
       } else {
         return tests.map(this.convertFn);
       }
     } catch (error) {
-      console.log("getall created");
       return tests;
     }
   }
@@ -37,7 +35,6 @@ class CreatedTestsApi {
       },
       token
     );
-    console.log(a);
   }
 
   async newTest(token, userId, title, subject, random, tasks) {

@@ -13,10 +13,7 @@ class TestResultsApi {
         {},
         token
       );
-    } catch (error) {
-      console.log("hibaa");
-    }
-    console.log(results);
+    } catch (error) {}
     return results;
   }
 }

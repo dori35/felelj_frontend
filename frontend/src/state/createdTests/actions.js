@@ -41,9 +41,7 @@ export const modifyTest = (testId, title, subject, random, tasks) =>
           random,
           tasks
         );
-      } catch (error) {
-        console.log("modositas hiba");
-      }
+      } catch (error) {}
       let tests = await createdTestsApi.getAll(token, userId);
       dispatch(updateTests(tests));
     })
@@ -61,9 +59,7 @@ export const newTest = (title, subject, random, tasks) =>
           random,
           tasks
         );
-      } catch (error) {
-        console.log("uj hiba");
-      }
+      } catch (error) {}
       let tests = await createdTestsApi.getAll(token, userId);
       dispatch(updateTests(tests));
     })
@@ -74,9 +70,7 @@ export const deleteTest = (test) =>
     addUserId(async (dispatch, getState, _, token, userId) => {
       try {
         await createdTestsApi.deleteTest(token, userId, test.id);
-      } catch (error) {
-        console.log("hiba törlés során");
-      }
+      } catch (error) {}
       let tests = await createdTestsApi.getAll(token, userId);
       dispatch(updateTests(tests));
     })

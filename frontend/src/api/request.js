@@ -20,7 +20,7 @@ export const request = async (path = "", options = {}, token, userId) => {
       headers,
     });
   } catch (error) {
-    console.log("fegbf");
+    console.log("error");
   }
   return response.json();
 };

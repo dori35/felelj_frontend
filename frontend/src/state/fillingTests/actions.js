@@ -25,9 +25,7 @@ export const fetchFillingTest = (testId) =>
       try {
         let test = await fillingTestApi.get(token, testId, userId);
         dispatch(setFillingTest(test));
-      } catch (error) {
-        console.log("körte");
-      }
+      } catch (error) {}
     })
   );
 
@@ -36,9 +34,7 @@ export const sendFillingTest = (testId, answers, startDate) =>
     addUserId(async (dispatch, getState, _, token, userId) => {
       try {
         await fillingTestApi.send(token, testId, userId, answers, startDate);
-      } catch (error) {
-        console.log("error kuldesnel");
-      }
+      } catch (error) {}
       dispatch(sendTest());
       dispatch(fetchCompletedTests());
     })

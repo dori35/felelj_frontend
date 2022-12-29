@@ -1,14 +1,13 @@
 import { useEffect } from "react";
 import { Card, Container, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { fetchTestResults } from "../../state/testResults/actions";
 import { getTestResults } from "../../state/testResults/selectros";
 import { TestResult } from "./TestResult";
 
 export function TestResults() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { createdTestId } = useParams();
   useEffect(() => {
     dispatch(fetchTestResults(createdTestId));
